@@ -486,17 +486,19 @@
 <p>共$T$组数据.</p>
 <p>$n\le 10^7,T\le 10^4$</p>
 <a id="more"></a>
-
 <h3 id="解"><a href="#解" class="headerlink" title="解"></a>解</h3><p>记$f(n,m)=\sum _{i=1}^n\sum _{j=1}^m[i\perp j]$，显然答案就是</p>
-<p>$$\sum _{p\text{ is prime}}f([n/p],[m/p])$$</p>
-<p>下面看$f$怎么算. 如果$n=m$，显然有$f(n,n)=\sum _{i=1}^n\varphi(n)$，预处理欧拉函数前缀和就可以做了.</p>
+<script type="math/tex; mode=display">\sum _{p\text{ is prime}}f([n/p],[m/p])</script><p>下面看$f$怎么算. 如果$n=m$，显然有$f(n,n)=\sum _{i=1}^n\varphi(n)$，预处理欧拉函数前缀和就可以做了.</p>
 <p>$n\neq m$的时候一个显然的套路就是莫比乌斯反演：</p>
-<p>$$\begin{aligned}<br>f(n,m)=&amp;\sum _{i}\sum _{j}\sum _{d|\gcd(i,j)}\mu(d)\<br>=&amp;\sum _{d}\mu(d) [n/d] [m/d]<br>\end{aligned}$$</p>
-<p>用整除分块可以做到$\mathcal O(\sqrt{n})$的复杂度，从而每次询问是$\mathcal O(n^{3/4})$， 但这还是太慢了.</p>
+<script type="math/tex; mode=display">\begin{aligned}
+f(n,m)=&\sum _{i}\sum _{j}\sum _{d|\gcd(i,j)}\mu(d)\\
+=&\sum _{d}\mu(d) [n/d] [m/d]
+\end{aligned}</script><p>用整除分块可以做到$\mathcal O(\sqrt{n})$的复杂度，从而每次询问是$\mathcal O(n^{3/4})$， 但这还是太慢了.</p>
 <p><del>前面都是废话.</del></p>
 <p>$f$本身的计算已经没什么办法优化了，考虑代入$f([n/p],[m/p])$，得到</p>
-<p>$$\begin{aligned}<br>\sum _{p\text{ is prime}}f([n/p],[m/p])=&amp;\sum _{p\text{ is prime}}\sum\mu(d) [n/(pd)] [m/(pd)]\<br>=&amp;\sum _{T}[n/T] [m/T]\sum _{p|T,p\text{ is prime}}\mu(T/p)<br>\end{aligned}$$</p>
-<p>记$g(T)=\sum _{p|T,p\text{ is prime}}\mu(T/p)$，观察一下可以发现$g(n)$很有规律.</p>
+<script type="math/tex; mode=display">\begin{aligned}
+\sum _{p\text{ is prime}}f([n/p],[m/p])=&\sum _{p\text{ is prime}}\sum\mu(d) [n/(pd)] [m/(pd)]\\
+=&\sum _{T}[n/T] [m/T]\sum _{p|T,p\text{ is prime}}\mu(T/p)
+\end{aligned}</script><p>记$g(T)=\sum _{p|T,p\text{ is prime}}\mu(T/p)$，观察一下可以发现$g(n)$很有规律.</p>
 <p>记$s _1(n),s _2(n)$分别为$n$的不同素因数个数和歌素因数的指数和，那么当$s _1(n)=s _2(n)$时，$g(T)=-s _1(n)(-1)^{s _1(n)}$，当$s _1(n)+1=s _2(n)$时，$g(T)=(-1)^{s _1(n)}$，当$s _1(n)+2\le s _2(n)$时，$g(T)=0$.</p>
 <p>于是就可以很容易地处理$g(n)$的前缀和，进而$\mathcal O(\sqrt{n})$地处理每次询问.</p>
 

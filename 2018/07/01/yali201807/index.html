@@ -483,7 +483,6 @@
       
         <p><del>NOI前的垂死挣扎.</del></p>
 <a id="more"></a>
-
 <h2 id="7-1"><a href="#7-1" class="headerlink" title="7-1"></a>7-1</h2><p>考得还不错的样子，但是还有可以完善的地方.</p>
 <h3 id="T1"><a href="#T1" class="headerlink" title="T1"></a>T1</h3><p>想到了出题人想到的状压dp，然后别人想出来了一个$\mathcal O(n^3)$的dp. 其实我是看到了题目的$n\le 24$就去想状压的，如果数据范围大一点我应该也能想到？</p>
 <h3 id="T2"><a href="#T2" class="headerlink" title="T2"></a>T2</h3><p>被卡常卡成60分了，主要是因为方点的情况我强行把分治FFT的做法搬过来写出了8倍常数. 事实上比赛的时候我已经注意到了方点相当于是没有度数限制的，而用在圆点上的分治FFT本来就是为了处理度数限制的问题，所以完全没有必要照搬，可以直接用一个线性的dp解决方点的情况.</p>
@@ -500,14 +499,10 @@
 <h3 id="T2-2"><a href="#T2-2" class="headerlink" title="T2"></a>T2</h3><p>跟以前见过的一道dp题比较像. 考虑从小到大决策每个元素，它的贡献依赖于前面的元素的决策，但是这个不方便表示为状态. 假设当前要加入的元素为$i$,可以把前面的元素分成跟$i$加在一起无贡献和有贡献的两部分，有贡献的部分只需要保存两边的数量就可以了，而无贡献的部分随着$i$的增大只会不断减少，所以我们可以先不决策无贡献的部分，当其中的元素变成有贡献的时候再进行决策，到最后都还是无贡献的那一部分放在哪边都不影响答案，所以最后乘一个$2^\textrm{cnt}$即可.</p>
 <h3 id="T3-2"><a href="#T3-2" class="headerlink" title="T3"></a>T3</h3><p>居然没想出来真是丢人. 我想到了容斥而且会做$k=0$居然还做不出来，可能是因为我总是想着一步把式子推到位，而没有把一些关键的量记为一个符号来简化思考.</p>
 <p>显然这道题就是要求极长同色子段恰有$n-k$个的方案数，用指数生成函数很容易算出段数不超过$i$的元次$f _i$. 其实这个时候就可以凑容斥系数了. 考虑一个实际有$i$段的方案，它只对$j\ge i$的$f _j$有贡献，且贡献的系数为$\binom{n-i}{j-i}$. 这是因为有$i$段相当于切了$i-1$刀，还有$n-i$个位置可以切，为了被算进$f _j$里面，还需要切$j-i$刀，所以共$\binom{n-i}{j-i}$种切法. 于是我们可以列出式子</p>
-<p>$$\sum _{j=i}^nc _j\binom{n-i}{j-i}=[i=n-k]$$</p>
-<p>化得好看一些</p>
-<p>$$\sum _{p=0}^{n-i}c _{i+p}\binom{n-i}{p}=[k=n-i]$$</p>
-<p>右边这个东西如果利用$[n=0]=\sum (-1)^i\binom{n}{i}$来做，反正我不会. 注意到$i\le n-k$（否则不可能有贡献，一般不会去考虑），可以启发我们展开$(z+1-1)^{n-i}$，得到</p>
-<p>$$[z^k] (z+1-1)^{n-i}=\sum 1^p(-1)^{n-i-k-p}\frac{(n-i)!}{k!p!(n-i-k-p)!}$$</p>
-<p>于是有</p>
-<p>$$c _{i+p}=\frac{(-1)^{n-i-k-p}(n-i-p)!}{k!(n-i-k-p)!}$$</p>
-<p>也就是$c _j=(-1)^{n-k-j}\binom{n-j}{k}$.</p>
+<script type="math/tex; mode=display">\sum _{j=i}^nc _j\binom{n-i}{j-i}=[i=n-k]</script><p>化得好看一些</p>
+<script type="math/tex; mode=display">\sum _{p=0}^{n-i}c _{i+p}\binom{n-i}{p}=[k=n-i]</script><p>右边这个东西如果利用$[n=0]=\sum (-1)^i\binom{n}{i}$来做，反正我不会. 注意到$i\le n-k$（否则不可能有贡献，一般不会去考虑），可以启发我们展开$(z+1-1)^{n-i}$，得到</p>
+<script type="math/tex; mode=display">[z^k] (z+1-1)^{n-i}=\sum 1^p(-1)^{n-i-k-p}\frac{(n-i)!}{k!p!(n-i-k-p)!}</script><p>于是有</p>
+<script type="math/tex; mode=display">c _{i+p}=\frac{(-1)^{n-i-k-p}(n-i-p)!}{k!(n-i-k-p)!}</script><p>也就是$c _j=(-1)^{n-k-j}\binom{n-j}{k}$.</p>
 <p>如果不想凑系数的话，也可以考虑求一个$g _i$表示恰好有$i$段的方案数. 注意到$f _i=\sum _{j\le i}g _j\binom{n-j}{i-j}$，强行反演其实就相当于上面的凑系数，或者你也可以写成$(n-i)!g _i=(n-i)!f _i-\sum _{j\lt i}(n-j)!g _j\cdot\frac{1}{(i-j)!}$，用多项式求逆的套路让$F(z)=\sum(n-i)!f _iz^i,G(z)=\sum(n-i)!g _iz^i$，就有$G(z)=F(z)-(e^z-1)G(z)$，即$G(z)=F(z)e^{-z}$.</p>
 <p>感觉这是一道挺不错的计数题，这里面包含的几个新套路，一个是展开$(z+1-1)^{n-i}$，一个是$\binom{n-i}{j-i}$这个系数，都要记下来.</p>
 <h2 id="7-5"><a href="#7-5" class="headerlink" title="7-5"></a>7-5</h2><h3 id="T1-3"><a href="#T1-3" class="headerlink" title="T1"></a>T1</h3><p>题目保证给定的点都在凸包上，所以询问区间中的点一定都在这些点的凸包上，也就是说只需要计算$\sum _{i=0}^{L-1}P _i\times P _{i+1}(P _L=P _0)$，其中$L$为询问区间的长度$P _0,P _1,\ldots,P _{L-1}$为询问区间中的点按照极角排序之后的结果.</p>
@@ -519,8 +514,7 @@
 <h3 id="T3-3"><a href="#T3-3" class="headerlink" title="T3"></a>T3</h3><p>这个题的构造也不知道是怎么想出来的，非构造解法晚点再研究吧.</p>
 <p>从$m=2$入手，定义$g _0=g _1=g _2=1,g _n=g _{n-1}+g _{n-2}(n\ge 3)$，那么<del>神仙</del>具有敏锐洞察力的选手就可以观察到如果$g _n=\sum _{i=1}^kg _{a _i}$，这里$a _1\gt a _2\gt\cdots\gt a _k\ge 2$（容易证明一定有这样的一个划分），那么$f(n)=\sum _{i=1}^kg _{a _i-1}$.</p>
 <p>为什么是这样呢？首先把题目里面的式子移项，得到$f(n)+f _m(n-1)=n$，又有</p>
-<p>$$\begin{aligned}n&amp;=\sum _{i=1}^kg _{a _i}\\f(n)&amp;=\sum _{i=1}^kg _{a _i-1}\\f _2(n)&amp;=\sum _{i=1}^kg _{a _i-2}\end{aligned}$$</p>
-<p>后面两个式子加起来跟前一个比较，发现如果是$f(n)+f _m(n)=n$，似乎就有$g _n=g _{n-1}+g _{n-2}$了. 但是这里是$n-1$.</p>
+<script type="math/tex; mode=display">\begin{aligned}n&=\sum _{i=1}^kg _{a _i}\\\\f(n)&=\sum _{i=1}^kg _{a _i-1}\\\\f _2(n)&=\sum _{i=1}^kg _{a _i-2}\end{aligned}</script><p>后面两个式子加起来跟前一个比较，发现如果是$f(n)+f _m(n)=n$，似乎就有$g _n=g _{n-1}+g _{n-2}$了. 但是这里是$n-1$.</p>
 <p>注意到$n-1$的分拆里面，前$k-1$个数跟$n$的分拆肯定是一样的，因而前$k-1$项仍满足上式，我们讨论$g _{a _k}$.</p>
 <ul>
 <li><p>$g _{a _k}=1$，此时$n-1$的分拆没有最后一项，因为$1=1+0$，最后一项仍满足上式.</p>

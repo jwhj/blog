@@ -483,14 +483,12 @@
       
         <p>go get下载第三方包的时候大多数情况要从github上面pull，有的时候还要从<code>golang.org</code>之类的地方下载源码. 由于众所周知的原因git clone速度极慢，golang.org根本不能访问，所以golang下载第三方包的时候总是极其麻烦. 最近写了个程序解决这个问题.</p>
 <a id="more"></a>
-
 <p>讲一下大概的思路. </p>
 <p>我发现git clone和github上面的download zip是从不同的地方下载的，而download zip比git clone快很多，所以可以写个程序自动download zip，解压到安装第三方包的文件夹下，再编译.</p>
 <p>至于<code>golang.org</code>，它在<code>github.com/golang</code>上面有镜像，至于其它一些网站也多半在github上面有镜像，程序里面获取下载链接的时候额外处理一下就可以了.</p>
 <p>大概用法：把go get换成gogetpkg -p就行，如果第三方包的代码已经下载下来并放到正确位置，只需要安装的话，可以加上-nd，这样就会不下载直接安装.</p>
 <p>举几个栗子：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">gogetpkg -p github.com/jwhj/gogetpkg</span><br><span class="line"><span class="comment"># 我装我自己</span></span><br><span class="line">gogetpkg -p golang.org/x/tools/imports</span><br><span class="line"><span class="comment"># 装package里面的package也是可以的</span></span><br><span class="line">gogetpkg -p golang.org/x/tools/playground -nd</span><br><span class="line"><span class="comment"># 刚刚已经把整个golang.org/x/tools下载下来了</span></span><br><span class="line"><span class="comment"># 就不用再下载一次了</span></span><br></pre></td></tr></table></figure>
-
 <p><del>你会发现它并不能处理依赖，你需要手动处理……</del></p>
 <p>项目地址：<a href="https://github.com/jwhj/gogetpkg" target="_blank" rel="noopener">https://github.com/jwhj/gogetpkg</a></p>
 

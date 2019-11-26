@@ -483,17 +483,14 @@
       
         <p>AFO有段时间了，感觉自己什么都不会了，随便研究点东西证明我还活着……</p>
 <a id="more"></a>
-
 <p>众所周知在long long乘long long模long long的时候，直接乘会溢出，所以要用一些技巧来处理. 一般的快速乘是$O(\log x)$的，所以我们也可以叫它慢速乘. 事实上可以用一些技巧做到$O(1)$，实现真正的快速乘.</p>
 <p>首先我们知道$a$模$b$可以表示为$a-b\lfloor a/b\rfloor$，于是如果我们要计算$a\times b$对$m$取模的结果，可以考虑计算$ab-m\lfloor(a/m)*b\rfloor$. 写出下面的代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">a%=MOD; b%=MOD;</span><br><span class="line">ele d=(<span class="keyword">long</span> <span class="keyword">double</span>)a/MOD*b+<span class="number">0.5</span>;</span><br><span class="line">ele tmp=a*b-d*MOD;</span><br><span class="line"><span class="keyword">if</span> (tmp&lt;<span class="number">0</span>) tmp+=MOD;</span><br></pre></td></tr></table></figure>
-
 <p>这里的<code>a*b</code>和<code>d*MOD</code>显然都会溢出，不过可以注意到，溢出只会使结果差$2^{64}$的整数倍，而模出来的结果显然不到$2^{64}$所以一定是对的.</p>
 <p>不过这里有一个小问题，为了防止炸精度，我们加了$0.5$来四舍五入，而不是向下取整，最后的结果可能会少一个$m$，所以最后要判断一下，如果<code>tmp&lt;0</code>就要<code>tmp+=MOD</code>.</p>
 <p>另外的话如果$a\ge m$或者$b\ge m$可能会挂，所以一开始的时候要模一下.</p>
 <p>简化的代码：</p>
 <figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">inline</span> ele <span class="title">mul</span><span class="params">(ele a,ele b,ele MOD)</span></span>&#123;</span><br><span class="line">	a%=MOD; b%=MOD;</span><br><span class="line">	ele tmp=a*b-(ele)((<span class="keyword">long</span> <span class="keyword">double</span>)a/MOD*b+<span class="number">0.5</span>)*MOD;</span><br><span class="line">	<span class="keyword">return</span> tmp&lt;<span class="number">0</span>?tmp+MOD:tmp;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
 
       
     </div>
