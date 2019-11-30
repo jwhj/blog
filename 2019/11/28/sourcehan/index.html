@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="蒟蒻的博客">
 <meta property="og:description" content="早就听说微软雅黑存在版权问题，而思源字体非常优越，但是我之前折腾了半天一直装不上就很尴尬了。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-28T14:38:52.051Z">
+<meta property="og:updated_time" content="2019-11-30T05:53:19.980Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何在xelatex中使用思源字体">
 <meta name="twitter:description" content="早就听说微软雅黑存在版权问题，而思源字体非常优越，但是我之前折腾了半天一直装不上就很尴尬了。">
@@ -417,12 +417,24 @@
                 
               
 
-              <time title="Created: 2019-11-28 22:32:27 / Modified: 22:38:52" itemprop="dateCreated datePublished" datetime="2019-11-28T22:32:27+08:00">2019-11-28</time>
+              <time title="Created: 2019-11-28 22:32:27" itemprop="dateCreated datePublished" datetime="2019-11-28T22:32:27+08:00">2019-11-28</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-11-30 13:53:19" itemprop="dateModified" datetime="2019-11-30T13:53:19+08:00">2019-11-30</time>
               
             
           </span>
@@ -473,7 +485,7 @@
 <a id="more"></a>
 <p>首先思源字体可以从github上面下载。按照网上大多数人的说法，安装字体后，在xelatex里面使用如下代码就能使用思源字体了。<del>然而并不能。</del><br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">\usepackage&#123;xeCJK&#125;</span><br><span class="line">\usepackage&#123;fontspec&#125;</span><br><span class="line">\setCJKmainfont&#123;Source Han Serif&#125;</span><br></pre></td></tr></table></figure></p>
 <p>今天我终于弄清楚了为什么：安装字体的时候要选择为所有用户安装。<del>这也太惨了。</del></p>
-<p>现在还是有一点小问题，latex里面的思源字体跟别的地方显示的稍有不同，比如“浅”字有三横什么的。<del>以后再折腾吧。</del><br><!--  --></p>
+<p><del>现在还是有一点小问题，latex里面的思源字体跟别的地方显示的稍有不同，比如“浅”字有三横什么的。</del><br>改成<code>\setCJKmainfont{Source Han Serif SC}</code>就可以了。<br><!--  --></p>
 
       
     </div>
