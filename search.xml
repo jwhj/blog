@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>在git-bash下输入中文</title>
+      <link href="/2019/11/30/gitbashutf8/"/>
+      <url>/2019/11/30/gitbashutf8/</url>
+      
+        <content type="html"><![CDATA[<p>Windows Terminal终于支持显示中文/输入中文了，真是大快人心。</p><p>我平时在Windows Terminal里面使用git-bash，输入中文一直会遇到一些问题，今天终于把问题折腾没了。</p><a id="more"></a><p>具体来讲，就是输入中文以后，要多次退格才能删除一个中文字符，而且即使删除了，仍然会有不可见字符。但是这个问题在我使用git-bash自带的mintty的时候又会神秘解决。</p><p>这是因为utf-8是不定长的编码，汉字占三个字节，但git-bash“认为”我使用的是定长的编码，汉字占两个字节。这样一来，按了两次退格之后，汉字就不显示了，但实际上还有一个字节没有被删除。</p><p>既然在mintty中问题被解决，说明mintty中应该做了某种配置，让git-bash默认使用utf-8。我上网查了一下，发现可以在<code>~/.bashrc</code>里面加上两行来解决这个问题：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">export</span> LC_ALL=en_US.UTF-8</span><br><span class="line"><span class="built_in">export</span> LANG=en_US.UTF-8</span><br></pre></td></tr></table></figure></p><p><del>我怀疑只需要其中一行就能起作用，但我懒得实验了。</del><br><!--  --></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> stuffs </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>如何在xelatex中使用思源字体</title>
       <link href="/2019/11/28/sourcehan/"/>
       <url>/2019/11/28/sourcehan/</url>
@@ -262,9 +281,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> loj </tag>
-            
             <tag> 多项式 </tag>
+            
+            <tag> loj </tag>
             
             <tag> 容斥 </tag>
             
@@ -404,9 +423,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> loj </tag>
-            
             <tag> 线性代数 </tag>
+            
+            <tag> loj </tag>
             
             <tag> 随机化 </tag>
             
@@ -508,9 +527,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> loj </tag>
-            
             <tag> 数论 </tag>
+            
+            <tag> loj </tag>
             
             <tag> DP </tag>
             
@@ -535,9 +554,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> loj </tag>
-            
             <tag> 数论 </tag>
+            
+            <tag> loj </tag>
             
         </tags>
       
@@ -581,11 +600,11 @@
             
             <tag> 题解 </tag>
             
-            <tag> loj </tag>
-            
             <tag> 线性代数 </tag>
             
             <tag> 多项式 </tag>
+            
+            <tag> loj </tag>
             
             <tag> DP </tag>
             
@@ -656,9 +675,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> loj </tag>
-            
             <tag> 多项式 </tag>
+            
+            <tag> loj </tag>
             
             <tag> 分治 </tag>
             
@@ -754,9 +773,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> loj </tag>
-            
             <tag> 数论 </tag>
+            
+            <tag> loj </tag>
             
             <tag> Lucas定理 </tag>
             
@@ -825,9 +844,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> loj </tag>
-            
             <tag> 多项式 </tag>
+            
+            <tag> loj </tag>
             
             <tag> 倍增 </tag>
             
@@ -927,9 +946,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> loj </tag>
-            
             <tag> 数论 </tag>
+            
+            <tag> loj </tag>
             
             <tag> 智力康复 </tag>
             
