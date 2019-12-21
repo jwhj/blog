@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="蒟蒻的博客">
 <meta property="og:description" content="随便发点东西就当除草。 这个东西调了我一整晚……心态爆炸">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-26T15:37:52.306Z">
+<meta property="og:updated_time" content="2019-12-21T09:31:11.764Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用nodejs的pipe遇到的一点小问题">
 <meta name="twitter:description" content="随便发点东西就当除草。 这个东西调了我一整晚……心态爆炸">
@@ -417,12 +417,24 @@
                 
               
 
-              <time title="Created: 2019-11-26 23:31:11 / Modified: 23:37:52" itemprop="dateCreated datePublished" datetime="2019-11-26T23:31:11+08:00">2019-11-26</time>
+              <time title="Created: 2019-11-26 23:31:11" itemprop="dateCreated datePublished" datetime="2019-11-26T23:31:11+08:00">2019-11-26</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2019-12-21 17:31:11" itemprop="dateModified" datetime="2019-12-21T17:31:11+08:00">2019-12-21</time>
               
             
           </span>
@@ -473,7 +485,11 @@
 <p>这个东西调了我一整晚……心态爆炸</p>
 <a id="more"></a>
 <p>简单来讲就是，使用nodejs stream的pipe的时候，它可能会在某些地方进行编码转换，有些地方你可以手动指定为只传输二进制，但有的地方似乎不行 <del>(也有可能是我还没找到)</del>。</p>
-<p>总之如果没弄清楚原因，以后用pipe尽量只传输文本数据，要传二进制的话尽量用系统自带的管道。<br><!--  --></p>
+<p>总之如果没弄清楚原因，以后用pipe尽量只传输文本数据，要传二进制的话尽量用系统自带的管道。</p>
+<hr>
+<p>UPD:</p>
+<p>今天又研究了一下，如果用spawn而不是exec的话，没有这个问题，可能是因为exec会自动启动一个shell，然后shell里面的编码出了问题。</p>
+<p>另外要注意一下，<code>encoding:&#39;binary&#39;</code>并不是真的binary，而是一种叫<code>latin1</code>的编码，传二进制数据的时候什么都不要设置就好了。不过这么做的话，版本不能太旧，否则<strong>可能</strong>会出问题。<br><!--  --></p>
 
       
     </div>
