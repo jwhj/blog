@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>使用增量编译加快typescript项目编译</title>
+      <link href="/2020/01/03/watch/"/>
+      <url>/2020/01/03/watch/</url>
+      
+        <content type="html"><![CDATA[<p>前段时间开始试着用typescript，感觉有一个很明显的问题是，习惯了脚本语言之后，我不太有耐性等待一两秒的编译。最近折腾了各种方法，一开始我想禁用掉typescript的类型检查来提升编译速度（反正编辑器里就会进行检查），结果发现<code>tsc</code>并没有这个编译选项，倒是<code>ts-node</code>有一个<code>-T</code>选项可以做到这点。其实一个更好的解决方案可能是使用增量编译。</p><a id="more"></a><p><code>tsc</code>本身就能实现增量编译的效果，运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --watch src/*.ts --outDir dist --sourceMap</span><br></pre></td></tr></table></figure></p><p>就能启动一个服务，在检测到文件修改的时候，进行增量编译。一般来讲，增量编译会比重新编译整个项目快得多。这个方法在用typescript写后端的时候应该够用了。</p><p>但是这个方法不太适合写前端。如果再用<code>browserify</code>这样的bundle工具进行打包的话，得到的source map对应的是<code>tsc</code>编译之后的结果，不便于前端的调试。事实上，<code>browserify</code>提供了一个叫做<code>watchify</code>的插件，<code>watchify</code>的用法跟<code>browserify</code>基本一样，区别在于，<code>watchify</code>必须用<code>-o</code>指定输出文件，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watchify -t tsify --debug -v -o bundle.js src/index.ts</span><br></pre></td></tr></table></figure></p><!--  -->]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> stuffs </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>在git-bash下输入中文</title>
       <link href="/2019/11/30/gitbashutf8/"/>
       <url>/2019/11/30/gitbashutf8/</url>
@@ -94,9 +113,9 @@
             
             <tag> bzoj </tag>
             
-            <tag> uoj </tag>
-            
             <tag> 多项式 </tag>
+            
+            <tag> uoj </tag>
             
         </tags>
       
@@ -254,9 +273,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> uoj </tag>
-            
             <tag> 多项式 </tag>
+            
+            <tag> uoj </tag>
             
             <tag> 分治 </tag>
             
@@ -898,11 +917,11 @@
             
             <tag> bzoj </tag>
             
-            <tag> 多项式 </tag>
-            
             <tag> 数论 </tag>
             
             <tag> DFT </tag>
+            
+            <tag> 多项式 </tag>
             
         </tags>
       
