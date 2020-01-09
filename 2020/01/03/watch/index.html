@@ -104,7 +104,7 @@
 <meta property="og:site_name" content="蒟蒻的博客">
 <meta property="og:description" content="前段时间开始试着用typescript，感觉有一个很明显的问题是，习惯了脚本语言之后，我不太有耐性等待一两秒的编译。最近折腾了各种方法，一开始我想禁用掉typescript的类型检查来提升编译速度（反正编辑器里就会进行检查），结果发现tsc并没有这个编译选项，倒是ts-node有一个-T选项可以做到这点。其实一个更好的解决方案可能是使用增量编译。">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2020-01-02T17:25:35.664Z">
+<meta property="og:updated_time" content="2020-01-09T14:53:49.905Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="使用增量编译加快typescript项目编译">
 <meta name="twitter:description" content="前段时间开始试着用typescript，感觉有一个很明显的问题是，习惯了脚本语言之后，我不太有耐性等待一两秒的编译。最近折腾了各种方法，一开始我想禁用掉typescript的类型检查来提升编译速度（反正编辑器里就会进行检查），结果发现tsc并没有这个编译选项，倒是ts-node有一个-T选项可以做到这点。其实一个更好的解决方案可能是使用增量编译。">
@@ -417,12 +417,24 @@
                 
               
 
-              <time title="Created: 2020-01-03 01:16:23 / Modified: 01:25:35" itemprop="dateCreated datePublished" datetime="2020-01-03T01:16:23+08:00">2020-01-03</time>
+              <time title="Created: 2020-01-03 01:16:23" itemprop="dateCreated datePublished" datetime="2020-01-03T01:16:23+08:00">2020-01-03</time>
             
 
             
               
 
+              
+                
+                <span class="post-meta-divider">|</span>
+                
+
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                
+                  <span class="post-meta-item-text">Edited on</span>
+                
+                <time title="Modified: 2020-01-09 22:53:49" itemprop="dateModified" datetime="2020-01-09T22:53:49+08:00">2020-01-09</time>
               
             
           </span>
@@ -474,7 +486,9 @@
 <p><code>tsc</code>本身就能实现增量编译的效果，运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">tsc --watch src/*.ts --outDir dist --sourceMap</span><br></pre></td></tr></table></figure></p>
 <p>就能启动一个服务，在检测到文件修改的时候，进行增量编译。一般来讲，增量编译会比重新编译整个项目快得多。这个方法在用typescript写后端的时候应该够用了。</p>
 <p>但是这个方法不太适合写前端。如果再用<code>browserify</code>这样的bundle工具进行打包的话，得到的source map对应的是<code>tsc</code>编译之后的结果，不便于前端的调试。事实上，<code>browserify</code>提供了一个叫做<code>watchify</code>的插件，<code>watchify</code>的用法跟<code>browserify</code>基本一样，区别在于，<code>watchify</code>必须用<code>-o</code>指定输出文件，比如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">watchify -t tsify --debug -v -o bundle.js src/index.ts</span><br></pre></td></tr></table></figure></p>
-<!--  -->
+<p>UPD:<br>写之前的内容的时候，电脑是长期接着电的，刚刚发现不接电的话<code>watchify</code>会比<code>tsc --watch</code>慢。折腾了一晚上又发现了一个方法。有一个<code>browserify</code>的transform叫做<code>sourceify</code>，简单地理解的话，它可以递归地读取source map，然后inline到bundle里面，这样就可以先用<code>tsc --watch</code>编译，然后<code>browserify</code>打包了。但是有于<code>sourceify</code>的一些feature，debug的时候要在web服务器上把<code>/source</code>映射到根目录。</p>
+<p>另外还有几个细节：一是tsc编译jsx还是会很慢，另外直接<code>tsc -w</code>就可以了。<br><!--  --></p>
+
       
     </div>
 
