@@ -1,0 +1,12 @@
+{
+	"version": 2,
+	"routes": [
+		{
+			"src": "/(js|css|lib)/(.*)",
+			"dest": "/$1/$2",
+			"headers": {
+				"cache-control": "public, max-age=604800, s-maxage=43200"
+			}
+		}
+	]
+}
