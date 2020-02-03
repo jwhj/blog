@@ -4,6 +4,25 @@
   
     
     <entry>
+      <title>LevelDB数据丢失问题</title>
+      <link href="/2020/02/03/leveldb-and-git-md/"/>
+      <url>/2020/02/03/leveldb-and-git-md/</url>
+      
+        <content type="html"><![CDATA[<p>我存在<code>levelDB</code>里面的数据丢了好几次，最近研究了一下，虽然不确定具体的原理，但大概知道怎么避免类似情况了。</p><a id="more"></a><p>经过观察可以发现，就算不对数据库进行修改，仅仅是查询，文件也会发生变化。而我丢失数据，均发生在使用<code>git</code>切换分支，再切换回来的时候。我推测这之中某个时候，因为读数据发生了文件变动，然后切换分支又撤销了一部分文件变动，导致了数据库的损坏。</p><!-- 虽然暂时还不确定损坏的具体过程，但以后记住，不要把数据库放在git repo里面，大概就没问题了。 --><p>暂时不清楚损坏过程，但是要记住，<strong>不要把数据库放到git repo里面！</strong></p><p><del>有些数据丢了是真的心疼，还好从某个备份里找回来了不少。</del><br><!--  --></p>]]></content>
+      
+      
+      
+        <tags>
+            
+            <tag> stuffs </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Typescript使用笔记</title>
       <link href="/2020/01/22/ts-notes/"/>
       <url>/2020/01/22/ts-notes/</url>
@@ -126,9 +145,9 @@
             
             <tag> bzoj </tag>
             
-            <tag> uoj </tag>
-            
             <tag> 多项式 </tag>
+            
+            <tag> uoj </tag>
             
         </tags>
       
@@ -286,9 +305,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> uoj </tag>
-            
             <tag> 多项式 </tag>
+            
+            <tag> uoj </tag>
             
             <tag> 分治 </tag>
             
@@ -313,9 +332,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> 多项式 </tag>
-            
             <tag> loj </tag>
+            
+            <tag> 多项式 </tag>
             
             <tag> 容斥 </tag>
             
@@ -632,11 +651,11 @@
             
             <tag> 题解 </tag>
             
-            <tag> 多项式 </tag>
-            
             <tag> loj </tag>
             
             <tag> 线性代数 </tag>
+            
+            <tag> 多项式 </tag>
             
             <tag> DP </tag>
             
@@ -707,9 +726,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> 多项式 </tag>
-            
             <tag> loj </tag>
+            
+            <tag> 多项式 </tag>
             
             <tag> 分治 </tag>
             
@@ -876,9 +895,9 @@
             
             <tag> 题解 </tag>
             
-            <tag> 多项式 </tag>
-            
             <tag> loj </tag>
+            
+            <tag> 多项式 </tag>
             
             <tag> 倍增 </tag>
             
@@ -930,11 +949,11 @@
             
             <tag> bzoj </tag>
             
-            <tag> 多项式 </tag>
-            
             <tag> 数论 </tag>
             
             <tag> DFT </tag>
+            
+            <tag> 多项式 </tag>
             
         </tags>
       
