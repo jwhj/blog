@@ -99,14 +99,14 @@
 
 
   <meta name="description" content="bzoj上的题面真是残缺不全……uoj上有完整的题面. 退役久了脑子都不好用了，这么简单的东西推了半天……">
-<meta name="keywords" content="题解,bzoj,uoj,多项式">
+<meta name="keywords" content="题解,bzoj,多项式,uoj">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[whj什么都不会系列-2]bzoj4734题解">
 <meta property="og:url" content="https://blog.jwhj.now.sh/2019/03/22/bzoj4734/index.html">
 <meta property="og:site_name" content="蒟蒻的博客">
 <meta property="og:description" content="bzoj上的题面真是残缺不全……uoj上有完整的题面. 退役久了脑子都不好用了，这么简单的东西推了半天……">
 <meta property="og:locale" content="default">
-<meta property="og:updated_time" content="2019-11-26T16:35:21.630Z">
+<meta property="og:updated_time" content="2020-07-08T14:38:31.487Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[whj什么都不会系列-2]bzoj4734题解">
 <meta name="twitter:description" content="bzoj上的题面真是残缺不全……uoj上有完整的题面. 退役久了脑子都不好用了，这么简单的东西推了半天……">
@@ -436,7 +436,7 @@
                 
                   <span class="post-meta-item-text">Edited on</span>
                 
-                <time title="Modified: 2019-11-27 00:35:21" itemprop="dateModified" datetime="2019-11-27T00:35:21+08:00">2019-11-27</time>
+                <time title="Modified: 2020-07-08 22:38:31" itemprop="dateModified" datetime="2020-07-08T22:38:31+08:00">2020-07-08</time>
               
             
           </span>
@@ -493,8 +493,8 @@ g(z)&=\sum\frac{f(k)x^k}{k!}z^k\\
 h(z)&=\sum\frac{(1-x)^k}{k!}z^k
 \end{aligned}</script><p>那么答案就是$n![z^n]g(z)h(z)$.</p>
 <p>很容易看出$h(z)=e^{(1-x)z}$，关键是怎么表示$g(z)$.</p>
-<p>这里要用到一个结论：设$A(z)=\sum a _kz^k$，记$P _L(z)=\sum\left\{\begin{matrix}L\\k\end{matrix}\right\}z^k$，那么有</p>
-<script type="math/tex; mode=display">A(z)P _L(z)=\sum a _kk^Lz^k</script><p>证明的话，对$L$归纳就可以了. 感觉这个结论在很多时候都挺有用的.</p>
+<p>这里要用到一个结论：记$P _L(z)=\sum\left\{\begin{matrix}L\\k\end{matrix}\right\}z^k$，那么有</p>
+<script type="math/tex; mode=display">e^zP _L(z)=\sum _k\frac{k^L}{k!}z^k</script><p>证明的话，对$L$归纳就可以了. 感觉这个结论在很多时候都挺有用的.</p>
 <p>设$f(x)=\sum c _ix^i$，那么就有</p>
 <script type="math/tex; mode=display">\begin{aligned}
 g(z)&=\sum _k\left(\frac{(xz)^k}{k!}\sum _ic _ik^i\right)\\
@@ -532,9 +532,9 @@ g(z)&=\sum _k\left(\frac{(xz)^k}{k!}\sum _ic _ik^i\right)\\
           
             <a href="/tags/bzoj/" rel="tag"># bzoj</a>
           
-            <a href="/tags/uoj/" rel="tag"># uoj</a>
-          
             <a href="/tags/多项式/" rel="tag"># 多项式</a>
+          
+            <a href="/tags/uoj/" rel="tag"># uoj</a>
           
         </div>
       
