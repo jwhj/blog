@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
+    <title>蒟蒻的博客</title>
     <link>/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <description>Recent content on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 03 Feb 2020 21:55:41 +0800</lastBuildDate>
@@ -17,7 +17,7 @@
         <pubDate>Mon, 03 Feb 2020 21:55:41 +0800</pubDate>
         
         <guid>/posts/leveldb-and-git-md/</guid>
-        <description>My New Hugo Site /posts/leveldb-and-git-md/ -&lt;p&gt;我存在&lt;code&gt;levelDB&lt;/code&gt;里面的数据丢了好几次，最近研究了一下，虽然不确定具体的原理，但大概知道怎么避免类似情况了。&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/leveldb-and-git-md/ -&lt;p&gt;我存在&lt;code&gt;levelDB&lt;/code&gt;里面的数据丢了好几次，最近研究了一下，虽然不确定具体的原理，但大概知道怎么避免类似情况了。&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;经过观察可以发现，就算不对数据库进行修改，仅仅是查询，文件也会发生变化。而我丢失数据，均发生在使用&lt;code&gt;git&lt;/code&gt;切换分支，再切换回来的时候。我推测这之中某个时候，因为读数据发生了文件变动，然后切换分支又撤销了一部分文件变动，导致了数据库的损坏。&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
@@ -35,7 +35,7 @@
         <pubDate>Wed, 22 Jan 2020 21:34:54 +0800</pubDate>
         
         <guid>/posts/ts-notes/</guid>
-        <description>My New Hugo Site /posts/ts-notes/ -&lt;p&gt;使用&lt;del&gt;Any&lt;/del&gt;Typescript已经有一段时间了，这期间踩了不少坑，也发现了一些骚操作。这里简单记录一下。&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/ts-notes/ -&lt;p&gt;使用&lt;del&gt;Any&lt;/del&gt;Typescript已经有一段时间了，这期间踩了不少坑，也发现了一些骚操作。这里简单记录一下。&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;h3 id=&#34;commonjs与es-module兼容的问题&#34;&gt;CommonJS与ES Module兼容的问题&lt;/h3&gt;
 &lt;p&gt;由于各种原因，CommonJS的模块化方式与ES Module的模块化方式之间并不能很容易地一一对应起来。ES Module中有default export的概念，如果在&lt;code&gt;0.js&lt;/code&gt;中写&lt;/p&gt;
@@ -76,7 +76,7 @@
         <pubDate>Fri, 03 Jan 2020 01:16:23 +0800</pubDate>
         
         <guid>/posts/watch/</guid>
-        <description>My New Hugo Site /posts/watch/ -&lt;p&gt;前段时间开始试着用typescript，感觉有一个很明显的问题是，习惯了脚本语言之后，我不太有耐性等待一两秒的编译。最近折腾了各种方法，一开始我想禁用掉typescript的类型检查来提升编译速度（反正编辑器里就会进行检查），结果发现&lt;code&gt;tsc&lt;/code&gt;并没有这个编译选项，倒是&lt;code&gt;ts-node&lt;/code&gt;有一个&lt;code&gt;-T&lt;/code&gt;选项可以做到这点。其实一个更好的解决方案可能是使用增量编译。&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/watch/ -&lt;p&gt;前段时间开始试着用typescript，感觉有一个很明显的问题是，习惯了脚本语言之后，我不太有耐性等待一两秒的编译。最近折腾了各种方法，一开始我想禁用掉typescript的类型检查来提升编译速度（反正编辑器里就会进行检查），结果发现&lt;code&gt;tsc&lt;/code&gt;并没有这个编译选项，倒是&lt;code&gt;ts-node&lt;/code&gt;有一个&lt;code&gt;-T&lt;/code&gt;选项可以做到这点。其实一个更好的解决方案可能是使用增量编译。&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;&lt;code&gt;tsc&lt;/code&gt;本身就能实现增量编译的效果，运行&lt;/p&gt;
 &lt;pre&gt;&lt;code&gt;tsc --watch src/*.ts --outDir dist --sourceMap
@@ -100,7 +100,7 @@
         <pubDate>Sat, 30 Nov 2019 22:54:46 +0800</pubDate>
         
         <guid>/posts/gitbashutf8/</guid>
-        <description>My New Hugo Site /posts/gitbashutf8/ -&lt;p&gt;Windows Terminal终于支持显示中文/输入中文了，真是大快人心。&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/gitbashutf8/ -&lt;p&gt;Windows Terminal终于支持显示中文/输入中文了，真是大快人心。&lt;/p&gt;
 &lt;p&gt;我平时在Windows Terminal里面使用git-bash，输入中文一直会遇到一些问题，今天终于把问题折腾没了。&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;具体来讲，就是输入中文以后，要多次退格才能删除一个中文字符，而且即使删除了，仍然会有不可见字符。但是这个问题在我使用git-bash自带的mintty的时候又会神秘解决。&lt;/p&gt;
@@ -121,7 +121,7 @@ export LANG&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;en_US.UTF-8
         <pubDate>Thu, 28 Nov 2019 22:32:27 +0800</pubDate>
         
         <guid>/posts/sourcehan/</guid>
-        <description>My New Hugo Site /posts/sourcehan/ -&lt;p&gt;早就听说微软雅黑存在版权问题，而思源字体非常优越，但是我之前折腾了半天一直装不上就很尴尬了。&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/sourcehan/ -&lt;p&gt;早就听说微软雅黑存在版权问题，而思源字体非常优越，但是我之前折腾了半天一直装不上就很尴尬了。&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;首先思源字体可以从github上面下载。按照网上大多数人的说法，安装字体后，在xelatex里面使用如下代码就能使用思源字体了。&lt;del&gt;然而并不能。&lt;/del&gt;&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-latex&#34; data-lang=&#34;latex&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;\usepackage&lt;/span&gt;{xeCJK}
@@ -142,7 +142,7 @@ export LANG&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;en_US.UTF-8
         <pubDate>Tue, 26 Nov 2019 23:31:11 +0800</pubDate>
         
         <guid>/posts/pipe/</guid>
-        <description>My New Hugo Site /posts/pipe/ -&lt;p&gt;&lt;del&gt;随便发点东西就当除草。&lt;/del&gt;&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/pipe/ -&lt;p&gt;&lt;del&gt;随便发点东西就当除草。&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;这个东西调了我一整晚……心态爆炸&lt;/p&gt;
 &lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;简单来讲就是，使用nodejs stream的pipe的时候，它可能会在某些地方进行编码转换，有些地方你可以手动指定为只传输二进制，但有的地方似乎不行 &lt;del&gt;(也有可能是我还没找到)&lt;/del&gt;。&lt;/p&gt;
@@ -163,7 +163,7 @@ export LANG&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;en_US.UTF-8
         <pubDate>Sat, 25 May 2019 11:17:50 +0800</pubDate>
         
         <guid>/posts/gogetpkg/</guid>
-        <description>My New Hugo Site /posts/gogetpkg/ -&lt;p&gt;go get下载第三方包的时候大多数情况要从github上面pull，有的时候还要从&lt;code&gt;golang.org&lt;/code&gt;之类的地方下载源码. 由于众所周知的原因git clone速度极慢，golang.org根本不能访问，所以golang下载第三方包的时候总是极其麻烦. 最近写了个程序解决这个问题.&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/gogetpkg/ -&lt;p&gt;go get下载第三方包的时候大多数情况要从github上面pull，有的时候还要从&lt;code&gt;golang.org&lt;/code&gt;之类的地方下载源码. 由于众所周知的原因git clone速度极慢，golang.org根本不能访问，所以golang下载第三方包的时候总是极其麻烦. 最近写了个程序解决这个问题.&lt;/p&gt;
 &lt;p&gt;讲一下大概的思路.&lt;/p&gt;
 &lt;p&gt;我发现git clone和github上面的download zip是从不同的地方下载的，而download zip比git clone快很多，所以可以写个程序自动download zip，解压到安装第三方包的文件夹下，再编译.&lt;/p&gt;
 &lt;p&gt;至于&lt;code&gt;golang.org&lt;/code&gt;，它在&lt;code&gt;github.com/golang&lt;/code&gt;上面有镜像，至于其它一些网站也多半在github上面有镜像，程序里面获取下载链接的时候额外处理一下就可以了.&lt;/p&gt;
@@ -188,7 +188,7 @@ gogetpkg -p golang.org/x/tools/playground -nd
         <pubDate>Fri, 22 Mar 2019 20:24:47 +0800</pubDate>
         
         <guid>/posts/bzoj4734/</guid>
-        <description>My New Hugo Site /posts/bzoj4734/ -&lt;p&gt;bzoj上的题面真是残缺不全……uoj上有完整的题面.&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/bzoj4734/ -&lt;p&gt;bzoj上的题面真是残缺不全……uoj上有完整的题面.&lt;/p&gt;
 &lt;p&gt;退役久了脑子都不好用了，这么简单的东西推了半天……&lt;/p&gt;
 &lt;p&gt;看到这种求和题很自然地就会想到拆成卷积的形式：&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Q(f,n,x)=n!\sum _{k=0}^n\frac{f(k)x^k}{k!}\cdot\frac{(1-x)^{n-k}}{(n-k)!}
@@ -294,7 +294,7 @@ ele n,m,x,f[maxn],fac[maxn],ifac[maxn],a[maxn],b[maxn];
         <pubDate>Sat, 23 Feb 2019 21:58:34 +0800</pubDate>
         
         <guid>/posts/nsmo/</guid>
-        <description>My New Hugo Site /posts/nsmo/ -&lt;p&gt;再厚颜无耻地放个小游戏.&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/nsmo/ -&lt;p&gt;再厚颜无耻地放个小游戏.&lt;/p&gt;
 &lt;p&gt;地址 &lt;a href=&#34;https://jwhj.github.io/nsmo/&#34;&gt;https://jwhj.github.io/nsmo/&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;源码放在 &lt;a href=&#34;https://github.com/jwhj/nsmo&#34;&gt;https://github.com/jwhj/nsmo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;!-- raw HTML omitted --&gt;跟arcsine比起来这个才像一个真的游戏.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
@@ -309,7 +309,7 @@ ele n,m,x,f[maxn],fac[maxn],ifac[maxn],a[maxn],b[maxn];
         <pubDate>Sun, 20 Jan 2019 21:24:26 +0800</pubDate>
         
         <guid>/posts/arcsine/</guid>
-        <description>My New Hugo Site /posts/arcsine/ -&lt;p&gt;厚颜无耻地发一个自己写的小游戏.&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/arcsine/ -&lt;p&gt;厚颜无耻地发一个自己写的小游戏.&lt;/p&gt;
 &lt;p&gt;地址 &lt;a href=&#34;http://jwhj.github.io/arcsine/&#34;&gt;http://jwhj.github.io/arcsine/&lt;/a&gt; ，打开就能玩.&lt;/p&gt;
 &lt;p&gt;源码放在 &lt;a href=&#34;https://github.com/jwhj/arcsine&#34;&gt;https://github.com/jwhj/arcsine&lt;/a&gt; ，写得很丑希望不要被嘲讽. &lt;del&gt;说得好像有人会看一样.&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;游戏功能也许会在未来进一步完善. &lt;del&gt;毕竟我比较懒.&lt;/del&gt;&lt;/p&gt;- /posts/arcsine/ - </description>

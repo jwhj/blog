@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>test on My New Hugo Site</title>
+    <title>test on 蒟蒻的博客</title>
     <link>/tags/test/</link>
-    <description>Recent content in test on My New Hugo Site</description>
+    <description>Recent content in test on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Jun 2018 19:08:17 +0800</lastBuildDate>

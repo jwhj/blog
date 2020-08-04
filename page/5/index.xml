@@ -1,8 +1,8 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>My New Hugo Site</title>
+    <title>蒟蒻的博客</title>
     <link>/</link>
-    <description>Recent content on My New Hugo Site</description>
+    <description>Recent content on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 03 Feb 2020 21:55:41 +0800</lastBuildDate>
@@ -17,7 +17,7 @@
         <pubDate>Fri, 15 Jun 2018 17:34:10 +0800</pubDate>
         
         <guid>/posts/bzoj5338/</guid>
-        <description>My New Hugo Site /posts/bzoj5338/ -&lt;p&gt;智商有点下线想复杂了.&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/bzoj5338/ -&lt;p&gt;智商有点下线想复杂了.&lt;/p&gt;
 &lt;p&gt;我的做法是考虑树剖，这样每个查询可以看做序列上至多&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\log n)\)&lt;/span&gt;段的查询.最大异或值可以用trie来做，那么就可以把询问离线然后在线段树上对trie做启发式合并了. 其实可以不用写启发式合并，写一个类似线段树合并的东西. 这样做是三个&lt;span class=&#34;math inline&#34;&gt;\(\log\)&lt;/span&gt;的，但是树剖的那个&lt;span class=&#34;math inline&#34;&gt;\(\log\)&lt;/span&gt;很小，所以可以过.&lt;/p&gt;
 &lt;p&gt;但是其实只需要用可持久化trie做就可以了……&lt;/p&gt;
 &lt;p&gt;代码：&lt;/p&gt;
@@ -187,7 +187,7 @@ ele &lt;span style=&#34;color:#a6e22e&#34;&gt;qry&lt;/span&gt;(tn &lt;span style
         <pubDate>Fri, 15 Jun 2018 10:36:33 +0800</pubDate>
         
         <guid>/posts/bzoj4314/</guid>
-        <description>My New Hugo Site /posts/bzoj4314/ -&lt;p&gt;定义&lt;span class=&#34;math inline&#34;&gt;\(f(x,y)=\prod _{i=0}^{n-1}(1+x^iy)\)&lt;/span&gt;，这里做乘法的时候&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;是模&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的循环卷积，而y是普通卷积. 那么答案就是&lt;span class=&#34;math inline&#34;&gt;\([x^0y^k]f(x,y)\)&lt;/span&gt;.&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/bzoj4314/ -&lt;p&gt;定义&lt;span class=&#34;math inline&#34;&gt;\(f(x,y)=\prod _{i=0}^{n-1}(1+x^iy)\)&lt;/span&gt;，这里做乘法的时候&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;是模&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的循环卷积，而y是普通卷积. 那么答案就是&lt;span class=&#34;math inline&#34;&gt;\([x^0y^k]f(x,y)\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;这个循环卷积不好处理，注意到DFT本质上就是一个循环卷积，我们可以考虑使用IDFT，答案就是&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 想办法化简这个式子
@@ -283,7 +283,7 @@ int main(){
         <pubDate>Wed, 13 Jun 2018 19:48:56 +0800</pubDate>
         
         <guid>/posts/bzoj4162/</guid>
-        <description>My New Hugo Site /posts/bzoj4162/ -&lt;p&gt;几年前刚学矩阵快速幂的时候点开了这道题，写了半天始终TLE，一看题解发现完全看不懂……时隔多年终于A掉了这道题.&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/bzoj4162/ -&lt;p&gt;几年前刚学矩阵快速幂的时候点开了这道题，写了半天始终TLE，一看题解发现完全看不懂……时隔多年终于A掉了这道题.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;因为代码习惯，下文中用&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;表示题目中的&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;，用&lt;span class=&#34;math inline&#34;&gt;\(s\)&lt;/span&gt;表示题目中的&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;的特征多项式为&lt;span class=&#34;math inline&#34;&gt;\(f(\lambda)\)&lt;/span&gt;，设&lt;span class=&#34;math inline&#34;&gt;\(\lambda^s=f(\lambda)Q(\lambda)+R(\lambda)\)&lt;/span&gt;，其中&lt;span class=&#34;math inline&#34;&gt;\(\deg R&lt;\deg f\)&lt;/span&gt;，那么因为&lt;span class=&#34;math inline&#34;&gt;\(f(M)=0\)&lt;/span&gt;，所以&lt;span class=&#34;math inline&#34;&gt;\(M^s=R(M)\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;求特征多项式的话，可以把&lt;span class=&#34;math inline&#34;&gt;\(\lambda=0,1,\ldots,n\)&lt;/span&gt;带入&lt;span class=&#34;math inline&#34;&gt;\(\det(M-\lambda I)\)&lt;/span&gt;，然后插值，计算&lt;span class=&#34;math inline&#34;&gt;\(R(\lambda)\)&lt;/span&gt;就直接在模&lt;span class=&#34;math inline&#34;&gt;\({f(\lambda)}\)&lt;/span&gt;意义下快速幂就行了.&lt;/p&gt;
@@ -428,7 +428,7 @@ matrix A,B,C;
         <pubDate>Mon, 11 Jun 2018 19:08:30 +0800</pubDate>
         
         <guid>/posts/loj6375/</guid>
-        <description>My New Hugo Site /posts/loj6375/ -&lt;p&gt;好久没怎么做题了，做道水题练练手.&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/loj6375/ -&lt;p&gt;好久没怎么做题了，做道水题练练手.&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 记$f(n)=\sum _{i=1}^ni[\gcd(i,n)=1]$，那么当$n&gt;1$的时候均有$f(n)=\frac{n\varphi(n)}{2}$，而答案即为$n\sum _{d|n}f(\frac{n}{d})$.
 
@@ -487,7 +487,7 @@ int main(){
         <pubDate>Sun, 10 Jun 2018 19:08:17 +0800</pubDate>
         
         <guid>/posts/test/</guid>
-        <description>My New Hugo Site /posts/test/ -&lt;p&gt;其它测试&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/test/ -&lt;p&gt;其它测试&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(E=mc^2\)&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(\bold{bold}\textrm{normal}\)&lt;/span&gt;&lt;/p&gt;- /posts/test/ - </description>
         </item>
@@ -500,7 +500,7 @@ int main(){
         <pubDate>Wed, 02 May 2018 22:26:00 +0800</pubDate>
         
         <guid>/posts/gdoi2018/</guid>
-        <description>My New Hugo Site /posts/gdoi2018/ -&lt;p&gt;&lt;!-- raw HTML omitted --&gt;在退役的边缘试探.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/gdoi2018/ -&lt;p&gt;&lt;!-- raw HTML omitted --&gt;在退役的边缘试探.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;居然rk2进入A队了，rp大概用光了吧……&lt;!-- raw HTML omitted --&gt;你看看你最近抽卡抽出来的都是什么鬼东西！&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;h2 id=&#34;d0&#34;&gt;D0&lt;/h2&gt;
 &lt;p&gt;最后看了看板子.&lt;/p&gt;
@@ -538,7 +538,7 @@ int main(){
         <pubDate>Tue, 10 Apr 2018 17:33:00 +0800</pubDate>
         
         <guid>/posts/2018-4jz/</guid>
-        <description>My New Hugo Site /posts/2018-4jz/ -&lt;p&gt;我好菜啊……&lt;/p&gt;
+        <description>蒟蒻的博客 /posts/2018-4jz/ -&lt;p&gt;我好菜啊……&lt;/p&gt;
 &lt;h2 id=&#34;4-10&#34;&gt;4-10&lt;/h2&gt;
 &lt;p&gt;炸了炸了……&lt;/p&gt;
 &lt;h3 id=&#34;t1&#34;&gt;T1&lt;/h3&gt;
