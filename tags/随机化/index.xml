@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>随机化 on My New Hugo Site</title>
+    <link>/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96/</link>
+    <description>Recent content in 随机化 on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Jun 2018 14:45:13 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>loj2664题解</title>
+      <link>/posts/loj2664/</link>
+      <pubDate>Tue, 26 Jun 2018 14:45:13 +0800</pubDate>
+      
+      <guid>/posts/loj2664/</guid>
+      <description>&lt;p&gt;把所有向量组合成一个&lt;span class=&#34;math inline&#34;&gt;\(n\times d\)&lt;/span&gt;的矩阵&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;，那么问题其实就是判断&lt;span class=&#34;math inline&#34;&gt;\(AA^T=B\)&lt;/span&gt;除了对角线上是否存在&lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt;（模&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;意义下）.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

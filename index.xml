@@ -1,0 +1,320 @@
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>My New Hugo Site</title>
+    <link>/</link>
+    <description>Recent content on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 03 Feb 2020 21:55:41 +0800</lastBuildDate>
+    
+        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>LevelDB数据丢失问题</title>
+        <link>/posts/leveldb-and-git-md/</link>
+        <pubDate>Mon, 03 Feb 2020 21:55:41 +0800</pubDate>
+        
+        <guid>/posts/leveldb-and-git-md/</guid>
+        <description>My New Hugo Site /posts/leveldb-and-git-md/ -&lt;p&gt;我存在&lt;code&gt;levelDB&lt;/code&gt;里面的数据丢了好几次，最近研究了一下，虽然不确定具体的原理，但大概知道怎么避免类似情况了。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;经过观察可以发现，就算不对数据库进行修改，仅仅是查询，文件也会发生变化。而我丢失数据，均发生在使用&lt;code&gt;git&lt;/code&gt;切换分支，再切换回来的时候。我推测这之中某个时候，因为读数据发生了文件变动，然后切换分支又撤销了一部分文件变动，导致了数据库的损坏。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;暂时不清楚损坏过程，但是要记住，&lt;strong&gt;不要把数据库放到git repo里面！&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;有些数据丢了是真的心疼，还好从某个备份里找回来了不少。&lt;/del&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+- /posts/leveldb-and-git-md/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Typescript使用笔记</title>
+        <link>/posts/ts-notes/</link>
+        <pubDate>Wed, 22 Jan 2020 21:34:54 +0800</pubDate>
+        
+        <guid>/posts/ts-notes/</guid>
+        <description>My New Hugo Site /posts/ts-notes/ -&lt;p&gt;使用&lt;del&gt;Any&lt;/del&gt;Typescript已经有一段时间了，这期间踩了不少坑，也发现了一些骚操作。这里简单记录一下。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;h3 id=&#34;commonjs与es-module兼容的问题&#34;&gt;CommonJS与ES Module兼容的问题&lt;/h3&gt;
+&lt;p&gt;由于各种原因，CommonJS的模块化方式与ES Module的模块化方式之间并不能很容易地一一对应起来。ES Module中有default export的概念，如果在&lt;code&gt;0.js&lt;/code&gt;中写&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;export&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;A&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;那么就可以在&lt;code&gt;1.js&lt;/code&gt;里面使用&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;anyNameYouLike&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;from&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#39;./0&amp;#39;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;来加载。但同时，一个模块在拥有default export的同时，也允许拥有别的export，这样一来，default export就得被编译成&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt;.&lt;span style=&#34;color:#66d9ef&#34;&gt;default&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;A&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;而不是&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-javascript&#34; data-lang=&#34;javascript&#34;&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;module&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;exports&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#a6e22e&#34;&gt;A&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;但是问题在于，CommonJS的模块只导出一个对象时，往往会采用后一种方式，而ES Module又不能实现后一种方式，这就会导致许多混乱。&lt;/p&gt;
+&lt;p&gt;Typescript的编译器提供了一个编译选项&lt;code&gt;--esModuleInterop&lt;/code&gt;，加上它就能解决这个问题。这样就可以在自己的代码里统一使用default export和default import了。&lt;/p&gt;
+&lt;h3 id=&#34;前端项目code-splitting及磁盘空间节省&#34;&gt;前端项目Code Splitting&lt;del&gt;及磁盘空间节省&lt;/del&gt;&lt;/h3&gt;
+&lt;p&gt;因为种种原因我不想用webpack，而我还不能使rollup正常工作，所以我用的bundler一直还是browserify。于是我必须手动进行Code Splitting。&lt;/p&gt;
+&lt;p&gt;为了使用类型推断等功能带来的便利，使用前端库的时候，同样需要将其安装到本地并import。但另一方面，为了减小bundle体积，优化首屏体验，用到的很多库其实应该从cdn加载。为了兼顾这两点，可以使用一个&lt;code&gt;browserify&lt;/code&gt;的transform：&lt;code&gt;browserify-shim&lt;/code&gt;。以React这个包为例，在package.json里加上如下配置：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-json&#34; data-lang=&#34;json&#34;&gt;{
+	&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;browserify&amp;#34;&lt;/span&gt;:{
+		&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;transform&amp;#34;&lt;/span&gt;:[
+			&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;browserify-shim&amp;#34;&lt;/span&gt;
+		]
+	},
+	&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;browserify-shim&amp;#34;&lt;/span&gt;:{
+		&lt;span style=&#34;color:#f92672&#34;&gt;&amp;#34;react&amp;#34;&lt;/span&gt;:&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;global:React&amp;#34;&lt;/span&gt;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;注意第一个&lt;code&gt;react&lt;/code&gt;是包名，第二个&lt;code&gt;React&lt;/code&gt;是由cdn导入的库提供的全局变量名。&lt;/p&gt;
+&lt;p&gt;那这个跟磁盘空间节省又有什么关系呢？它之所以能节省磁盘空间，是因为这么做了之后，本地不需要安装&lt;code&gt;react&lt;/code&gt;，只需要安装&lt;code&gt;@types/react&lt;/code&gt;，就可以import然后正常使用了。&lt;/p&gt;
+&lt;p&gt;顺便提一下，可以把所有脚本加上&lt;code&gt;defer&lt;/code&gt;然后放到&lt;code&gt;&amp;lt;head&amp;gt;&lt;/code&gt;里面，这样脚本会异步并行加载，并在dom渲染完成后，按照&lt;code&gt;&amp;lt;script&amp;gt;&lt;/code&gt;标签的顺序执行。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+- /posts/ts-notes/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>使用增量编译加快typescript项目编译</title>
+        <link>/posts/watch/</link>
+        <pubDate>Fri, 03 Jan 2020 01:16:23 +0800</pubDate>
+        
+        <guid>/posts/watch/</guid>
+        <description>My New Hugo Site /posts/watch/ -&lt;p&gt;前段时间开始试着用typescript，感觉有一个很明显的问题是，习惯了脚本语言之后，我不太有耐性等待一两秒的编译。最近折腾了各种方法，一开始我想禁用掉typescript的类型检查来提升编译速度（反正编辑器里就会进行检查），结果发现&lt;code&gt;tsc&lt;/code&gt;并没有这个编译选项，倒是&lt;code&gt;ts-node&lt;/code&gt;有一个&lt;code&gt;-T&lt;/code&gt;选项可以做到这点。其实一个更好的解决方案可能是使用增量编译。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;code&gt;tsc&lt;/code&gt;本身就能实现增量编译的效果，运行&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;tsc --watch src/*.ts --outDir dist --sourceMap
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;就能启动一个服务，在检测到文件修改的时候，进行增量编译。一般来讲，增量编译会比重新编译整个项目快得多。这个方法在用typescript写后端的时候应该够用了。&lt;/p&gt;
+&lt;p&gt;但是这个方法不太适合写前端。如果再用&lt;code&gt;browserify&lt;/code&gt;这样的bundle工具进行打包的话，得到的source map对应的是&lt;code&gt;tsc&lt;/code&gt;编译之后的结果，不便于前端的调试。事实上，&lt;code&gt;browserify&lt;/code&gt;提供了一个叫做&lt;code&gt;watchify&lt;/code&gt;的插件，&lt;code&gt;watchify&lt;/code&gt;的用法跟&lt;code&gt;browserify&lt;/code&gt;基本一样，区别在于，&lt;code&gt;watchify&lt;/code&gt;必须用&lt;code&gt;-o&lt;/code&gt;指定输出文件，比如：&lt;/p&gt;
+&lt;pre&gt;&lt;code&gt;watchify -t tsify --debug -v -o bundle.js src/index.ts
+&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;UPD：
+写之前的内容的时候，电脑是长期接着电的，刚刚发现不接电的话&lt;code&gt;watchify&lt;/code&gt;会比&lt;code&gt;tsc --watch&lt;/code&gt;慢。折腾了一晚上又发现了一个方法。有一个&lt;code&gt;browserify&lt;/code&gt;的transform叫做&lt;code&gt;sourceify&lt;/code&gt;，简单地理解的话，它可以递归地读取source map，然后inline到bundle里面，这样就可以先用&lt;code&gt;tsc --watch&lt;/code&gt;编译，然后&lt;code&gt;browserify&lt;/code&gt;打包了。但是有于&lt;code&gt;sourceify&lt;/code&gt;的一些feature，debug的时候要在web服务器上把&lt;code&gt;/source&lt;/code&gt;映射到根目录。&lt;/p&gt;
+&lt;p&gt;另外还有几个细节：&lt;del&gt;一是tsc编译jsx还是会很慢&lt;/del&gt;&lt;em&gt;UPD：不会&lt;/em&gt;，另外直接&lt;code&gt;tsc -w&lt;/code&gt;就可以了。&lt;/p&gt;
+&lt;p&gt;UPD：
+不知道为什么，把一条&lt;code&gt;import&lt;/code&gt;语句去掉的时候编译可能会比较久。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+- /posts/watch/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>在git-bash下输入中文</title>
+        <link>/posts/gitbashutf8/</link>
+        <pubDate>Sat, 30 Nov 2019 22:54:46 +0800</pubDate>
+        
+        <guid>/posts/gitbashutf8/</guid>
+        <description>My New Hugo Site /posts/gitbashutf8/ -&lt;p&gt;Windows Terminal终于支持显示中文/输入中文了，真是大快人心。&lt;/p&gt;
+&lt;p&gt;我平时在Windows Terminal里面使用git-bash，输入中文一直会遇到一些问题，今天终于把问题折腾没了。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;具体来讲，就是输入中文以后，要多次退格才能删除一个中文字符，而且即使删除了，仍然会有不可见字符。但是这个问题在我使用git-bash自带的mintty的时候又会神秘解决。&lt;/p&gt;
+&lt;p&gt;这是因为utf-8是不定长的编码，汉字占三个字节，但git-bash“认为”我使用的是定长的编码，汉字占两个字节。这样一来，按了两次退格之后，汉字就不显示了，但实际上还有一个字节没有被删除。&lt;/p&gt;
+&lt;p&gt;既然在mintty中问题被解决，说明mintty中应该做了某种配置，让git-bash默认使用utf-8。我上网查了一下，发现可以在&lt;code&gt;~/.bashrc&lt;/code&gt;里面加上两行来解决这个问题：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;export LC_ALL&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;en_US.UTF-8
+export LANG&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;en_US.UTF-8
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;del&gt;我怀疑只需要其中一行就能起作用，但我懒得实验了。&lt;/del&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+- /posts/gitbashutf8/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>如何在xelatex中使用思源字体</title>
+        <link>/posts/sourcehan/</link>
+        <pubDate>Thu, 28 Nov 2019 22:32:27 +0800</pubDate>
+        
+        <guid>/posts/sourcehan/</guid>
+        <description>My New Hugo Site /posts/sourcehan/ -&lt;p&gt;早就听说微软雅黑存在版权问题，而思源字体非常优越，但是我之前折腾了半天一直装不上就很尴尬了。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;首先思源字体可以从github上面下载。按照网上大多数人的说法，安装字体后，在xelatex里面使用如下代码就能使用思源字体了。&lt;del&gt;然而并不能。&lt;/del&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-latex&#34; data-lang=&#34;latex&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;\usepackage&lt;/span&gt;{xeCJK}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;\usepackage&lt;/span&gt;{fontspec}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;\setCJKmainfont&lt;/span&gt;{Source Han Serif}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;今天我终于弄清楚了为什么：安装字体的时候要选择为所有用户安装。&lt;del&gt;这也太惨了。&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;现在还是有一点小问题，latex里面的思源字体跟别的地方显示的稍有不同，比如“浅”字有三横什么的。&lt;/del&gt;
+改成&lt;code&gt;\setCJKmainfont{Source Han Serif SC}&lt;/code&gt;就可以了。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+- /posts/sourcehan/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>使用nodejs的pipe遇到的一点小问题</title>
+        <link>/posts/pipe/</link>
+        <pubDate>Tue, 26 Nov 2019 23:31:11 +0800</pubDate>
+        
+        <guid>/posts/pipe/</guid>
+        <description>My New Hugo Site /posts/pipe/ -&lt;p&gt;&lt;del&gt;随便发点东西就当除草。&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;这个东西调了我一整晚……心态爆炸&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;简单来讲就是，使用nodejs stream的pipe的时候，它可能会在某些地方进行编码转换，有些地方你可以手动指定为只传输二进制，但有的地方似乎不行 &lt;del&gt;(也有可能是我还没找到)&lt;/del&gt;。&lt;/p&gt;
+&lt;p&gt;总之如果没弄清楚原因，以后用pipe尽量只传输文本数据，要传二进制的话尽量用系统自带的管道。&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;UPD:&lt;/p&gt;
+&lt;p&gt;今天又研究了一下，如果用spawn而不是exec的话，没有这个问题，可能是因为exec会自动启动一个shell，然后shell里面的编码出了问题。&lt;/p&gt;
+&lt;p&gt;另外要注意一下，&lt;code&gt;encoding:&#39;binary&#39;&lt;/code&gt;并不是真的binary，而是一种叫&lt;code&gt;latin1&lt;/code&gt;的编码，传二进制数据的时候什么都不要设置就好了。不过这么做的话，版本不能太旧，否则&lt;strong&gt;可能&lt;/strong&gt;会出问题。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+- /posts/pipe/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>解决go get下载缓慢的问题</title>
+        <link>/posts/gogetpkg/</link>
+        <pubDate>Sat, 25 May 2019 11:17:50 +0800</pubDate>
+        
+        <guid>/posts/gogetpkg/</guid>
+        <description>My New Hugo Site /posts/gogetpkg/ -&lt;p&gt;go get下载第三方包的时候大多数情况要从github上面pull，有的时候还要从&lt;code&gt;golang.org&lt;/code&gt;之类的地方下载源码. 由于众所周知的原因git clone速度极慢，golang.org根本不能访问，所以golang下载第三方包的时候总是极其麻烦. 最近写了个程序解决这个问题.&lt;/p&gt;
+&lt;p&gt;讲一下大概的思路.&lt;/p&gt;
+&lt;p&gt;我发现git clone和github上面的download zip是从不同的地方下载的，而download zip比git clone快很多，所以可以写个程序自动download zip，解压到安装第三方包的文件夹下，再编译.&lt;/p&gt;
+&lt;p&gt;至于&lt;code&gt;golang.org&lt;/code&gt;，它在&lt;code&gt;github.com/golang&lt;/code&gt;上面有镜像，至于其它一些网站也多半在github上面有镜像，程序里面获取下载链接的时候额外处理一下就可以了.&lt;/p&gt;
+&lt;p&gt;大概用法：把go get换成gogetpkg -p就行，如果第三方包的代码已经下载下来并放到正确位置，只需要安装的话，可以加上-nd，这样就会不下载直接安装.&lt;/p&gt;
+&lt;p&gt;举几个栗子：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-bash&#34; data-lang=&#34;bash&#34;&gt;gogetpkg -p github.com/jwhj/gogetpkg
+&lt;span style=&#34;color:#75715e&#34;&gt;# 我装我自己&lt;/span&gt;
+gogetpkg -p golang.org/x/tools/imports
+&lt;span style=&#34;color:#75715e&#34;&gt;# 装package里面的package也是可以的&lt;/span&gt;
+gogetpkg -p golang.org/x/tools/playground -nd
+&lt;span style=&#34;color:#75715e&#34;&gt;# 刚刚已经把整个golang.org/x/tools下载下来了&lt;/span&gt;
+&lt;span style=&#34;color:#75715e&#34;&gt;# 就不用再下载一次了&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;&lt;del&gt;你会发现它并不能处理依赖，你需要手动处理……&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;项目地址：&lt;a href=&#34;https://github.com/jwhj/gogetpkg&#34;&gt;https://github.com/jwhj/gogetpkg&lt;/a&gt;&lt;/p&gt;- /posts/gogetpkg/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>&#39;[whj什么都不会系列-2]bzoj4734&amp;uoj269题解&#39;</title>
+        <link>/posts/bzoj4734/</link>
+        <pubDate>Fri, 22 Mar 2019 20:24:47 +0800</pubDate>
+        
+        <guid>/posts/bzoj4734/</guid>
+        <description>My New Hugo Site /posts/bzoj4734/ -&lt;p&gt;bzoj上的题面真是残缺不全……uoj上有完整的题面.&lt;/p&gt;
+&lt;p&gt;退役久了脑子都不好用了，这么简单的东西推了半天……&lt;/p&gt;
+&lt;p&gt;看到这种求和题很自然地就会想到拆成卷积的形式：&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[Q(f,n,x)=n!\sum _{k=0}^n\frac{f(k)x^k}{k!}\cdot\frac{(1-x)^{n-k}}{(n-k)!}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;记&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{aligned}
+g(z)&amp;=\sum\frac{f(k)x^k}{k!}z^k\\
+h(z)&amp;=\sum\frac{(1-x)^k}{k!}z^k
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;那么答案就是&lt;span class=&#34;math inline&#34;&gt;\(n![z^n]g(z)h(z)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;很容易看出&lt;span class=&#34;math inline&#34;&gt;\(h(z)=e^{(1-x)z}\)&lt;/span&gt;，关键是怎么表示&lt;span class=&#34;math inline&#34;&gt;\(g(z)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;这里要用到一个结论：记&lt;span class=&#34;math inline&#34;&gt;\(P _L(z)=\sum\left\{\begin{matrix}L\\k\end{matrix}\right\}z^k\)&lt;/span&gt;，那么有&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[e^zP _L(z)=\sum _k\frac{k^L}{k!}z^k
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;证明的话，对&lt;span class=&#34;math inline&#34;&gt;\(L\)&lt;/span&gt;归纳就可以了. 感觉这个结论在很多时候都挺有用的.&lt;/p&gt;
+&lt;p&gt;设&lt;span class=&#34;math inline&#34;&gt;\(f(x)=\sum c _ix^i\)&lt;/span&gt;，那么就有&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{aligned}
+g(z)&amp;=\sum _k\left(\frac{(xz)^k}{k!}\sum _ic _ik^i\right)\\
+&amp;=\sum _ic _i\sum _k\frac{(xz)^kk^i}{k!}\\
+&amp;=\sum _ic _ie^{xz}P _i(xz)
+\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;那么答案就是&lt;span class=&#34;math inline&#34;&gt;\(n![z^n]e^z\sum _{i=0}^mc _iP _i(xz)\)&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;记&lt;span class=&#34;math inline&#34;&gt;\(t(z)=\sum _{i=0}^mc _iP _i(xz)\)&lt;/span&gt;，注意到&lt;span class=&#34;math inline&#34;&gt;\(\deg t=m\)&lt;/span&gt;，所以如果我们能把&lt;span class=&#34;math inline&#34;&gt;\(t(z)\)&lt;/span&gt;求出来的话，剩下就只需要做一个长度为&lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;的卷积了(而不是题目式子里长为&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的卷积).&lt;/p&gt;
+&lt;p&gt;为了求出&lt;span class=&#34;math inline&#34;&gt;\(t(z)\)&lt;/span&gt;，考虑到斯特林数没有什么太好的性质，我们需要给它乘回一个&lt;span class=&#34;math inline&#34;&gt;\(e^{xz}\)&lt;/span&gt;. 我们知道&lt;span class=&#34;math inline&#34;&gt;\([z^k]t(z)e^{xz}=\frac{f(k)x^k}{k!}\)&lt;/span&gt;，所以要求&lt;span class=&#34;math inline&#34;&gt;\(t(z)\)&lt;/span&gt;的话我们可以把&lt;span class=&#34;math inline&#34;&gt;\(\sum _k\frac{f(k)x^k}{k!}z^k\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(e^{-xz}\)&lt;/span&gt;的前&lt;span class=&#34;math inline&#34;&gt;\(m+1\)&lt;/span&gt;项做一个卷积.&lt;/p&gt;
+&lt;p&gt;这道题，总的来说，这么一大通的变换，主要目的就是分离出一个长度为&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(m)\)&lt;/span&gt;的多项式，这样一切就都好处理了.&lt;/p&gt;
+&lt;p&gt;代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ele int
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ll long long
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; std;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; ele maxn&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;16&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;|&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; ele MOD&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;998244353&lt;/span&gt;;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; ele g&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;;
+ele n,m,x,f[maxn],fac[maxn],ifac[maxn],a[maxn],b[maxn];
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; add(ele&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;a,ele b){
+	a&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;b;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; a&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt;MOD:a;
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;pw&lt;/span&gt;(ele a,ele x){
+	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (; x; x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)tmp&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)ans&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ntt&lt;/span&gt;(ele K,ele n,ele &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;y){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; ele f[maxn];
+	f[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i){
+		f[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;f[i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) f[i]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;n&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;f[i]) swap(y[i],y[f[i]]);
+	}
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; p&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;){
+		ele o&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;pw(g,(MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;p&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
+		o&lt;span style=&#34;color:#f92672&#34;&gt;=~&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;o:pw(o,MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; i&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;(p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;))
+			&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;i,o1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;j,o1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)o1&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;o&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD){
+				ele u&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;y[j],v&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)y[j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;o1&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+				y[j]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;y[j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;u;
+				add(y[j],v); add(y[j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p],MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;v);
+			}
+	}
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!~&lt;/span&gt;K){
+		ele invn&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;pw(n,MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) y[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)y[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;invn&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	}
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(){
+	scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;n,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;m,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;x);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;m; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;,f&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;i);
+	fac[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;m; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) fac[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)fac[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	ifac[m]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;pw(fac[m],MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;m&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#f92672&#34;&gt;~&lt;/span&gt;i; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;i) ifac[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)ifac[i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	ele tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (tmp&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;m&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;m) tmp&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	memset(a,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(ele)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp);
+	memset(b,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(ele)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,p&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;m; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i,p&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)p&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;x&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD){
+		a[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)f[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;p&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;ifac[i]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+		b[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)p&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;ifac[i]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) b[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;b[i];
+	}
+	ntt(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,a); ntt(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,b);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;tmp; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) a[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)a[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;b[i]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	ntt(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,a);
+	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,p&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;m; p&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)p&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;i)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD,&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) add(ans,(ll)a[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;p&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD);
+	printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,ans);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- /posts/bzoj4734/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>N Squared Minus One</title>
+        <link>/posts/nsmo/</link>
+        <pubDate>Sat, 23 Feb 2019 21:58:34 +0800</pubDate>
+        
+        <guid>/posts/nsmo/</guid>
+        <description>My New Hugo Site /posts/nsmo/ -&lt;p&gt;再厚颜无耻地放个小游戏.&lt;/p&gt;
+&lt;p&gt;地址 &lt;a href=&#34;https://jwhj.github.io/nsmo/&#34;&gt;https://jwhj.github.io/nsmo/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;源码放在 &lt;a href=&#34;https://github.com/jwhj/nsmo&#34;&gt;https://github.com/jwhj/nsmo&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;跟arcsine比起来这个才像一个真的游戏.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+&lt;p&gt;&lt;!-- raw HTML omitted --&gt;我感觉还挺好玩的.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;- /posts/nsmo/ - </description>
+        </item>
+    
+    
+    
+        <item>
+        <title>Arcsine</title>
+        <link>/posts/arcsine/</link>
+        <pubDate>Sun, 20 Jan 2019 21:24:26 +0800</pubDate>
+        
+        <guid>/posts/arcsine/</guid>
+        <description>My New Hugo Site /posts/arcsine/ -&lt;p&gt;厚颜无耻地发一个自己写的小游戏.&lt;/p&gt;
+&lt;p&gt;地址 &lt;a href=&#34;http://jwhj.github.io/arcsine/&#34;&gt;http://jwhj.github.io/arcsine/&lt;/a&gt; ，打开就能玩.&lt;/p&gt;
+&lt;p&gt;源码放在 &lt;a href=&#34;https://github.com/jwhj/arcsine&#34;&gt;https://github.com/jwhj/arcsine&lt;/a&gt; ，写得很丑希望不要被嘲讽. &lt;del&gt;说得好像有人会看一样.&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;游戏功能也许会在未来进一步完善. &lt;del&gt;毕竟我比较懒.&lt;/del&gt;&lt;/p&gt;- /posts/arcsine/ - </description>
+        </item>
+    
+    
+  </channel>
+</rss> 

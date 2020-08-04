@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>DP on My New Hugo Site</title>
+    <link>/tags/dp/</link>
+    <description>Recent content in DP on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Jun 2018 09:03:45 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/dp/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>loj2249题解</title>
+      <link>/posts/loj2249/</link>
+      <pubDate>Tue, 26 Jun 2018 09:03:45 +0800</pubDate>
+      
+      <guid>/posts/loj2249/</guid>
+      <description>&lt;p&gt;一开始居然脑子短路没有想到斜率优化……以后看到这种感觉跟凸包有关系，要求最值/要最优化的问题，可以考虑写个dp方程出来看看能不能斜率优化.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>loj2131题解</title>
+      <link>/posts/loj2131/</link>
+      <pubDate>Mon, 25 Jun 2018 11:07:13 +0800</pubDate>
+      
+      <guid>/posts/loj2131/</guid>
+      <description>&lt;p&gt;首先注意到选择了一个数就是选择了它的所有素因子，而不超过&lt;span class=&#34;math inline&#34;&gt;\(\sqrt{n}\)&lt;/span&gt;的素数至多只有8个，可以考虑状压. &lt;!-- raw HTML omitted --&gt;超过的那些我们先不管.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>loj2304题解</title>
+      <link>/posts/loj2304/</link>
+      <pubDate>Sat, 23 Jun 2018 10:00:10 +0800</pubDate>
+      
+      <guid>/posts/loj2304/</guid>
+      <description>&lt;p&gt;首先恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;不好处理，显然要转化为&lt;span class=&#34;math inline&#34;&gt;\(\le k\)&lt;/span&gt;的概率减去&lt;span class=&#34;math inline&#34;&gt;\(\le k-1\)&lt;/span&gt;的概率.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>loj2552题解</title>
+      <link>/posts/loj2552/</link>
+      <pubDate>Tue, 19 Jun 2018 20:05:22 +0800</pubDate>
+      
+      <guid>/posts/loj2552/</guid>
+      <description>&lt;p&gt;&lt;strong&gt;由于代码习惯，下文中用&lt;span class=&#34;math inline&#34;&gt;\(h _i\)&lt;/span&gt;表示题目中的&lt;span class=&#34;math inline&#34;&gt;\(m _i\)&lt;/span&gt;.&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;看到998244353不知道为什么就去想NTT……其实完全没有必要，因为&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(h _i\)&lt;/span&gt;都非常小.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

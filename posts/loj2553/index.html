@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html><head>
+<title>loj2553题解</title>
+
+
+
+
+<meta charset="utf-8">
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="google-site-verification" content="">
+<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport">
+<meta content="telephone=no" name="format-detection">
+<meta name="description" content="">
+<meta name="renderer" content="webkit">
+<meta name="theme-color" content="#ffffff">
+
+
+
+
+
+
+
+
+
+
+
+<script src="/vendor/js/jquery.min.js" ></script>
+<script src="/vendor/js/popper.min.js" ></script>
+<script src="/vendor/js/bootstrap.min.js" ></script>
+<script src="/vendor/js/smooth-scroll.polyfills.min.js" ></script>
+<link type="text/css" rel="stylesheet" href="/vendor/css/bootstrap.min.css">
+<script src="/vendor/js/vue.min.js" ></script>
+
+
+
+
+
+
+<link rel="stylesheet" href="/scss/journal.min.47aa1ffb60880ad8c72feecd6962a14331eca7a7a30e08354a1ca91009b8bc5b.css" integrity="sha256-R6of&#43;2CICtjHL&#43;7NaWKhQzHsp6ejDgg1ShypEAm4vFs=" media="screen">
+
+
+
+<link rel="stylesheet" href="/scss/dark-mode.min.832f90e2bc07191c85a3b6c0310607f539897546b1126dd04df64aff22316ecd.css" integrity="sha256-gy&#43;Q4rwHGRyFo7bAMQYH9TmJdUaxEm3QTfZK/yIxbs0=" media="screen">
+
+
+<script src="/js/loadCSS.js"></script>
+<script>
+  loadCSS("https://fonts.googleapis.com/css?family=Lora|Montserrat|Fira+Mono|Noto+Serif+SC|Material+Icons");
+</script>
+
+
+
+
+  
+    <script src="/js/toc-collapse.js"></script>
+  
+
+
+
+
+
+
+
+<script src='https://unpkg.com/valine@1.4.14/dist/Valine.min.js'></script>
+
+
+
+
+</head>
+<body>
+    	<div id="app"><div ref="sideContainer" class="side-container">
+    
+    <a class="a-block nav-head false" href="">
+    
+        <div class="nav-title">
+            My New Hugo Site
+        </div>
+        
+    </a>
+
+    <div class="nav-link-list">
+        
+        
+            
+            
+            
+                
+            
+            
+            
+            <a class="a-block nav-link-item active" href="/posts">
+                Archive
+            </a>
+            
+        
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/tags">
+                Tags
+            </a>
+            
+        
+    </div>
+
+    
+
+    <div class="nav-footer">
+        
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2020 My New Hugo Site
+	
+
+    </div>
+    
+</div><div ref="extraContainer" class="extra-container">
+    
+    
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+</div>
+    
+    <div class="pagination">
+        <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
+            <i class="material-icons pagination-action-icon">
+                keyboard_arrow_up
+            </i>
+        </a>
+        
+        <a class="pagination-action" v-on:click="toggleDarkMode">
+            <i class="material-icons pagination-action-icon" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons pagination-action-icon" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </a>
+        
+        
+    </div>
+</div><div class="single-column-drawer-container" ref="drawer"
+     v-bind:class="{ 'single-column-drawer-container-active': isDrawerOpen }">
+    <div class="drawer-content">
+        <div class="drawer-menu">
+            
+            
+            
+                
+                
+                
+                    
+                
+                
+                
+                <a class="a-block drawer-menu-item active" href="/posts">
+                    Archive
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/tags">
+                    Tags
+                </a>
+                
+            
+            
+            <div class="toc">
+
+
+</div>
+            
+        </div>
+    </div>
+</div>
+<transition name="fade">
+    <div v-bind:class="{ 'single-column-drawer-mask': mounted }" v-if="isDrawerOpen" v-on:click="toggleDrawer"></div>
+</transition>
+<nav ref="navBar" class="navbar sticky-top navbar-light single-column-nav-container">
+    <div ref="navBackground" class="nav-background"></div>
+    <div class="container container-narrow nav-content">
+        <button id="nav_dropdown_btn" class="nav-dropdown-toggle" type="button" v-on:click="toggleDrawer">
+            <i class="material-icons">
+                menu
+            </i>
+        </button>
+        <a ref="navTitle" class="navbar-brand" href="">
+            My New Hugo Site
+        </a>
+        
+        <button type="button" class="nav-darkmode-toggle" v-on:click="toggleDarkMode">
+            <i class="material-icons" v-if="isDarkMode">
+                brightness_4
+            </i>
+            <i class="material-icons" v-else="isDarkMode">
+                brightness_7
+            </i>
+        </button>
+        
+    </div>
+</nav>
+<div class="single-column-header-container" ref="pageHead"
+     v-bind:style="{ transform: 'translateZ(0px) translateY('+.3*scrollY+'px)', opacity: 1-navOpacity }">
+    <a href="">
+        <div class="single-column-header-title">My New Hugo Site</div>
+        
+
+    </a>
+</div>
+            <div id="content">
+<div ref="streamContainer" class="stream-container">
+    <div class="post-list-container post-list-container-shadow">
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    loj2553题解
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2018-06-20 19:05
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/%E9%A2%98%E8%A7%A3">题解</a>
+                                &nbsp;
+                            
+                                <a href="/tags/loj">loj</a>
+                                &nbsp;
+                            
+                                <a href="/tags/%E8%BE%B9%E5%88%86%E6%B2%BB">边分治</a>
+                                &nbsp;
+                            
+                                <a href="/tags/%E7%BA%BF%E6%AE%B5%E6%A0%91%E5%90%88%E5%B9%B6">线段树合并</a>
+                                &nbsp;
+                            
+                        
+                        
+                            <i class="material-icons" style="">schedule</i>
+                            
+
+                            
+                            
+
+                            
+                            5 min
+                            
+                            19 s.
+                        
+                    </div>
+                </div>
+            </div>
+            
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p><!-- raw HTML omitted -->点一下，写一年！A到就是赚到！<!-- raw HTML omitted --></p>
+<p>一个自然的思路是枚举<span class="math inline">\(\textrm{LCA}^\prime(x,y)\)</span>，这样<span class="math inline">\(x\)</span>和<span class="math inline">\(y\)</span>在<span class="math inline">\(T^\prime\)</span>上分属<span class="math inline">\(\textrm{LCA}^\prime(x,y)\)</span>的不同子树，剩下在<span class="math inline">\(T\)</span>上的部分可以写成<span class="math inline">\(f(x,y)=\frac{1}{2}(\textrm{depth}(x)+\textrm{depth}(y)+\textrm{dis}(x,y))\)</span>，可以做类似dsu on a tree的过程来统计答案. 那么我们需要一个数据结构维护一个点集<span class="math inline">\(S\)</span>，支持对一个点<span class="math inline">\(u\)</span>查询<span class="math inline">\(\min _{v \in S}f(u,v)\)</span>以及向<span class="math inline">\(S\)</span>中插入一个点.</p>
+<p>像这样维护树上点集，查询权值在边上的信息的时候，可以考虑使用边分治，先对树<span class="math inline">\(T\)</span>建立起一棵边分树，把点集<span class="math inline">\(S\)</span>按照该分治结构划分，形成一棵有<span class="math inline">\(O(|S|)\)</span>个点的树结构，每个点保存<span class="math inline">\(\max\textrm{depth}(u)+\textrm{dis}(u,v)\)</span>，其中<span class="math inline">\(u\)</span>为该点代表的分治结构里面的关键点，<span class="math inline">\(v\)</span>为上一层分治结构的分治边靠近当前分治结构的端点. 那么查询直接在这棵树上面往下走就可以了，插入也可以很容易地处理. 这样我们就可以<span class="math inline">\(\mathcal O(n\log^2 n)\)</span>地解决这道题.</p>
+<p>事实上还可以进一步优化，注意到边分树是二叉树结构，可以直接使用类似线段树合并的算法，并顺便计算贡献，而不需要进行启发式合并，这样的复杂度是<span class="math inline">\(\mathcal O(n\log n)\)</span>.</p>
+<p>边分树是二叉树结构，所以很多东西想起来会更加方便. 但是边分树常数相对会更大，而且如果询问的信息在点上，就不能加入辅助点，复杂度会退化到<span class="math inline">\(\mathcal O(n^2)\)</span>. 刚刚那些东西用点分树理论上可能也是可以做到的，但是会麻烦很多.</p>
+<p>不知道为什么还需要辛辛苦苦卡内存……</p>
+<p>截止到写这篇题解的时候，loj上有若干份AC代码可以对拍出一堆错. <!-- raw HTML omitted -->等待数据加强.<!-- raw HTML omitted --></p>
+<p>代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;vector&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#define ele int
+</span><span style="color:#75715e">#define ll long long
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#75715e">#define maxn 733342
+</span><span style="color:#75715e">#define K 100000
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> ll INF<span style="color:#f92672">=</span><span style="color:#ae81ff">1e18</span>;
+<span style="color:#66d9ef">template</span><span style="color:#f92672">&lt;</span><span style="color:#66d9ef">class</span> <span style="color:#a6e22e">T</span><span style="color:#f92672">&gt;</span><span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">mempool</span>{
+	T <span style="color:#f92672">*</span>s,<span style="color:#f92672">*</span>t;
+	mempool()<span style="color:#f92672">:</span>s(NULL),t(NULL){}
+	<span style="color:#66d9ef">inline</span> T<span style="color:#f92672">*</span> <span style="color:#a6e22e">alloc</span>(){
+		<span style="color:#66d9ef">return</span> s<span style="color:#f92672">==</span>t <span style="color:#f92672">&amp;&amp;</span> (t<span style="color:#f92672">=</span>(s<span style="color:#f92672">=</span><span style="color:#66d9ef">new</span> T[K])<span style="color:#f92672">+</span>K),s<span style="color:#f92672">++</span>;
+	}
+};
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">edge</span>{
+	ele v,w;
+	<span style="color:#66d9ef">bool</span> flag;
+	edge <span style="color:#f92672">*</span>nxt,<span style="color:#f92672">*</span>rev;
+}ep[maxn<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">2</span>],<span style="color:#f92672">*</span>ecnt;
+<span style="color:#66d9ef">struct</span> <span style="color:#a6e22e">node</span>{
+	edge <span style="color:#f92672">*</span>e;
+	ll mx;
+	node <span style="color:#f92672">*</span>l,<span style="color:#f92672">*</span>r;
+};
+ele n,acnt,size[maxn],w[maxn];
+ll ans,dep[maxn];
+edge <span style="color:#f92672">*</span>h[maxn],<span style="color:#f92672">*</span>g[maxn],<span style="color:#f92672">*</span>h1[maxn];
+mempool<span style="color:#f92672">&lt;</span>node<span style="color:#f92672">&gt;</span> np;
+vector<span style="color:#f92672">&lt;</span>ll<span style="color:#f92672">&gt;</span> vd[maxn];
+vector<span style="color:#f92672">&lt;</span><span style="color:#66d9ef">bool</span><span style="color:#f92672">&gt;</span> vc[maxn];
+node <span style="color:#f92672">*</span>T[maxn],<span style="color:#f92672">*</span>er;
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">boom</span>(){
+	<span style="color:#66d9ef">char</span> <span style="color:#f92672">*</span>c<span style="color:#f92672">=</span>NULL; putchar(<span style="color:#f92672">*</span>c);
+}
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addedge1</span>(edge <span style="color:#f92672">*</span>h[],ele u,ele v,ele w){
+	edge <span style="color:#f92672">*</span>p<span style="color:#f92672">=</span>ecnt<span style="color:#f92672">++</span>;
+	p<span style="color:#f92672">-&gt;</span>v<span style="color:#f92672">=</span>v; p<span style="color:#f92672">-&gt;</span>w<span style="color:#f92672">=</span>w; p<span style="color:#f92672">-&gt;</span>flag<span style="color:#f92672">=</span>false; p<span style="color:#f92672">-&gt;</span>nxt<span style="color:#f92672">=</span>h[u];
+	p<span style="color:#f92672">-&gt;</span>rev<span style="color:#f92672">=</span>ep<span style="color:#f92672">+</span>((ecnt<span style="color:#f92672">-</span>ep<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">^</span><span style="color:#ae81ff">1</span>);
+	h[u]<span style="color:#f92672">=</span>p;
+}
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">addedge</span>(edge <span style="color:#f92672">*</span>h[],ele u,ele v,ele w){
+	addedge1(h,u,v,w); addedge1(h,v,u,w);
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs1</span>(ele p,ele i){
+	ele tmp<span style="color:#f92672">=</span>i;
+	<span style="color:#66d9ef">for</span> (edge <span style="color:#f92672">*</span>j<span style="color:#f92672">=</span>h[i]; j; j<span style="color:#f92672">=</span>j<span style="color:#f92672">-&gt;</span>nxt)
+		<span style="color:#66d9ef">if</span> (j<span style="color:#f92672">-&gt;</span>v<span style="color:#f92672">!=</span>p){
+			addedge(h1,tmp,acnt,<span style="color:#ae81ff">0</span>);
+			addedge(h1,acnt,j<span style="color:#f92672">-&gt;</span>v,j<span style="color:#f92672">-&gt;</span>w);
+			tmp<span style="color:#f92672">=</span>acnt<span style="color:#f92672">++</span>;
+			dfs1(i,j<span style="color:#f92672">-&gt;</span>v);
+		}
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs2</span>(ele p,ele i){
+	size[i]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+	<span style="color:#66d9ef">for</span> (edge <span style="color:#f92672">*</span>j<span style="color:#f92672">=</span>h1[i]; j; j<span style="color:#f92672">=</span>j<span style="color:#f92672">-&gt;</span>nxt)
+		<span style="color:#66d9ef">if</span> (j<span style="color:#f92672">-&gt;</span>v<span style="color:#f92672">!=</span>p <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>j<span style="color:#f92672">-&gt;</span>flag){
+			dfs2(i,j<span style="color:#f92672">-&gt;</span>v);
+			size[i]<span style="color:#f92672">+=</span>size[j<span style="color:#f92672">-&gt;</span>v];
+		}
+}
+edge<span style="color:#f92672">*</span> <span style="color:#a6e22e">dfs3</span>(ele p,ele i,ele s){
+	edge <span style="color:#f92672">*</span>ans<span style="color:#f92672">=</span>NULL; w[i]<span style="color:#f92672">=</span>max(size[i],s<span style="color:#f92672">-</span>size[i]);
+	<span style="color:#66d9ef">for</span> (edge <span style="color:#f92672">*</span>j<span style="color:#f92672">=</span>h1[i]; j; j<span style="color:#f92672">=</span>j<span style="color:#f92672">-&gt;</span>nxt)
+		<span style="color:#66d9ef">if</span> (j<span style="color:#f92672">-&gt;</span>v<span style="color:#f92672">!=</span>p <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>j<span style="color:#f92672">-&gt;</span>flag){
+			edge <span style="color:#f92672">*</span>tmp<span style="color:#f92672">=</span>dfs3(i,j<span style="color:#f92672">-&gt;</span>v,s);
+			<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>ans <span style="color:#f92672">||</span> (tmp <span style="color:#f92672">&amp;&amp;</span> w[tmp<span style="color:#f92672">-&gt;</span>v]<span style="color:#f92672">&lt;</span>w[ans<span style="color:#f92672">-&gt;</span>v])) ans<span style="color:#f92672">=</span>tmp;
+			<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>ans <span style="color:#f92672">||</span> w[j<span style="color:#f92672">-&gt;</span>v]<span style="color:#f92672">&lt;</span>w[ans<span style="color:#f92672">-&gt;</span>v]) ans<span style="color:#f92672">=</span>j;
+		}
+	<span style="color:#66d9ef">return</span> ans;
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs5</span>(ele p,ele i,ll d,ele c){
+	<span style="color:#66d9ef">if</span> (i<span style="color:#f92672">&lt;</span>n) vd[i].push_back(d),vc[i].push_back(c);
+	<span style="color:#66d9ef">for</span> (edge <span style="color:#f92672">*</span>j<span style="color:#f92672">=</span>h1[i]; j; j<span style="color:#f92672">=</span>j<span style="color:#f92672">-&gt;</span>nxt)
+		<span style="color:#66d9ef">if</span> (j<span style="color:#f92672">-&gt;</span>v<span style="color:#f92672">!=</span>p <span style="color:#f92672">&amp;&amp;</span> <span style="color:#f92672">!</span>j<span style="color:#f92672">-&gt;</span>flag) dfs5(i,j<span style="color:#f92672">-&gt;</span>v,d<span style="color:#f92672">+</span>j<span style="color:#f92672">-&gt;</span>w,c);
+}
+node<span style="color:#f92672">*</span> <span style="color:#a6e22e">build</span>(ele i){
+	dfs2(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,i);
+	edge <span style="color:#f92672">*</span>k<span style="color:#f92672">=</span>dfs3(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,i,size[i]);
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>k) <span style="color:#66d9ef">return</span> NULL;
+	k<span style="color:#f92672">-&gt;</span>flag<span style="color:#f92672">=</span>k<span style="color:#f92672">-&gt;</span>rev<span style="color:#f92672">-&gt;</span>flag<span style="color:#f92672">=</span>true;
+	dfs5(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,k<span style="color:#f92672">-&gt;</span>rev<span style="color:#f92672">-&gt;</span>v,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>); dfs5(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,k<span style="color:#f92672">-&gt;</span>v,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">1</span>);
+	node <span style="color:#f92672">*</span>p<span style="color:#f92672">=</span>np.alloc(); p<span style="color:#f92672">-&gt;</span>e<span style="color:#f92672">=</span>k;
+	p<span style="color:#f92672">-&gt;</span>l<span style="color:#f92672">=</span>build(k<span style="color:#f92672">-&gt;</span>rev<span style="color:#f92672">-&gt;</span>v);
+	p<span style="color:#f92672">-&gt;</span>r<span style="color:#f92672">=</span>build(k<span style="color:#f92672">-&gt;</span>v);
+	<span style="color:#66d9ef">return</span> p;
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs4</span>(ele p,ele i){
+	<span style="color:#66d9ef">for</span> (edge <span style="color:#f92672">*</span>j<span style="color:#f92672">=</span>h1[i]; j; j<span style="color:#f92672">=</span>j<span style="color:#f92672">-&gt;</span>nxt)
+		<span style="color:#66d9ef">if</span> (j<span style="color:#f92672">-&gt;</span>v<span style="color:#f92672">!=</span>p) dep[j<span style="color:#f92672">-&gt;</span>v]<span style="color:#f92672">=</span>dep[i]<span style="color:#f92672">+</span>j<span style="color:#f92672">-&gt;</span>w,dfs4(i,j<span style="color:#f92672">-&gt;</span>v);
+}
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">maintain</span>(node <span style="color:#f92672">*</span>x){
+	x<span style="color:#f92672">-&gt;</span>mx<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">if</span> (x<span style="color:#f92672">-&gt;</span>l) x<span style="color:#f92672">-&gt;</span>mx<span style="color:#f92672">=</span>max(x<span style="color:#f92672">-&gt;</span>mx,x<span style="color:#f92672">-&gt;</span>l<span style="color:#f92672">-&gt;</span>mx);
+	<span style="color:#66d9ef">if</span> (x<span style="color:#f92672">-&gt;</span>r) x<span style="color:#f92672">-&gt;</span>mx<span style="color:#f92672">=</span>max(x<span style="color:#f92672">-&gt;</span>mx,x<span style="color:#f92672">-&gt;</span>r<span style="color:#f92672">-&gt;</span>mx);
+}
+node<span style="color:#f92672">*</span> <span style="color:#a6e22e">build</span>(node <span style="color:#f92672">*</span>x,ele i,ele j){
+	node <span style="color:#f92672">*</span>p<span style="color:#f92672">=</span>np.alloc();
+	p<span style="color:#f92672">-&gt;</span>l<span style="color:#f92672">=</span>p<span style="color:#f92672">-&gt;</span>r<span style="color:#f92672">=</span>NULL;
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>x) <span style="color:#66d9ef">return</span> p;
+	p<span style="color:#f92672">-&gt;</span>e<span style="color:#f92672">=</span>x<span style="color:#f92672">-&gt;</span>e;
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>vc[i][j]){
+		p<span style="color:#f92672">-&gt;</span>l<span style="color:#f92672">=</span>build(x<span style="color:#f92672">-&gt;</span>l,i,j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+		p<span style="color:#f92672">-&gt;</span>l<span style="color:#f92672">-&gt;</span>mx<span style="color:#f92672">=</span>vd[i][j]<span style="color:#f92672">+</span>dep[i];
+	}
+	<span style="color:#66d9ef">else</span>{
+		p<span style="color:#f92672">-&gt;</span>r<span style="color:#f92672">=</span>build(x<span style="color:#f92672">-&gt;</span>r,i,j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>);
+		p<span style="color:#f92672">-&gt;</span>r<span style="color:#f92672">-&gt;</span>mx<span style="color:#f92672">=</span>vd[i][j]<span style="color:#f92672">+</span>dep[i];
+	}
+	<span style="color:#66d9ef">return</span> p;
+}
+node<span style="color:#f92672">*</span> <span style="color:#a6e22e">merge</span>(node <span style="color:#f92672">*</span>a,node <span style="color:#f92672">*</span>b,ll<span style="color:#f92672">&amp;</span>ans){
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>a) <span style="color:#66d9ef">return</span> b;
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span>b) <span style="color:#66d9ef">return</span> a;
+	<span style="color:#66d9ef">if</span> (a<span style="color:#f92672">-&gt;</span>l <span style="color:#f92672">&amp;&amp;</span> b<span style="color:#f92672">-&gt;</span>r) ans<span style="color:#f92672">=</span>max(ans,a<span style="color:#f92672">-&gt;</span>l<span style="color:#f92672">-&gt;</span>mx<span style="color:#f92672">+</span>b<span style="color:#f92672">-&gt;</span>r<span style="color:#f92672">-&gt;</span>mx<span style="color:#f92672">+</span>a<span style="color:#f92672">-&gt;</span>e<span style="color:#f92672">-&gt;</span>w);
+	<span style="color:#66d9ef">if</span> (a<span style="color:#f92672">-&gt;</span>r <span style="color:#f92672">&amp;&amp;</span> b<span style="color:#f92672">-&gt;</span>l) ans<span style="color:#f92672">=</span>max(ans,a<span style="color:#f92672">-&gt;</span>r<span style="color:#f92672">-&gt;</span>mx<span style="color:#f92672">+</span>b<span style="color:#f92672">-&gt;</span>l<span style="color:#f92672">-&gt;</span>mx<span style="color:#f92672">+</span>a<span style="color:#f92672">-&gt;</span>e<span style="color:#f92672">-&gt;</span>w);
+	a<span style="color:#f92672">-&gt;</span>l<span style="color:#f92672">=</span>merge(a<span style="color:#f92672">-&gt;</span>l,b<span style="color:#f92672">-&gt;</span>l,ans);
+	a<span style="color:#f92672">-&gt;</span>r<span style="color:#f92672">=</span>merge(a<span style="color:#f92672">-&gt;</span>r,b<span style="color:#f92672">-&gt;</span>r,ans);
+	a<span style="color:#f92672">-&gt;</span>mx<span style="color:#f92672">=</span>max(a<span style="color:#f92672">-&gt;</span>mx,b<span style="color:#f92672">-&gt;</span>mx);
+	<span style="color:#66d9ef">return</span> a;
+}
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">dfs6</span>(ele p,ele i,ll d){
+	ans<span style="color:#f92672">=</span>max(ans,dep[i]<span style="color:#f92672">-</span>d);
+	T[i]<span style="color:#f92672">=</span>build(er,i,<span style="color:#ae81ff">0</span>);
+	<span style="color:#66d9ef">for</span> (edge <span style="color:#f92672">*</span>j<span style="color:#f92672">=</span>g[i]; j; j<span style="color:#f92672">=</span>j<span style="color:#f92672">-&gt;</span>nxt)
+		<span style="color:#66d9ef">if</span> (j<span style="color:#f92672">-&gt;</span>v<span style="color:#f92672">!=</span>p){
+			dfs6(i,j<span style="color:#f92672">-&gt;</span>v,d<span style="color:#f92672">+</span>j<span style="color:#f92672">-&gt;</span>w);
+			ll tmp<span style="color:#f92672">=-</span>INF;
+			T[i]<span style="color:#f92672">=</span>merge(T[i],T[j<span style="color:#f92672">-&gt;</span>v],tmp);
+			<span style="color:#66d9ef">if</span> (tmp<span style="color:#f92672">&gt;-</span>INF) ans<span style="color:#f92672">=</span>max(ans,tmp<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span><span style="color:#f92672">-</span>d);
+		}
+}
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+	scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,<span style="color:#f92672">&amp;</span>n);
+	ecnt<span style="color:#f92672">=</span>ep; memset(h,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(h));
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; <span style="color:#f92672">++</span>i){
+		ele u,v,w;
+		scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>u,<span style="color:#f92672">&amp;</span>v,<span style="color:#f92672">&amp;</span>w); <span style="color:#f92672">--</span>u,<span style="color:#f92672">--</span>v;
+		addedge(h,u,v,w);
+	}
+	memset(g,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(g));
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; <span style="color:#f92672">++</span>i){
+		ele u,v,w;
+		scanf(<span style="color:#e6db74">&#34;%d%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>u,<span style="color:#f92672">&amp;</span>v,<span style="color:#f92672">&amp;</span>w); <span style="color:#f92672">--</span>u,<span style="color:#f92672">--</span>v;
+		addedge(g,u,v,w);
+	}
+	acnt<span style="color:#f92672">=</span>n;
+	memset(h1,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(h1));
+	dfs1(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>);
+<span style="color:#75715e">//	memcpy(h1,h,sizeof(h));
+</span><span style="color:#75715e"></span>	er<span style="color:#f92672">=</span>build(<span style="color:#ae81ff">0</span>);
+	dep[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+	dfs4(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>);
+	ans<span style="color:#f92672">=-</span>INF;
+	dfs6(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,<span style="color:#ae81ff">0</span>,<span style="color:#ae81ff">0</span>);
+	printf(<span style="color:#e6db74">&#34;%lld</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,ans);
+<span style="color:#75715e">//	while(1);
+</span><span style="color:#75715e"></span>	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+}
+</code></pre></div>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2018-06-20</p>
+                    
+                </div>
+            </div>
+            
+            
+            <nav class="post-pagination">
+
+                
+                <a class="newer-posts" href="/posts/loj2554/">
+			Next<br>loj2554题解
+                </a>
+                
+                
+                
+                <a class="older-posts" href="/posts/loj2555/">
+			Previous<br>loj2555题解
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
+
+
+
+
+<div id="vcomments"></div>
+
+
+
+
+
+            </div>
+        </div>
+    </div>
+</div>
+
+            </div><div id="single-column-footer">
+Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
+<br>
+Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
+<br>
+
+&copy;
+	
+	2020 My New Hugo Site
+	
+</div>
+            </div>
+    <script>
+let app;
+
+app = new Vue({
+    el: '#app',
+    data: {
+        scrollY: 0,
+        navOpacity: 0,
+        isDrawerOpen: false,
+        mounted: false,
+        isDarkMode: false
+    },
+    methods: {
+            sgn(t, x) {
+                let k = 1. / (1. - 2 * t);
+                if (x <= t) return 0;
+                else if (x >= 1 - t) return 1;
+                else {
+                    return k * (x - t);
+                }
+            },
+            handleScroll() {
+                this.scrollY = window.scrollY;
+                this.navOpacity = this.sgn(.0, Math.min(1, Math.max(0, window.scrollY / (this.pageHeadHeight() - this.navBarHeight() * 0.8))));
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+
+                if (this.navOpacity >= 1) {
+                    navBackground.style.opacity = 1;
+                    navTitle.style.opacity = 1;
+                } else {
+                    navBackground.style.opacity = 0;
+                    navTitle.style.opacity = 0;
+                }
+            },
+            handleResize() {
+                const {navBar, navBackground, navTitle, extraContainer, streamContainer} = this.$refs;
+                extraContainer.style.left = (streamContainer.offsetWidth - extraContainer.offsetWidth) + 'px';
+            },
+            navBarHeight() {
+                return this.$refs.navBar.offsetHeight;
+            },
+            pageHeadHeight() {
+                return this.$refs.pageHead.offsetHeight;
+            },
+            toggleDrawer() {
+                this.isDrawerOpen = !this.isDrawerOpen;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            closeDrawer() {
+                this.isDrawerOpen = false;
+                document.getElementsByTagName('html')[0].style.overflow = this.isDrawerOpen ? 'hidden' : 'unset';
+            },
+            toggleDarkMode() {
+                this.isDarkMode = !this.isDarkMode;
+                if (this.isDarkMode==true){
+                    document.cookie = "night=1;path=/";
+                    document.body.classList.add("night");
+                } else {
+                    document.cookie = "night=0;path=/";
+                    document.body.classList.remove("night");
+                }
+            }
+    },
+    created() {
+        window.addEventListener('scroll', this.handleScroll);
+        window.addEventListener('resize', this.handleResize);
+        window._nonDesktop = function () {
+            let check = false;
+            (function (a) {
+                if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|iris|kindle|lge |maemo|midp|mmp|mobile.+firefox|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce|xda|xiino|android|ipad|playbook|silk/i.test(a) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(a.substr(0, 4))) check = true;
+            })(navigator.userAgent || navigator.vendor || window.opera);
+            return check;
+        };
+        
+        var night = document.cookie.replace(/(?:(?:^|.*;\s*)night\s*\=\s*([^;]*).*$)|^.*$/, "$1");
+        if (night==""){
+            if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                
+            }
+        }else{
+            
+            if (night=="1") {
+                this.toggleDarkMode();
+            }
+        }
+    },
+    mounted() {
+        this.handleScroll();
+        this.handleResize();
+        this.mounted = true;
+
+        
+            new Valine({
+                el: '#vcomments',
+                appId: "f3NXeNV19jldjC2edxBWAcCY-gzGzoHsz",
+                appKey: "Ulup4a7rnGo7DlW2BROrYln1",
+                requiredFields: ['nick','mail'],
+                enableQQ: true,
+                recordIP: true,
+            })
+        
+    },
+    destroyed() {
+        window.removeEventListener('scroll', this.handleScroll);
+        window.removeEventListener('resize', this.handleResize);
+    }
+});
+</script>
+
+<script src="/js/journal.js"></script>
+	
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
+	integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+
+
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
+	integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+	crossorigin="anonymous"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
+	integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
+	onload="renderMathInElement(document.body);"></script>
+    </body>
+</html>

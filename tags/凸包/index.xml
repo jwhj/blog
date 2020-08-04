@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>凸包 on My New Hugo Site</title>
+    <link>/tags/%E5%87%B8%E5%8C%85/</link>
+    <description>Recent content in 凸包 on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Tue, 26 Jun 2018 09:03:45 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/%E5%87%B8%E5%8C%85/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>loj2249题解</title>
+      <link>/posts/loj2249/</link>
+      <pubDate>Tue, 26 Jun 2018 09:03:45 +0800</pubDate>
+      
+      <guid>/posts/loj2249/</guid>
+      <description>&lt;p&gt;一开始居然脑子短路没有想到斜率优化……以后看到这种感觉跟凸包有关系，要求最值/要最优化的问题，可以考虑写个dp方程出来看看能不能斜率优化.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>bzoj3533题解</title>
+      <link>/posts/bzoj3533/</link>
+      <pubDate>Mon, 25 Jun 2018 19:55:55 +0800</pubDate>
+      
+      <guid>/posts/bzoj3533/</guid>
+      <description>&lt;p&gt;容易发现答案一定在凸包上，询问的&lt;span class=&#34;math inline&#34;&gt;\(y\lt 0\)&lt;/span&gt;则在上凸壳，否则在下凸壳.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

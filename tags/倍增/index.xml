@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>倍增 on My New Hugo Site</title>
+    <link>/tags/%E5%80%8D%E5%A2%9E/</link>
+    <description>Recent content in 倍增 on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Sat, 16 Jun 2018 12:50:31 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/%E5%80%8D%E5%A2%9E/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>loj6059题解</title>
+      <link>/posts/loj6059/</link>
+      <pubDate>Sat, 16 Jun 2018 12:50:31 +0800</pubDate>
+      
+      <guid>/posts/loj6059/</guid>
+      <description>&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j,k}\)&lt;/span&gt;表示&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;位，模&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;余&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;，数字和恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;的数的个数，那么可以写出递推式&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

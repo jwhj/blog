@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>状态压缩 on My New Hugo Site</title>
+    <link>/tags/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/</link>
+    <description>Recent content in 状态压缩 on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Jun 2018 11:07:13 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/%E7%8A%B6%E6%80%81%E5%8E%8B%E7%BC%A9/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>loj2131题解</title>
+      <link>/posts/loj2131/</link>
+      <pubDate>Mon, 25 Jun 2018 11:07:13 +0800</pubDate>
+      
+      <guid>/posts/loj2131/</guid>
+      <description>&lt;p&gt;首先注意到选择了一个数就是选择了它的所有素因子，而不超过&lt;span class=&#34;math inline&#34;&gt;\(\sqrt{n}\)&lt;/span&gt;的素数至多只有8个，可以考虑状压. &lt;!-- raw HTML omitted --&gt;超过的那些我们先不管.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

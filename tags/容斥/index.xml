@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>容斥 on My New Hugo Site</title>
+    <link>/tags/%E5%AE%B9%E6%96%A5/</link>
+    <description>Recent content in 容斥 on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 16 Jul 2018 15:47:07 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/%E5%AE%B9%E6%96%A5/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>loj2541题解</title>
+      <link>/posts/loj2541/</link>
+      <pubDate>Mon, 16 Jul 2018 15:47:07 +0800</pubDate>
+      
+      <guid>/posts/loj2541/</guid>
+      <description>&lt;p&gt;这种求某个东西在最后一个的概率之类的其实可以考虑容斥，设钦定一个集合&lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;在它后面的概率为&lt;span class=&#34;math inline&#34;&gt;\(f(S)\)&lt;/span&gt;，那么最后的答案为&lt;span class=&#34;math inline&#34;&gt;\(\sum (-1)^{|S|}f(S)\)&lt;/span&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

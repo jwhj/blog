@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>智力康复 on My New Hugo Site</title>
+    <link>/tags/%E6%99%BA%E5%8A%9B%E5%BA%B7%E5%A4%8D/</link>
+    <description>Recent content in 智力康复 on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Mon, 25 Jun 2018 15:27:41 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/%E6%99%BA%E5%8A%9B%E5%BA%B7%E5%A4%8D/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>loj2248题解</title>
+      <link>/posts/loj2248/</link>
+      <pubDate>Mon, 25 Jun 2018 15:27:41 +0800</pubDate>
+      
+      <guid>/posts/loj2248/</guid>
+      <description>&lt;p&gt;vfk说分不清noi2014和noip2014果然是有道理的……&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>loj6375题解</title>
+      <link>/posts/loj6375/</link>
+      <pubDate>Mon, 11 Jun 2018 19:08:30 +0800</pubDate>
+      
+      <guid>/posts/loj6375/</guid>
+      <description>&lt;p&gt;好久没怎么做题了，做道水题练练手.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

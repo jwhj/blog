@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>2SAT on My New Hugo Site</title>
+    <link>/tags/2sat/</link>
+    <description>Recent content in 2SAT on My New Hugo Site</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Wed, 27 Jun 2018 10:24:18 +0800</lastBuildDate>
+    
+	<atom:link href="/tags/2sat/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>loj2305题解</title>
+      <link>/posts/loj2305/</link>
+      <pubDate>Wed, 27 Jun 2018 10:24:18 +0800</pubDate>
+      
+      <guid>/posts/loj2305/</guid>
+      <description>&lt;p&gt;又写了一遍，tarjan真的容易写错……&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
