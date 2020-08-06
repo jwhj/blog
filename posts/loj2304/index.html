@@ -103,6 +103,16 @@
             </a>
             
         
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/search">
+                Search
+            </a>
+            
+        
     </div>
 
     
@@ -174,6 +184,16 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 <a class="a-block drawer-menu-item false" href="/tags">
                     Tags
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/search">
+                    Search
                 </a>
                 
             
@@ -270,9 +290,9 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                             
 
                             
-                            2 min
+                            3 min
                             
-                            41 s.
+                            12 s.
                         
                     </div>
                 </div>
@@ -285,77 +305,74 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                     <p>首先恰好为<span class="math inline">\(k\)</span>不好处理，显然要转化为<span class="math inline">\(\le k\)</span>的概率减去<span class="math inline">\(\le k-1\)</span>的概率.</p>
 <p>看上去就是个dp，让<span class="math inline">\(f _i\)</span>表示共<span class="math inline">\(i\)</span>列，安全泳池面积<span class="math inline">\(\le k\)</span>的概率，考虑怎么递推. 假设最底下一行有一个格子是危险的，那么显然这一列两边互不干扰可以分开计算. 但是这里有一个问题，底下一行可能没有危险的格子. 于是我们把状态改为<span class="math inline">\(f _{i,j}\)</span>表示共<span class="math inline">\(i\)</span>列，下面<span class="math inline">\(j\)</span>行均安全，第<span class="math inline">\(j+1\)</span>行至少有一个危险的格子，且安全泳池面积<span class="math inline">\(\le k\)</span>的概率. 记<span class="math inline">\(g _{i,j}=\sum _{w\ge j}f _{i,w}\)</span>，即共<span class="math inline">\(i\)</span>列，下面<span class="math inline">\(j\)</span>行均安全，且安全泳池面积<span class="math inline">\(\le k\)</span>的概率.</p>
 <p>那么我们就可以枚举第<span class="math inline">\(j+1\)</span>行最后一个危险格子的位置，得到递推式</p>
-<p><span class="math display">\[
-注意到$\forall ij>k,~f _{i,j}=0$，直接dp就可以得到70分.
-
-考虑怎么拿剩下的30分. 显然当$i\gt k$时只需要考虑$f _{i,0}$，而且此时$f _{i,0}=g _{i,0}$. 而$r\le\frac{k}{j+1}\le k$，所以当$i\ge 2k+2$时，递推式可以写成
-
-$$g _{i,0}=\sum _{r=0}^k(1-q)g _{r,1}g _{i-r-1,0}$$
-
-这是一个常系数线性齐次递推式，前面暴力递推到$i=2k+1$，后面的用特征多项式可以做到$\mathcal O(k^2\log n)$.
-
-代码：
-```cpp
-#include <cstdio>
-#include <cstring>
-#include <algorithm>
-#define ele int
-#define ll long long
-using namespace std;
-#define maxk 4010
-#define MOD 998244353
-ele n,K,x,y,q,f[maxk][maxk];
-inline ele pw(ele a,ele x){
-	ele ans=1,tmp=a%MOD;
-	for (; x; x>>=1,tmp=(ll)tmp*tmp%MOD)
-		if (x&1) ans=(ll)ans*tmp%MOD;
-	return ans;
+<p><span class="math display">\[f _{i,j}=\sum _{r\lt i,~r(j+1)\le k}g _{r,j+1}g _{i-r-1,j}q^j(1-q)
+\]</span></p>
+<p>注意到<span class="math inline">\(\forall ij>k,~f _{i,j}=0\)</span>，直接dp就可以得到70分.</p>
+<p>考虑怎么拿剩下的30分. 显然当<span class="math inline">\(i\gt k\)</span>时只需要考虑<span class="math inline">\(f _{i,0}\)</span>，而且此时<span class="math inline">\(f _{i,0}=g _{i,0}\)</span>. 而<span class="math inline">\(r\le\frac{k}{j+1}\le k\)</span>，所以当<span class="math inline">\(i\ge 2k+2\)</span>时，递推式可以写成</p>
+<p><span class="math display">\[g _{i,0}=\sum _{r=0}^k(1-q)g _{r,1}g _{i-r-1,0}
+\]</span></p>
+<p>这是一个常系数线性齐次递推式，前面暴力递推到<span class="math inline">\(i=2k+1\)</span>，后面的用特征多项式可以做到<span class="math inline">\(\mathcal O(k^2\log n)\)</span>.</p>
+<p>代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#define ele int
+</span><span style="color:#75715e">#define ll long long
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#75715e">#define maxk 4010
+</span><span style="color:#75715e">#define MOD 998244353
+</span><span style="color:#75715e"></span>ele n,K,x,y,q,f[maxk][maxk];
+<span style="color:#66d9ef">inline</span> ele <span style="color:#a6e22e">pw</span>(ele a,ele x){
+	ele ans<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,tmp<span style="color:#f92672">=</span>a<span style="color:#f92672">%</span>MOD;
+	<span style="color:#66d9ef">for</span> (; x; x<span style="color:#f92672">&gt;&gt;=</span><span style="color:#ae81ff">1</span>,tmp<span style="color:#f92672">=</span>(ll)tmp<span style="color:#f92672">*</span>tmp<span style="color:#f92672">%</span>MOD)
+		<span style="color:#66d9ef">if</span> (x<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">1</span>) ans<span style="color:#f92672">=</span>(ll)ans<span style="color:#f92672">*</span>tmp<span style="color:#f92672">%</span>MOD;
+	<span style="color:#66d9ef">return</span> ans;
 }
-inline void mul(ele K,ele *a,ele *b){
-	static ele c[maxk];
-	memset(c,0,sizeof(c));
-	for (int i=0; i<=K; ++i)
-		for (int j=0; j<=K; ++j)
-			(c[i+j]+=(ll)a[i]*b[j]%MOD)%=MOD;
-	for (int i=K*2; i>K; --i)
-		for (int j=0; j<=K; ++j)
-			(c[i-j-1]+=(ll)c[i]*f[j][1]%MOD*(MOD+1-q)%MOD)%=MOD;
-	memcpy(a,c,sizeof(ele)*(K+1));
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">mul</span>(ele K,ele <span style="color:#f92672">*</span>a,ele <span style="color:#f92672">*</span>b){
+	<span style="color:#66d9ef">static</span> ele c[maxk];
+	memset(c,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(c));
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;=</span>K; <span style="color:#f92672">++</span>i)
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;=</span>K; <span style="color:#f92672">++</span>j)
+			(c[i<span style="color:#f92672">+</span>j]<span style="color:#f92672">+=</span>(ll)a[i]<span style="color:#f92672">*</span>b[j]<span style="color:#f92672">%</span>MOD)<span style="color:#f92672">%=</span>MOD;
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>K<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span>; i<span style="color:#f92672">&gt;</span>K; <span style="color:#f92672">--</span>i)
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; j<span style="color:#f92672">&lt;=</span>K; <span style="color:#f92672">++</span>j)
+			(c[i<span style="color:#f92672">-</span>j<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">+=</span>(ll)c[i]<span style="color:#f92672">*</span>f[j][<span style="color:#ae81ff">1</span>]<span style="color:#f92672">%</span>MOD<span style="color:#f92672">*</span>(MOD<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>q)<span style="color:#f92672">%</span>MOD)<span style="color:#f92672">%=</span>MOD;
+	memcpy(a,c,<span style="color:#66d9ef">sizeof</span>(ele)<span style="color:#f92672">*</span>(K<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>));
 }
-inline ele calc(ele K){
-	for (int i=0; i<=K+1; ++i) f[0][i]=1;
-	for (int i=1; i<=n && i<=K*2+1; ++i){
-		for (int j=0; i*j<=K; ++j){
-			f[i][j]=0;
-			ele tmp=(ll)pw(q,j)*(MOD+1-q)%MOD;
-			for (int r=0; r<i && r*(j+1)<=K; ++r){
-				ele t1=(ll)f[r][j+1]*tmp%MOD*f[i-r-1][j]%MOD;
-				(f[i][j]+=t1)%=MOD;
+<span style="color:#66d9ef">inline</span> ele <span style="color:#a6e22e">calc</span>(ele K){
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;=</span>K<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; <span style="color:#f92672">++</span>i) f[<span style="color:#ae81ff">0</span>][i]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;=</span>n <span style="color:#f92672">&amp;&amp;</span> i<span style="color:#f92672">&lt;=</span>K<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>; <span style="color:#f92672">++</span>i){
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">*</span>j<span style="color:#f92672">&lt;=</span>K; <span style="color:#f92672">++</span>j){
+			f[i][j]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+			ele tmp<span style="color:#f92672">=</span>(ll)pw(q,j)<span style="color:#f92672">*</span>(MOD<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">-</span>q)<span style="color:#f92672">%</span>MOD;
+			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> r<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; r<span style="color:#f92672">&lt;</span>i <span style="color:#f92672">&amp;&amp;</span> r<span style="color:#f92672">*</span>(j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">&lt;=</span>K; <span style="color:#f92672">++</span>r){
+				ele t1<span style="color:#f92672">=</span>(ll)f[r][j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>tmp<span style="color:#f92672">%</span>MOD<span style="color:#f92672">*</span>f[i<span style="color:#f92672">-</span>r<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>][j]<span style="color:#f92672">%</span>MOD;
+				(f[i][j]<span style="color:#f92672">+=</span>t1)<span style="color:#f92672">%=</span>MOD;
 			}
 		}
-		for (int j=K/i-1; ~j; --j) (f[i][j]+=f[i][j+1])%=MOD;
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>K<span style="color:#f92672">/</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; <span style="color:#f92672">~</span>j; <span style="color:#f92672">--</span>j) (f[i][j]<span style="color:#f92672">+=</span>f[i][j<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>])<span style="color:#f92672">%=</span>MOD;
 	}
-	if (n<=K*2+1) return f[n][0];
-	static ele a[maxk],b[maxk];
-	memset(a,0,sizeof(a)); memset(b,0,sizeof(b));
-	a[0]=1; b[1]=1;
-	for (ele n1=n-K-1; n1; n1>>=1,mul(K,b,b))
-		if (n1&1) mul(K,a,b);
-	ele ans=0;
-	for (int i=0; i<=K; ++i)
-		(ans+=(ll)a[i]*f[K+1+i][0]%MOD)%=MOD;
-	return ans;
+	<span style="color:#66d9ef">if</span> (n<span style="color:#f92672">&lt;=</span>K<span style="color:#f92672">*</span><span style="color:#ae81ff">2</span><span style="color:#f92672">+</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> f[n][<span style="color:#ae81ff">0</span>];
+	<span style="color:#66d9ef">static</span> ele a[maxk],b[maxk];
+	memset(a,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(a)); memset(b,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(b));
+	a[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; b[<span style="color:#ae81ff">1</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+	<span style="color:#66d9ef">for</span> (ele n1<span style="color:#f92672">=</span>n<span style="color:#f92672">-</span>K<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>; n1; n1<span style="color:#f92672">&gt;&gt;=</span><span style="color:#ae81ff">1</span>,mul(K,b,b))
+		<span style="color:#66d9ef">if</span> (n1<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">1</span>) mul(K,a,b);
+	ele ans<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;=</span>K; <span style="color:#f92672">++</span>i)
+		(ans<span style="color:#f92672">+=</span>(ll)a[i]<span style="color:#f92672">*</span>f[K<span style="color:#f92672">+</span><span style="color:#ae81ff">1</span><span style="color:#f92672">+</span>i][<span style="color:#ae81ff">0</span>]<span style="color:#f92672">%</span>MOD)<span style="color:#f92672">%=</span>MOD;
+	<span style="color:#66d9ef">return</span> ans;
 }
-int main(){
-	scanf("%d%d%d%d",&n,&K,&x,&y);
-	q=(ll)x*pw(y,MOD-2)%MOD;
-	ele t1=calc(K);
-	ele t2=calc(K-1);
-	(t1+=MOD-t2)%=MOD;
-	printf("%d\n",t1);
-	return 0;
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
+	scanf(<span style="color:#e6db74">&#34;%d%d%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>n,<span style="color:#f92672">&amp;</span>K,<span style="color:#f92672">&amp;</span>x,<span style="color:#f92672">&amp;</span>y);
+	q<span style="color:#f92672">=</span>(ll)x<span style="color:#f92672">*</span>pw(y,MOD<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>)<span style="color:#f92672">%</span>MOD;
+	ele t1<span style="color:#f92672">=</span>calc(K);
+	ele t2<span style="color:#f92672">=</span>calc(K<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>);
+	(t1<span style="color:#f92672">+=</span>MOD<span style="color:#f92672">-</span>t2)<span style="color:#f92672">%=</span>MOD;
+	printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,t1);
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-```\]</span></p>
+</code></pre></div>
                     
                     <HR width="100%" id="EOF">
 		    <p style="color:#777;">Last modified on 2018-06-23</p>
@@ -518,15 +535,14 @@ app = new Vue({
 
 <script src="https://seraphim.rocks//js/journal.js"></script>
 	
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
-	integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+	crossorigin="anonymous">
 
 
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
-	integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+<script defer src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"
 	crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
-	integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
-	onload="renderMathInElement(document.body);"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/auto-render.min.js"
+	crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
     </body>
 </html>

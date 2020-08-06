@@ -253,134 +253,127 @@ ele &lt;span style=&#34;color:#a6e22e&#34;&gt;getl&lt;/span&gt;(ele i){
 &lt;p&gt;考虑跟排列有关的递推&lt;!-- raw HTML omitted --&gt;我只知道&lt;!-- raw HTML omitted --&gt;有两种思路，把&lt;span class=&#34;math inline&#34;&gt;\(n+1\)&lt;/span&gt;插入或者在序列某位放一个&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;，并把前面所有&lt;span class=&#34;math inline&#34;&gt;\(\ge i\)&lt;/span&gt;的数&lt;span class=&#34;math inline&#34;&gt;\(+1\)&lt;/span&gt;. 我一开始想的是后一种思路，结果没想出来. 考虑前一种思路，因为&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;中不存在一个不包含最大值的连续区间，为方便起见插入&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;而不是插入&lt;span class=&#34;math inline&#34;&gt;\(n+1\)&lt;/span&gt;，接下来要讨论两种情况. 为方便起见，下面先假设&lt;span class=&#34;math inline&#34;&gt;\(n\ge 2\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;如果插入前的序列是合法的，那么插入前的序列有&lt;span class=&#34;math inline&#34;&gt;\(f _{n-1}\)&lt;/span&gt;种可能，而插入的位置可以是除了插入前最小值旁边的任何位置，共&lt;span class=&#34;math inline&#34;&gt;\(n-1\)&lt;/span&gt;种，因此这种情况的贡献为&lt;span class=&#34;math inline&#34;&gt;\((n-1)f _{n-1}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;如果插入前序列不合法，那么&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;一定是放在了一个连续区间中间，设它所在的极长连续区间长度为&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;，那么这段区间插入&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;后不连续等价于它插入&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;，离散化后不存在不包含最小值的连续区间，等价于不存在不包含最d大值的连续区间，所以这个连续区间插入&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;之后共有&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;种可能. 把这段区间缩成一个数，然后把得到的序列离散化，剩下的序列长度为&lt;span class=&#34;math inline&#34;&gt;\(n-i+1\)&lt;/span&gt;，它也不能有不包含最小值的连续区间，共&lt;span class=&#34;math inline&#34;&gt;\(f _{n-i}\)&lt;/span&gt;种可能. 注意到插入&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;的那个连续区间在离散化之后的权值不能为最小值也不能为最大值，因而有&lt;span class=&#34;math inline&#34;&gt;\(n-i-1\)&lt;/span&gt;种可能. 综上，这一部分的贡献为&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-于是我们可以列出递推式
-
-$$\begin{aligned}f _n=&amp;\sum _{i=2}^{n-2}(i-1)f _if _{n-i}+(n-1)f _{n-1}\\\\=&amp;\sum _{i=2}^{n-1}(i-1)f _if _{n-i}-(n-3)f _{n-1}\end{aligned}$$
-
-把下标范围弄得对称一些，并加入一些修改使其对$\forall n\in \mathbb N$都成立
-
-$$f _n=\sum _{i=1}^{n-1}(i-1)f _if _{n-i}-(n-3)f _{n-1}+[n=0]$$
-
-这个东西就可以用分治来计算了.
-
-这个卷积是自己卷自己，但也是可以分治的. 对于每个$(j-1)f _jf _k$，我们在$j,k$中较大一项被计算出来的时候，统计它的贡献. 把分治的长度补全为$2$的幂，假设当前的分治区间是$[l,r)$，$m=\left\lfloor\frac{l+r}{2}\right\rfloor$，统计$[l,m)$中的$f$的贡献，分两种情况讨论：
-
-- $l\neq 0$. 对于$[l,m)$中的每个$i$，要取一个$j$使得它们对$[m,r)$有贡献，显然$j\in[0,r-l)$，而此时必有$r-l\le l$，直接把$[l,m)$中的元素和$[0,r-l)$中的元素卷起来统计贡献就可以了.
-- $l=0$. 直接$[l,m)$中的元素卷上$[l,m)$中的元素.
-
-第一种情况实现精细的话可以用5次而不是6次ntt~~，说不定还可以更少~~.
-
-这种题卷积的下标范围一定要想办法弄对称，这样细节处理上会方便很多.
-
-代码：
-
-```cpp
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#define ele int
-#define ll long long
-using namespace std;
-#define maxn (1&lt;&lt;17)
-#define MOD 998244353
-#define g 3
-ele n,a[maxn],f[maxn];
-inline ele&amp; add(ele&amp;a,ele b){
-	return a=(a+b&gt;=MOD?a+b-MOD:a+b);
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\sum _{i=2}^{n-1}f _if _{n-i}(n-i-1)=\sum _{i=2}^{n-2}(i-1)f _if _{n-i}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;于是我们可以列出递推式&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{aligned}f _n=&amp;\sum _{i=2}^{n-2}(i-1)f _if _{n-i}+(n-1)f _{n-1}\\\\=&amp;\sum _{i=2}^{n-1}(i-1)f _if _{n-i}-(n-3)f _{n-1}\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;把下标范围弄得对称一些，并加入一些修改使其对&lt;span class=&#34;math inline&#34;&gt;\(\forall n\in \mathbb N\)&lt;/span&gt;都成立&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f _n=\sum _{i=1}^{n-1}(i-1)f _if _{n-i}-(n-3)f _{n-1}+[n=0]
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;这个东西就可以用分治来计算了.&lt;/p&gt;
+&lt;p&gt;这个卷积是自己卷自己，但也是可以分治的. 对于每个&lt;span class=&#34;math inline&#34;&gt;\((j-1)f _jf _k\)&lt;/span&gt;，我们在&lt;span class=&#34;math inline&#34;&gt;\(j,k\)&lt;/span&gt;中较大一项被计算出来的时候，统计它的贡献. 把分治的长度补全为&lt;span class=&#34;math inline&#34;&gt;\(2\)&lt;/span&gt;的幂，假设当前的分治区间是&lt;span class=&#34;math inline&#34;&gt;\([l,r)\)&lt;/span&gt;，&lt;span class=&#34;math inline&#34;&gt;\(m=\left\lfloor\frac{l+r}{2}\right\rfloor\)&lt;/span&gt;，统计&lt;span class=&#34;math inline&#34;&gt;\([l,m)\)&lt;/span&gt;中的&lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt;的贡献，分两种情况讨论：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(l\neq 0\)&lt;/span&gt;. 对于&lt;span class=&#34;math inline&#34;&gt;\([l,m)\)&lt;/span&gt;中的每个&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;，要取一个&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;使得它们对&lt;span class=&#34;math inline&#34;&gt;\([m,r)\)&lt;/span&gt;有贡献，显然&lt;span class=&#34;math inline&#34;&gt;\(j\in[0,r-l)\)&lt;/span&gt;，而此时必有&lt;span class=&#34;math inline&#34;&gt;\(r-l\le l\)&lt;/span&gt;，直接把&lt;span class=&#34;math inline&#34;&gt;\([l,m)\)&lt;/span&gt;中的元素和&lt;span class=&#34;math inline&#34;&gt;\([0,r-l)\)&lt;/span&gt;中的元素卷起来统计贡献就可以了.&lt;/li&gt;
+&lt;li&gt;&lt;span class=&#34;math inline&#34;&gt;\(l=0\)&lt;/span&gt;. 直接&lt;span class=&#34;math inline&#34;&gt;\([l,m)\)&lt;/span&gt;中的元素卷上&lt;span class=&#34;math inline&#34;&gt;\([l,m)\)&lt;/span&gt;中的元素.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;第一种情况实现精细的话可以用5次而不是6次ntt~~，说不定还可以更少~~.&lt;/p&gt;
+&lt;p&gt;这种题卷积的下标范围一定要想办法弄对称，这样细节处理上会方便很多.&lt;/p&gt;
+&lt;p&gt;代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ele int
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ll long long
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; std;
+&lt;span style=&#34;color:#75715e&#34;&gt;#define maxn (1&amp;lt;&amp;lt;17)
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define MOD 998244353
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define g 3
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;ele n,a[maxn],f[maxn];
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt; add(ele&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;a,ele b){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; a&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(a&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;b&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;=&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;b&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;MOD:a&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;b);
 }
-inline ele pw(ele a,ele x){
-	ele ans=1,tmp=a%MOD;
-	for (; x; x&gt;&gt;=1,tmp=(ll)tmp*tmp%MOD)
-		if (x&amp;1) ans=(ll)ans*tmp%MOD;
-	return ans;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;pw&lt;/span&gt;(ele a,ele x){
+	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (; x; x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)tmp&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)ans&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
 }
-inline void ntt(ele K,ele n,ele *y){
-	static ele f[maxn];
-	f[0]=0;
-	for (int i=1; i&lt;n; ++i){
-		f[i]=f[i&gt;&gt;1]&gt;&gt;1;
-		if (i&amp;1) f[i]+=n&gt;&gt;1;
-		if (i&lt;f[i]) swap(y[i],y[f[i]]);
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;ntt&lt;/span&gt;(ele K,ele n,ele &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;y){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; ele f[maxn];
+	f[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i){
+		f[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;f[i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) f[i]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;n&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;f[i]) swap(y[i],y[f[i]]);
 	}
-	for (int p=1; p&lt;n; p&lt;&lt;=1){
-		ele o=pw(g,(MOD-1)/p/2);
-		o=~K?o:pw(o,MOD-2);
-		for (int i=0; i&lt;n; i+=(p&lt;&lt;1)){
-			ele o1=1;
-			for (int j=i; j&lt;i+p; ++j,o1=(ll)o1*o%MOD){
-				ele u=y[j],v=(ll)y[j+p]*o1%MOD;
-				y[j]=(u+v)%MOD;
-				y[j+p]=(u-v+MOD)%MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; p&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;){
+		ele o&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;pw(g,(MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;p&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
+		o&lt;span style=&#34;color:#f92672&#34;&gt;=~&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;o:pw(o,MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; i&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;(p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)){
+			ele o1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+			&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;i; j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;j,o1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)o1&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;o&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD){
+				ele u&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;y[j],v&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)y[j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;o1&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+				y[j]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(u&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;v)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+				y[j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(u&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;v&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;MOD)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
 			}
 		}
 	}
-	if (!~K){
-		ele invn=pw(n,MOD-2);
-		for (int i=0; i&lt;n; ++i) y[i]=(ll)y[i]*invn%MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!~&lt;/span&gt;K){
+		ele invn&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;pw(n,MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) y[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)y[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;invn&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
 	}
 }
-void solve(ele *f,ele l,ele r){
-	if (r-l&lt;=1) return;
-	ele mid=(l+r)&gt;&gt;1,tmp=(r-l)&lt;&lt;1;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;solve&lt;/span&gt;(ele &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;f,ele l,ele r){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (r&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;l&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt;;
+	ele mid&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(l&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;r)&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(r&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;l)&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
 	solve(f,l,mid);
-	static ele t1[maxn],t2[maxn],t3[maxn],t4[maxn];
-	if (l){
-		memset(t1,0,sizeof(ele)*tmp);
-		for (int i=l; i&lt;mid; ++i) t1[i-l]=(ll)f[i]*(i-1)%MOD;
-		memset(t2,0,sizeof(ele)*tmp);
-		for (int i=1; i&lt;r-l; ++i) t2[i]=f[i];
-		memset(t3,0,sizeof(ele)*tmp);
-		for (int i=2; i&lt;r-l; ++i) t3[i]=(ll)f[i]*(i-1)%MOD;
-		memset(t4,0,sizeof(ele)*tmp);
-		for (int i=l; i&lt;mid; ++i) t4[i-l]=f[i];
-		ntt(1,tmp,t1); ntt(1,tmp,t2); ntt(1,tmp,t3); ntt(1,tmp,t4);
-		for (int i=0; i&lt;tmp; ++i)
-			t1[i]=((ll)t1[i]*t2[i]%MOD+(ll)t3[i]*t4[i]%MOD)%MOD;
-		ntt(-1,tmp,t1);
-		for (int i=mid; i&lt;r; ++i) add(f[i],t1[i-l]);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; ele t1[maxn],t2[maxn],t3[maxn],t4[maxn];
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (l){
+		memset(t1,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(ele)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;l; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;mid; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) t1[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;l]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)f[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+		memset(t2,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(ele)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;r&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;l; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) t2[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;f[i];
+		memset(t3,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(ele)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;r&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;l; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) t3[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)f[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+		memset(t4,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(ele)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;l; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;mid; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) t4[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;l]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;f[i];
+		ntt(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,t1); ntt(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,t2); ntt(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,t3); ntt(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,t4);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;tmp; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i)
+			t1[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;((ll)t1[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;t2[i]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;(ll)t3[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;t4[i]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+		ntt(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,t1);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;mid; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;r; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) add(f[i],t1[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;l]);
 	}
-	else{
-		memset(t1,0,sizeof(ele)*tmp);
-		for (int i=1; i&lt;mid; ++i) t1[i]=(ll)f[i]*(i-1)%MOD;
-		memset(t2,0,sizeof(ele)*tmp);
-		for (int i=1; i&lt;mid; ++i) t2[i]=f[i];
-		ntt(1,tmp,t1); ntt(1,tmp,t2);
-		for (int i=0; i&lt;tmp; ++i) t1[i]=(ll)t1[i]*t2[i]%MOD;
-		ntt(-1,tmp,t1);
-		for (int i=mid; i&lt;r; ++i) add(f[i],t1[i]);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt;{
+		memset(t1,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(ele)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;mid; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) t1[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)f[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+		memset(t2,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(ele)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;mid; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) t2[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;f[i];
+		ntt(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,t1); ntt(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,t2);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;tmp; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) t1[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)t1[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;t2[i]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+		ntt(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,t1);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;mid; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;r; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) add(f[i],t1[i]);
 	}
-	add(f[mid],MOD-(ll)f[mid-1]*(mid+MOD-3)%MOD);
+	add(f[mid],MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;(ll)f[mid&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(mid&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;3&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD);
 	solve(f,mid,r);
 }
-ele calc(ele i){
-	if (a[i]==1) return 1;
-	ele j=i-1,ans=1,tmp=0;
-	while (j&gt;i-a[i]){
-		ans=(ll)ans*calc(j)%MOD;
-		j-=a[j];
-		++tmp;
+ele &lt;span style=&#34;color:#a6e22e&#34;&gt;calc&lt;/span&gt;(ele i){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (a[i]&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	ele j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;a[i]){
+		ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)ans&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;calc(j)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+		j&lt;span style=&#34;color:#f92672&#34;&gt;-=&lt;/span&gt;a[j];
+		&lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;tmp;
 	}
-	if (j&lt;i-a[i]) return 0;
-	ans=(ll)ans*f[tmp]%MOD;
-	return ans;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;a[i]) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)ans&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;f[tmp]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
 }
-int main(){
+&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(){
 	ele T;
-	scanf(&#34;%d%d&#34;,&amp;T,&amp;n);
-	f[0]=1;
-	ele tmp=1;
-	while (tmp&lt;=n) tmp&lt;&lt;=1;
-	solve(f,0,tmp);
-	while (T--){
-		for (int i=0; i&lt;n; ++i) scanf(&#34;%d&#34;,a+i);
-		if (a[n-1]!=n) puts(&#34;0&#34;);
-		else printf(&#34;%d\n&#34;,calc(n-1));
+	scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;T,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;n);
+	f[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	ele tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (tmp&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;n) tmp&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	solve(f,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,tmp);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (T&lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;){
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;,a&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;i);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (a[n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;n) puts(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;0&amp;#34;&lt;/span&gt;);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,calc(n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;));
 	}
-	return 0;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-```
-\]&lt;/span&gt;&lt;/p&gt;- https://seraphim.rocks/posts/loj2554/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2554/ - </description>
         </item>
     
     
@@ -1076,93 +1069,91 @@ node&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34
         
         <guid>https://seraphim.rocks/posts/loj6059/</guid>
         <description>蒟蒻的博客 https://seraphim.rocks/posts/loj6059/ -&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j,k}\)&lt;/span&gt;表示&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;位，模&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;余&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;，数字和恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;的数的个数，那么可以写出递推式&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-可以发现这很像一个卷积的形式，但是$j$这一维很难用多项式来优化. 这个时候可以考虑倍增，列出更一般的递推式
-
-$$f _{i _1+i _2,j,k}=\sum _{10^{i _2}j _1+j _2\equiv j\pmod{p},~k _1+k _2=k}f _{i _1,j _1,k _1}f _{i _2,j _2,k _2}$$
-
-这样让$F _i(x,y)=\sum f _{i,j,k}x^jy^k$就可以用倍增+NTT来加速了，（$x$直接暴力卷积，$y$用NTT优化）.
-
-代码：
-```cpp
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#define ele int
-#define ll long long
-using namespace std;
-#define maxn 2048
-#define maxp 55
-#define MOD 998244353
-#define g 3
-ele n,p,m,a[maxp][maxn],b[maxp][maxn];
-inline ele pw(ele a,ele x){
-	ele ans=1,tmp=a%MOD;
-	for (; x; x&gt;&gt;=1,tmp=(ll)tmp*tmp%MOD)
-		if (x&amp;1) ans=(ll)ans*tmp%MOD;
-	return ans;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f _{i+1,j,k}=\sum _{10j _1+j _2\equiv j\pmod{p},~k _1+k _2=k}f _{i,j _1,k _1}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;可以发现这很像一个卷积的形式，但是&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;这一维很难用多项式来优化. 这个时候可以考虑倍增，列出更一般的递推式&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f _{i _1+i _2,j,k}=\sum _{10^{i _2}j _1+j _2\equiv j\pmod{p},~k _1+k _2=k}f _{i _1,j _1,k _1}f _{i _2,j _2,k _2}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;这样让&lt;span class=&#34;math inline&#34;&gt;\(F _i(x,y)=\sum f _{i,j,k}x^jy^k\)&lt;/span&gt;就可以用倍增+NTT来加速了，（&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;直接暴力卷积，&lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;用NTT优化）.&lt;/p&gt;
+&lt;p&gt;代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ele int
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ll long long
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; std;
+&lt;span style=&#34;color:#75715e&#34;&gt;#define maxn 2048
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define maxp 55
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define MOD 998244353
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define g 3
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;ele n,p,m,a[maxp][maxn],b[maxp][maxn];
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;pw&lt;/span&gt;(ele a,ele x){
+	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (; x; x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)tmp&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)ans&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
 }
-inline void NTT(ele K,ele n,ele *y){
-	static ele f[maxn];
-	f[0]=0;
-	for (int i=1; i&lt;n; ++i){
-		f[i]=f[i&gt;&gt;1]&gt;&gt;1;
-		if (i&amp;1) f[i]+=n&gt;&gt;1;
-		if (i&lt;f[i]) swap(y[i],y[f[i]]);
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;NTT&lt;/span&gt;(ele K,ele n,ele &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;y){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; ele f[maxn];
+	f[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i){
+		f[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;f[i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) f[i]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;n&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;f[i]) swap(y[i],y[f[i]]);
 	}
-	for (int p=1; p&lt;n; p&lt;&lt;=1){
-		ele o=pw(g,(MOD-1)/p/2);
-		o=~K?o:pw(o,MOD-2);
-		for (int i=0; i&lt;n; i+=(p&lt;&lt;1)){
-			ele o1=1;
-			for (int j=i; j&lt;i+p; ++j,o1=(ll)o1*o%MOD){
-				ele u=y[j],v=(ll)y[j+p]*o1%MOD;
-				y[j]=(u+v)%MOD;
-				y[j+p]=(u-v+MOD)%MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; p&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;){
+		ele o&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;pw(g,(MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;p&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
+		o&lt;span style=&#34;color:#f92672&#34;&gt;=~&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;o:pw(o,MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; i&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;(p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)){
+			ele o1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+			&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;i; j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;j,o1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)o1&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;o&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD){
+				ele u&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;y[j],v&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)y[j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;o1&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+				y[j]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(u&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;v)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+				y[j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(u&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;v&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;MOD)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
 			}
 		}
 	}
-	if (!~K){
-		ele invn=pw(n,MOD-2);
-		for (int i=0; i&lt;n; ++i) y[i]=(ll)y[i]*invn%MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!~&lt;/span&gt;K){
+		ele invn&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;pw(n,MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) y[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)y[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;invn&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
 	}
 }
-inline void mul(ele a[maxp][maxn],ele b[maxp][maxn],ele k){
-	static ele c[maxp][maxn],d[maxp][maxn],e[maxp][maxn];
-	memset(c,0,sizeof(c));
-	ele tmp=1;
-	while (tmp&lt;m+m-1) tmp&lt;&lt;=1;
-	memset(d,0,sizeof(d)); memcpy(e,b,sizeof(e));
-	for (int i=0; i&lt;p; ++i){
-		ele j=i*k%p;
-		for (int r=0; r&lt;m; ++r) (d[j][r]+=a[i][r])%=MOD;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;mul&lt;/span&gt;(ele a[maxp][maxn],ele b[maxp][maxn],ele k){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; ele c[maxp][maxn],d[maxp][maxn],e[maxp][maxn];
+	memset(c,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(c));
+	ele tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (tmp&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;m&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;m&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) tmp&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	memset(d,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(d)); memcpy(e,b,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(e));
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i){
+		ele j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;k&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;p;
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; r&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;m; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;r) (d[j][r]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;a[i][r])&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
 	}
-	for (int i=0; i&lt;p; ++i) NTT(1,tmp,d[i]),NTT(1,tmp,e[i]);
-	for (int i=0; i&lt;p; ++i)
-		for (int j=0; j&lt;p; ++j){
-			ele k=(i+j)%p;
-			for (int r=0; r&lt;tmp; ++r)
-				(c[k][r]+=(ll)d[i][r]*e[j][r]%MOD)%=MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) NTT(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,d[i]),NTT(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,e[i]);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;j){
+			ele k&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;j)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;p;
+			&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; r&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;tmp; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;r)
+				(c[k][r]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;(ll)d[i][r]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;e[j][r]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
 		}
-	memcpy(a,c,sizeof(c));
-	for (int i=0; i&lt;p; ++i) NTT(-1,tmp,a[i]);
-	for (int i=0; i&lt;p; ++i)
-		for (int j=m; j&lt;tmp; ++j) a[i][j]=0;
+	memcpy(a,c,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(c));
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) NTT(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,a[i]);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;m; j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;tmp; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;j) a[i][j]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-int main(){
-	scanf(&#34;%d%d%d&#34;,&amp;n,&amp;p,&amp;m); ++m;
-	memset(a,0,sizeof(a)); memset(b,0,sizeof(b));
-	a[0][0]=1;
-	for (int i=0; i&lt;10 &amp;&amp; i&lt;m; ++i) b[i%p][i]+=1;
-	ele k=10;
-	for (; n; n&gt;&gt;=1,mul(b,b,k),k=k*k%p)
-		if (n&amp;1) mul(a,b,k);
-	ele cnt=0;
-	for (int i=0; i&lt;m; ++i) (cnt+=a[0][i])%=MOD,printf(i?&#34; %d&#34;:&#34;%d&#34;,cnt);
-	puts(&#34;&#34;);
-	return 0;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(){
+	scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;n,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;p,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;m); &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;m;
+	memset(a,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(a)); memset(b,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(b));
+	a[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;m; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) b[i&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;p][i]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	ele k&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (; n; n&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,mul(b,b,k),k&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;k&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;k&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;p)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (n&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) mul(a,b,k);
+	ele cnt&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;m; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) (cnt&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;a[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;][i])&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD,printf(i&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; %d&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;,cnt);
+	puts(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-```\]&lt;/span&gt;&lt;/p&gt;- https://seraphim.rocks/posts/loj6059/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj6059/ - </description>
         </item>
     
     

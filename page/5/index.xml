@@ -189,90 +189,83 @@ ele &lt;span style=&#34;color:#a6e22e&#34;&gt;qry&lt;/span&gt;(tn &lt;span style
         <guid>https://seraphim.rocks/posts/bzoj4314/</guid>
         <description>蒟蒻的博客 https://seraphim.rocks/posts/bzoj4314/ -&lt;p&gt;定义&lt;span class=&#34;math inline&#34;&gt;\(f(x,y)=\prod _{i=0}^{n-1}(1+x^iy)\)&lt;/span&gt;，这里做乘法的时候&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;是模&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的循环卷积，而y是普通卷积. 那么答案就是&lt;span class=&#34;math inline&#34;&gt;\([x^0y^k]f(x,y)\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;这个循环卷积不好处理，注意到DFT本质上就是一个循环卷积，我们可以考虑使用IDFT，答案就是&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
-想办法化简这个式子
-
-$$\begin{aligned}&amp;\sum f(\omega _n^i,y)\\\\=&amp;\sum _{i=0}^{n-1}\prod _{j=0}^{n-1}(1+\omega _n^{ij}y)\\\\=&amp;\sum _{d|n}\sum _{(i,n)=d}\prod _{j=0}^{n-1}(1+(\omega _{n/d}^{i/d})^jy)\\\\=&amp;\sum _{d|n}\sum _{(i,n)=d}\prod _{j=0}^{n-1}(1+\omega _{n/d}^jy)\\\\=&amp;\sum _{d|n}\sum _{(i,n)=d}(\prod _{j=0}^{n/d-1}(1+\omega _{n/d}^jy))^d\end{aligned}$$
-
-这个时候要用到一个结论
-
-$$\prod _{i=0}^{n-1}(x-\omega _n^iy)=x^n-y^n$$
-
-证明的话，把$x=\omega _n^iy(i=0,1,\ldots,n-1)$带入，发现两边都是0，而两边都是$n$次的，说明这是个恒等式.
-
-把$x=-1$带入上式，两边再乘上$(-1)^n$，就可以得到
-
-$$\prod _{i=0}^{n-1}(1+\omega _n^iy)=1-(-y)^n$$
-
-回到我们原来要推的那个式子，可以变形为
-
-$$\begin{aligned}&amp;\sum _{d|n}\sum _{(i,n)=d}(\prod _{j=0}^{n/d-1}(1+\omega _{n/d}^jy))^d\\\\=&amp;\sum _{d|n}\sum _{(i,n)=d}(1-(-y)^{n/d})^d\\\\=&amp;\sum _{d|n}(1-(-y)^{n/d})^d\varphi(n/d)\end{aligned}$$
-
-要求这个式子中$y^k$的系数，直接用二项式定理展开就可以了. 组合数可以把阶乘分段打表来算.
-
-可以注意到，$k$的范围扩大到$10^9$也是可以做的，要求的余数不是0而是一个由输入给定的值也是可以做的（当然式子需要再推一推）.
-
-代码：
-```cpp
-#include &lt;cstdio&gt;
-#include &lt;cstring&gt;
-#include &lt;algorithm&gt;
-#define ele int
-#define ll long long
-using namespace std;
-#define maxk 1010
-#define MOD 1000000007
-#define K 400000
-const ele tf[]={};//这里省略阶乘的表
-ele n,k,phi[maxk];
-inline ele get_phi(ele n){
-	ele ans=n,tmp=n;
-	for (int i=2; i*i&lt;=n; ++i)
-		if (tmp%i==0){
-			ans/=i; ans*=i-1;
-			while (tmp%i==0) tmp/=i;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\frac{1}{n}[y^k]\sum f(\omega _n^i,y)\omega _n^{-i\cdot 0}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;想办法化简这个式子&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{aligned}&amp;\sum f(\omega _n^i,y)\\\\=&amp;\sum _{i=0}^{n-1}\prod _{j=0}^{n-1}(1+\omega _n^{ij}y)\\\\=&amp;\sum _{d|n}\sum _{(i,n)=d}\prod _{j=0}^{n-1}(1+(\omega _{n/d}^{i/d})^jy)\\\\=&amp;\sum _{d|n}\sum _{(i,n)=d}\prod _{j=0}^{n-1}(1+\omega _{n/d}^jy)\\\\=&amp;\sum _{d|n}\sum _{(i,n)=d}(\prod _{j=0}^{n/d-1}(1+\omega _{n/d}^jy))^d\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;这个时候要用到一个结论&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\prod _{i=0}^{n-1}(x-\omega _n^iy)=x^n-y^n
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;证明的话，把&lt;span class=&#34;math inline&#34;&gt;\(x=\omega _n^iy(i=0,1,\ldots,n-1)\)&lt;/span&gt;带入，发现两边都是0，而两边都是&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;次的，说明这是个恒等式.&lt;/p&gt;
+&lt;p&gt;把&lt;span class=&#34;math inline&#34;&gt;\(x=-1\)&lt;/span&gt;带入上式，两边再乘上&lt;span class=&#34;math inline&#34;&gt;\((-1)^n\)&lt;/span&gt;，就可以得到&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\prod _{i=0}^{n-1}(1+\omega _n^iy)=1-(-y)^n
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;回到我们原来要推的那个式子，可以变形为&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{aligned}&amp;\sum _{d|n}\sum _{(i,n)=d}(\prod _{j=0}^{n/d-1}(1+\omega _{n/d}^jy))^d\\\\=&amp;\sum _{d|n}\sum _{(i,n)=d}(1-(-y)^{n/d})^d\\\\=&amp;\sum _{d|n}(1-(-y)^{n/d})^d\varphi(n/d)\end{aligned}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;要求这个式子中&lt;span class=&#34;math inline&#34;&gt;\(y^k\)&lt;/span&gt;的系数，直接用二项式定理展开就可以了. 组合数可以把阶乘分段打表来算.&lt;/p&gt;
+&lt;p&gt;可以注意到，&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;的范围扩大到&lt;span class=&#34;math inline&#34;&gt;\(10^9\)&lt;/span&gt;也是可以做的，要求的余数不是0而是一个由输入给定的值也是可以做的（当然式子需要再推一推）.&lt;/p&gt;
+&lt;p&gt;代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ele int
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ll long long
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; std;
+&lt;span style=&#34;color:#75715e&#34;&gt;#define maxk 1010
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define MOD 1000000007
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define K 400000
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;const&lt;/span&gt; ele tf[]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;{};&lt;span style=&#34;color:#75715e&#34;&gt;//这里省略阶乘的表
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;ele n,k,phi[maxk];
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;get_phi&lt;/span&gt;(ele n){
+	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;n,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;n;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;){
+			ans&lt;span style=&#34;color:#f92672&#34;&gt;/=&lt;/span&gt;i; ans&lt;span style=&#34;color:#f92672&#34;&gt;*=&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+			&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;) tmp&lt;span style=&#34;color:#f92672&#34;&gt;/=&lt;/span&gt;i;
 		}
-	if (tmp&gt;1) ans/=tmp,ans*=tmp-1;
-	return ans;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (tmp&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) ans&lt;span style=&#34;color:#f92672&#34;&gt;/=&lt;/span&gt;tmp,ans&lt;span style=&#34;color:#f92672&#34;&gt;*=&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
 }
-inline ele pw(ele a,ele x){
-	ele ans=1,tmp=a%MOD;
-	for (; x; x&gt;&gt;=1,tmp=(ll)tmp*tmp%MOD)
-		if (x&amp;1) ans=(ll)ans*tmp%MOD;
-	return ans;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;pw&lt;/span&gt;(ele a,ele x){
+	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (; x; x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)tmp&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)ans&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
 }
-inline ele fac(ele n){
-	ele ans=tf[n/K];
-	for (int i=n/K*K+1; i&lt;=n; ++i) ans=(ll)ans*i%MOD;
-	return ans;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;fac&lt;/span&gt;(ele n){
+	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;tf[n&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;K];
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;n&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)ans&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
 }
-inline ele ifac(ele n){
-	return pw(fac(n),MOD-2);
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;ifac&lt;/span&gt;(ele n){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; pw(fac(n),MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
 }
-inline ele C(ele n,ele m){
-	return (ll)fac(n)*ifac(m)%MOD*ifac(n-m)%MOD;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;C&lt;/span&gt;(ele n,ele m){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; (ll)fac(n)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;ifac(m)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;ifac(n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;m)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
 }
-inline ele calc(ele d){
-	if (k%(n/d)) return 0;
-	ele c=k/(n/d);
-	ele ans=(ll)C(d,c)*phi[n/d]%MOD;
-	if (n/d%2==0 &amp;&amp; c%2) ans=ans?MOD-ans:0;
-	return ans;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;calc&lt;/span&gt;(ele d){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (k&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;(n&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;d)) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	ele c&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;k&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;(n&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;d);
+	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)C(d,c)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;phi[n&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;d]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (n&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;d&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; c&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;) ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;ans&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;ans:&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
 }
-int main(){
-	scanf(&#34;%d%d&#34;,&amp;n,&amp;k);
-	for (int i=1; i&lt;=k; ++i) phi[i]=get_phi(i);
-	ele ans=0;
-	for (int d=1; d*d&lt;=n; ++d)
-		if (n%d==0){
-			(ans+=calc(d))%=MOD;
-			if (d*d!=n) (ans+=calc(n/d))%=MOD;
+&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(){
+	scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;n,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;k);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;k; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) phi[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;get_phi(i);
+	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; d&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; d&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;d&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;d)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (n&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;d&lt;span style=&#34;color:#f92672&#34;&gt;==&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;){
+			(ans&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;calc(d))&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
+			&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (d&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;d&lt;span style=&#34;color:#f92672&#34;&gt;!=&lt;/span&gt;n) (ans&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;calc(n&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;d))&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
 		}
-	ans=(ll)ans*pw(n,MOD-2)%MOD;
-	printf(&#34;%d\n&#34;,ans);
-	return 0;
+	ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)ans&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;pw(n,MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,ans);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-```\]&lt;/span&gt;&lt;/p&gt;- https://seraphim.rocks/posts/bzoj4314/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/bzoj4314/ - </description>
         </item>
     
     

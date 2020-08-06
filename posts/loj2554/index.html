@@ -103,6 +103,16 @@
             </a>
             
         
+            
+            
+            
+            
+            
+            <a class="a-block nav-link-item false" href="/search">
+                Search
+            </a>
+            
+        
     </div>
 
     
@@ -174,6 +184,16 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
                 <a class="a-block drawer-menu-item false" href="/tags">
                     Tags
+                </a>
+                
+            
+                
+                
+                
+                
+                
+                <a class="a-block drawer-menu-item false" href="/search">
+                    Search
                 </a>
                 
             
@@ -267,9 +287,9 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                             
 
                             
-                            6 min
+                            7 min
                             
-                            9 s.
+                            15 s.
                         
                     </div>
                 </div>
@@ -284,134 +304,127 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 <p>考虑跟排列有关的递推<!-- raw HTML omitted -->我只知道<!-- raw HTML omitted -->有两种思路，把<span class="math inline">\(n+1\)</span>插入或者在序列某位放一个<span class="math inline">\(i\)</span>，并把前面所有<span class="math inline">\(\ge i\)</span>的数<span class="math inline">\(+1\)</span>. 我一开始想的是后一种思路，结果没想出来. 考虑前一种思路，因为<span class="math inline">\(p\)</span>中不存在一个不包含最大值的连续区间，为方便起见插入<span class="math inline">\(1\)</span>而不是插入<span class="math inline">\(n+1\)</span>，接下来要讨论两种情况. 为方便起见，下面先假设<span class="math inline">\(n\ge 2\)</span>.</p>
 <p>如果插入前的序列是合法的，那么插入前的序列有<span class="math inline">\(f _{n-1}\)</span>种可能，而插入的位置可以是除了插入前最小值旁边的任何位置，共<span class="math inline">\(n-1\)</span>种，因此这种情况的贡献为<span class="math inline">\((n-1)f _{n-1}\)</span>.</p>
 <p>如果插入前序列不合法，那么<span class="math inline">\(1\)</span>一定是放在了一个连续区间中间，设它所在的极长连续区间长度为<span class="math inline">\(i\)</span>，那么这段区间插入<span class="math inline">\(1\)</span>后不连续等价于它插入<span class="math inline">\(1\)</span>，离散化后不存在不包含最小值的连续区间，等价于不存在不包含最d大值的连续区间，所以这个连续区间插入<span class="math inline">\(1\)</span>之后共有<span class="math inline">\(f _i\)</span>种可能. 把这段区间缩成一个数，然后把得到的序列离散化，剩下的序列长度为<span class="math inline">\(n-i+1\)</span>，它也不能有不包含最小值的连续区间，共<span class="math inline">\(f _{n-i}\)</span>种可能. 注意到插入<span class="math inline">\(1\)</span>的那个连续区间在离散化之后的权值不能为最小值也不能为最大值，因而有<span class="math inline">\(n-i-1\)</span>种可能. 综上，这一部分的贡献为</p>
-<p><span class="math display">\[
-于是我们可以列出递推式
-
-$$\begin{aligned}f _n=&\sum _{i=2}^{n-2}(i-1)f _if _{n-i}+(n-1)f _{n-1}\\\\=&\sum _{i=2}^{n-1}(i-1)f _if _{n-i}-(n-3)f _{n-1}\end{aligned}$$
-
-把下标范围弄得对称一些，并加入一些修改使其对$\forall n\in \mathbb N$都成立
-
-$$f _n=\sum _{i=1}^{n-1}(i-1)f _if _{n-i}-(n-3)f _{n-1}+[n=0]$$
-
-这个东西就可以用分治来计算了.
-
-这个卷积是自己卷自己，但也是可以分治的. 对于每个$(j-1)f _jf _k$，我们在$j,k$中较大一项被计算出来的时候，统计它的贡献. 把分治的长度补全为$2$的幂，假设当前的分治区间是$[l,r)$，$m=\left\lfloor\frac{l+r}{2}\right\rfloor$，统计$[l,m)$中的$f$的贡献，分两种情况讨论：
-
-- $l\neq 0$. 对于$[l,m)$中的每个$i$，要取一个$j$使得它们对$[m,r)$有贡献，显然$j\in[0,r-l)$，而此时必有$r-l\le l$，直接把$[l,m)$中的元素和$[0,r-l)$中的元素卷起来统计贡献就可以了.
-- $l=0$. 直接$[l,m)$中的元素卷上$[l,m)$中的元素.
-
-第一种情况实现精细的话可以用5次而不是6次ntt~~，说不定还可以更少~~.
-
-这种题卷积的下标范围一定要想办法弄对称，这样细节处理上会方便很多.
-
-代码：
-
-```cpp
-#include <cstdio>
-#include <cstring>
-#include <algorithm>
-#define ele int
-#define ll long long
-using namespace std;
-#define maxn (1<<17)
-#define MOD 998244353
-#define g 3
-ele n,a[maxn],f[maxn];
-inline ele& add(ele&a,ele b){
-	return a=(a+b>=MOD?a+b-MOD:a+b);
+<p><span class="math display">\[\sum _{i=2}^{n-1}f _if _{n-i}(n-i-1)=\sum _{i=2}^{n-2}(i-1)f _if _{n-i}
+\]</span></p>
+<p>于是我们可以列出递推式</p>
+<p><span class="math display">\[\begin{aligned}f _n=&\sum _{i=2}^{n-2}(i-1)f _if _{n-i}+(n-1)f _{n-1}\\\\=&\sum _{i=2}^{n-1}(i-1)f _if _{n-i}-(n-3)f _{n-1}\end{aligned}
+\]</span></p>
+<p>把下标范围弄得对称一些，并加入一些修改使其对<span class="math inline">\(\forall n\in \mathbb N\)</span>都成立</p>
+<p><span class="math display">\[f _n=\sum _{i=1}^{n-1}(i-1)f _if _{n-i}-(n-3)f _{n-1}+[n=0]
+\]</span></p>
+<p>这个东西就可以用分治来计算了.</p>
+<p>这个卷积是自己卷自己，但也是可以分治的. 对于每个<span class="math inline">\((j-1)f _jf _k\)</span>，我们在<span class="math inline">\(j,k\)</span>中较大一项被计算出来的时候，统计它的贡献. 把分治的长度补全为<span class="math inline">\(2\)</span>的幂，假设当前的分治区间是<span class="math inline">\([l,r)\)</span>，<span class="math inline">\(m=\left\lfloor\frac{l+r}{2}\right\rfloor\)</span>，统计<span class="math inline">\([l,m)\)</span>中的<span class="math inline">\(f\)</span>的贡献，分两种情况讨论：</p>
+<ul>
+<li><span class="math inline">\(l\neq 0\)</span>. 对于<span class="math inline">\([l,m)\)</span>中的每个<span class="math inline">\(i\)</span>，要取一个<span class="math inline">\(j\)</span>使得它们对<span class="math inline">\([m,r)\)</span>有贡献，显然<span class="math inline">\(j\in[0,r-l)\)</span>，而此时必有<span class="math inline">\(r-l\le l\)</span>，直接把<span class="math inline">\([l,m)\)</span>中的元素和<span class="math inline">\([0,r-l)\)</span>中的元素卷起来统计贡献就可以了.</li>
+<li><span class="math inline">\(l=0\)</span>. 直接<span class="math inline">\([l,m)\)</span>中的元素卷上<span class="math inline">\([l,m)\)</span>中的元素.</li>
+</ul>
+<p>第一种情况实现精细的话可以用5次而不是6次ntt~~，说不定还可以更少~~.</p>
+<p>这种题卷积的下标范围一定要想办法弄对称，这样细节处理上会方便很多.</p>
+<p>代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cpp" data-lang="cpp"><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstdio&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;cstring&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#include</span> <span style="color:#75715e">&lt;algorithm&gt;</span><span style="color:#75715e">
+</span><span style="color:#75715e">#define ele int
+</span><span style="color:#75715e">#define ll long long
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">using</span> <span style="color:#66d9ef">namespace</span> std;
+<span style="color:#75715e">#define maxn (1&lt;&lt;17)
+</span><span style="color:#75715e">#define MOD 998244353
+</span><span style="color:#75715e">#define g 3
+</span><span style="color:#75715e"></span>ele n,a[maxn],f[maxn];
+<span style="color:#66d9ef">inline</span> ele<span style="color:#f92672">&amp;</span> add(ele<span style="color:#f92672">&amp;</span>a,ele b){
+	<span style="color:#66d9ef">return</span> a<span style="color:#f92672">=</span>(a<span style="color:#f92672">+</span>b<span style="color:#f92672">&gt;=</span>MOD<span style="color:#f92672">?</span>a<span style="color:#f92672">+</span>b<span style="color:#f92672">-</span>MOD:a<span style="color:#f92672">+</span>b);
 }
-inline ele pw(ele a,ele x){
-	ele ans=1,tmp=a%MOD;
-	for (; x; x>>=1,tmp=(ll)tmp*tmp%MOD)
-		if (x&1) ans=(ll)ans*tmp%MOD;
-	return ans;
+<span style="color:#66d9ef">inline</span> ele <span style="color:#a6e22e">pw</span>(ele a,ele x){
+	ele ans<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,tmp<span style="color:#f92672">=</span>a<span style="color:#f92672">%</span>MOD;
+	<span style="color:#66d9ef">for</span> (; x; x<span style="color:#f92672">&gt;&gt;=</span><span style="color:#ae81ff">1</span>,tmp<span style="color:#f92672">=</span>(ll)tmp<span style="color:#f92672">*</span>tmp<span style="color:#f92672">%</span>MOD)
+		<span style="color:#66d9ef">if</span> (x<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">1</span>) ans<span style="color:#f92672">=</span>(ll)ans<span style="color:#f92672">*</span>tmp<span style="color:#f92672">%</span>MOD;
+	<span style="color:#66d9ef">return</span> ans;
 }
-inline void ntt(ele K,ele n,ele *y){
-	static ele f[maxn];
-	f[0]=0;
-	for (int i=1; i<n; ++i){
-		f[i]=f[i>>1]>>1;
-		if (i&1) f[i]+=n>>1;
-		if (i<f[i]) swap(y[i],y[f[i]]);
+<span style="color:#66d9ef">inline</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">ntt</span>(ele K,ele n,ele <span style="color:#f92672">*</span>y){
+	<span style="color:#66d9ef">static</span> ele f[maxn];
+	f[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span>n; <span style="color:#f92672">++</span>i){
+		f[i]<span style="color:#f92672">=</span>f[i<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>;
+		<span style="color:#66d9ef">if</span> (i<span style="color:#f92672">&amp;</span><span style="color:#ae81ff">1</span>) f[i]<span style="color:#f92672">+=</span>n<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>;
+		<span style="color:#66d9ef">if</span> (i<span style="color:#f92672">&lt;</span>f[i]) swap(y[i],y[f[i]]);
 	}
-	for (int p=1; p<n; p<<=1){
-		ele o=pw(g,(MOD-1)/p/2);
-		o=~K?o:pw(o,MOD-2);
-		for (int i=0; i<n; i+=(p<<1)){
-			ele o1=1;
-			for (int j=i; j<i+p; ++j,o1=(ll)o1*o%MOD){
-				ele u=y[j],v=(ll)y[j+p]*o1%MOD;
-				y[j]=(u+v)%MOD;
-				y[j+p]=(u-v+MOD)%MOD;
+	<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> p<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; p<span style="color:#f92672">&lt;</span>n; p<span style="color:#f92672">&lt;&lt;=</span><span style="color:#ae81ff">1</span>){
+		ele o<span style="color:#f92672">=</span>pw(g,(MOD<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">/</span>p<span style="color:#f92672">/</span><span style="color:#ae81ff">2</span>);
+		o<span style="color:#f92672">=~</span>K<span style="color:#f92672">?</span>o:pw(o,MOD<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>n; i<span style="color:#f92672">+=</span>(p<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">1</span>)){
+			ele o1<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+			<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> j<span style="color:#f92672">=</span>i; j<span style="color:#f92672">&lt;</span>i<span style="color:#f92672">+</span>p; <span style="color:#f92672">++</span>j,o1<span style="color:#f92672">=</span>(ll)o1<span style="color:#f92672">*</span>o<span style="color:#f92672">%</span>MOD){
+				ele u<span style="color:#f92672">=</span>y[j],v<span style="color:#f92672">=</span>(ll)y[j<span style="color:#f92672">+</span>p]<span style="color:#f92672">*</span>o1<span style="color:#f92672">%</span>MOD;
+				y[j]<span style="color:#f92672">=</span>(u<span style="color:#f92672">+</span>v)<span style="color:#f92672">%</span>MOD;
+				y[j<span style="color:#f92672">+</span>p]<span style="color:#f92672">=</span>(u<span style="color:#f92672">-</span>v<span style="color:#f92672">+</span>MOD)<span style="color:#f92672">%</span>MOD;
 			}
 		}
 	}
-	if (!~K){
-		ele invn=pw(n,MOD-2);
-		for (int i=0; i<n; ++i) y[i]=(ll)y[i]*invn%MOD;
+	<span style="color:#66d9ef">if</span> (<span style="color:#f92672">!~</span>K){
+		ele invn<span style="color:#f92672">=</span>pw(n,MOD<span style="color:#f92672">-</span><span style="color:#ae81ff">2</span>);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>n; <span style="color:#f92672">++</span>i) y[i]<span style="color:#f92672">=</span>(ll)y[i]<span style="color:#f92672">*</span>invn<span style="color:#f92672">%</span>MOD;
 	}
 }
-void solve(ele *f,ele l,ele r){
-	if (r-l<=1) return;
-	ele mid=(l+r)>>1,tmp=(r-l)<<1;
+<span style="color:#66d9ef">void</span> <span style="color:#a6e22e">solve</span>(ele <span style="color:#f92672">*</span>f,ele l,ele r){
+	<span style="color:#66d9ef">if</span> (r<span style="color:#f92672">-</span>l<span style="color:#f92672">&lt;=</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span>;
+	ele mid<span style="color:#f92672">=</span>(l<span style="color:#f92672">+</span>r)<span style="color:#f92672">&gt;&gt;</span><span style="color:#ae81ff">1</span>,tmp<span style="color:#f92672">=</span>(r<span style="color:#f92672">-</span>l)<span style="color:#f92672">&lt;&lt;</span><span style="color:#ae81ff">1</span>;
 	solve(f,l,mid);
-	static ele t1[maxn],t2[maxn],t3[maxn],t4[maxn];
-	if (l){
-		memset(t1,0,sizeof(ele)*tmp);
-		for (int i=l; i<mid; ++i) t1[i-l]=(ll)f[i]*(i-1)%MOD;
-		memset(t2,0,sizeof(ele)*tmp);
-		for (int i=1; i<r-l; ++i) t2[i]=f[i];
-		memset(t3,0,sizeof(ele)*tmp);
-		for (int i=2; i<r-l; ++i) t3[i]=(ll)f[i]*(i-1)%MOD;
-		memset(t4,0,sizeof(ele)*tmp);
-		for (int i=l; i<mid; ++i) t4[i-l]=f[i];
-		ntt(1,tmp,t1); ntt(1,tmp,t2); ntt(1,tmp,t3); ntt(1,tmp,t4);
-		for (int i=0; i<tmp; ++i)
-			t1[i]=((ll)t1[i]*t2[i]%MOD+(ll)t3[i]*t4[i]%MOD)%MOD;
-		ntt(-1,tmp,t1);
-		for (int i=mid; i<r; ++i) add(f[i],t1[i-l]);
+	<span style="color:#66d9ef">static</span> ele t1[maxn],t2[maxn],t3[maxn],t4[maxn];
+	<span style="color:#66d9ef">if</span> (l){
+		memset(t1,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ele)<span style="color:#f92672">*</span>tmp);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>l; i<span style="color:#f92672">&lt;</span>mid; <span style="color:#f92672">++</span>i) t1[i<span style="color:#f92672">-</span>l]<span style="color:#f92672">=</span>(ll)f[i]<span style="color:#f92672">*</span>(i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span>MOD;
+		memset(t2,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ele)<span style="color:#f92672">*</span>tmp);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span>r<span style="color:#f92672">-</span>l; <span style="color:#f92672">++</span>i) t2[i]<span style="color:#f92672">=</span>f[i];
+		memset(t3,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ele)<span style="color:#f92672">*</span>tmp);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">2</span>; i<span style="color:#f92672">&lt;</span>r<span style="color:#f92672">-</span>l; <span style="color:#f92672">++</span>i) t3[i]<span style="color:#f92672">=</span>(ll)f[i]<span style="color:#f92672">*</span>(i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span>MOD;
+		memset(t4,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ele)<span style="color:#f92672">*</span>tmp);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>l; i<span style="color:#f92672">&lt;</span>mid; <span style="color:#f92672">++</span>i) t4[i<span style="color:#f92672">-</span>l]<span style="color:#f92672">=</span>f[i];
+		ntt(<span style="color:#ae81ff">1</span>,tmp,t1); ntt(<span style="color:#ae81ff">1</span>,tmp,t2); ntt(<span style="color:#ae81ff">1</span>,tmp,t3); ntt(<span style="color:#ae81ff">1</span>,tmp,t4);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>tmp; <span style="color:#f92672">++</span>i)
+			t1[i]<span style="color:#f92672">=</span>((ll)t1[i]<span style="color:#f92672">*</span>t2[i]<span style="color:#f92672">%</span>MOD<span style="color:#f92672">+</span>(ll)t3[i]<span style="color:#f92672">*</span>t4[i]<span style="color:#f92672">%</span>MOD)<span style="color:#f92672">%</span>MOD;
+		ntt(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,tmp,t1);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>mid; i<span style="color:#f92672">&lt;</span>r; <span style="color:#f92672">++</span>i) add(f[i],t1[i<span style="color:#f92672">-</span>l]);
 	}
-	else{
-		memset(t1,0,sizeof(ele)*tmp);
-		for (int i=1; i<mid; ++i) t1[i]=(ll)f[i]*(i-1)%MOD;
-		memset(t2,0,sizeof(ele)*tmp);
-		for (int i=1; i<mid; ++i) t2[i]=f[i];
-		ntt(1,tmp,t1); ntt(1,tmp,t2);
-		for (int i=0; i<tmp; ++i) t1[i]=(ll)t1[i]*t2[i]%MOD;
-		ntt(-1,tmp,t1);
-		for (int i=mid; i<r; ++i) add(f[i],t1[i]);
+	<span style="color:#66d9ef">else</span>{
+		memset(t1,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ele)<span style="color:#f92672">*</span>tmp);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span>mid; <span style="color:#f92672">++</span>i) t1[i]<span style="color:#f92672">=</span>(ll)f[i]<span style="color:#f92672">*</span>(i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>)<span style="color:#f92672">%</span>MOD;
+		memset(t2,<span style="color:#ae81ff">0</span>,<span style="color:#66d9ef">sizeof</span>(ele)<span style="color:#f92672">*</span>tmp);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>; i<span style="color:#f92672">&lt;</span>mid; <span style="color:#f92672">++</span>i) t2[i]<span style="color:#f92672">=</span>f[i];
+		ntt(<span style="color:#ae81ff">1</span>,tmp,t1); ntt(<span style="color:#ae81ff">1</span>,tmp,t2);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>tmp; <span style="color:#f92672">++</span>i) t1[i]<span style="color:#f92672">=</span>(ll)t1[i]<span style="color:#f92672">*</span>t2[i]<span style="color:#f92672">%</span>MOD;
+		ntt(<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,tmp,t1);
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span>mid; i<span style="color:#f92672">&lt;</span>r; <span style="color:#f92672">++</span>i) add(f[i],t1[i]);
 	}
-	add(f[mid],MOD-(ll)f[mid-1]*(mid+MOD-3)%MOD);
+	add(f[mid],MOD<span style="color:#f92672">-</span>(ll)f[mid<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">*</span>(mid<span style="color:#f92672">+</span>MOD<span style="color:#f92672">-</span><span style="color:#ae81ff">3</span>)<span style="color:#f92672">%</span>MOD);
 	solve(f,mid,r);
 }
-ele calc(ele i){
-	if (a[i]==1) return 1;
-	ele j=i-1,ans=1,tmp=0;
-	while (j>i-a[i]){
-		ans=(ll)ans*calc(j)%MOD;
-		j-=a[j];
-		++tmp;
+ele <span style="color:#a6e22e">calc</span>(ele i){
+	<span style="color:#66d9ef">if</span> (a[i]<span style="color:#f92672">==</span><span style="color:#ae81ff">1</span>) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">1</span>;
+	ele j<span style="color:#f92672">=</span>i<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>,ans<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>,tmp<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">while</span> (j<span style="color:#f92672">&gt;</span>i<span style="color:#f92672">-</span>a[i]){
+		ans<span style="color:#f92672">=</span>(ll)ans<span style="color:#f92672">*</span>calc(j)<span style="color:#f92672">%</span>MOD;
+		j<span style="color:#f92672">-=</span>a[j];
+		<span style="color:#f92672">++</span>tmp;
 	}
-	if (j<i-a[i]) return 0;
-	ans=(ll)ans*f[tmp]%MOD;
-	return ans;
+	<span style="color:#66d9ef">if</span> (j<span style="color:#f92672">&lt;</span>i<span style="color:#f92672">-</span>a[i]) <span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
+	ans<span style="color:#f92672">=</span>(ll)ans<span style="color:#f92672">*</span>f[tmp]<span style="color:#f92672">%</span>MOD;
+	<span style="color:#66d9ef">return</span> ans;
 }
-int main(){
+<span style="color:#66d9ef">int</span> <span style="color:#a6e22e">main</span>(){
 	ele T;
-	scanf("%d%d",&T,&n);
-	f[0]=1;
-	ele tmp=1;
-	while (tmp<=n) tmp<<=1;
-	solve(f,0,tmp);
-	while (T--){
-		for (int i=0; i<n; ++i) scanf("%d",a+i);
-		if (a[n-1]!=n) puts("0");
-		else printf("%d\n",calc(n-1));
+	scanf(<span style="color:#e6db74">&#34;%d%d&#34;</span>,<span style="color:#f92672">&amp;</span>T,<span style="color:#f92672">&amp;</span>n);
+	f[<span style="color:#ae81ff">0</span>]<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+	ele tmp<span style="color:#f92672">=</span><span style="color:#ae81ff">1</span>;
+	<span style="color:#66d9ef">while</span> (tmp<span style="color:#f92672">&lt;=</span>n) tmp<span style="color:#f92672">&lt;&lt;=</span><span style="color:#ae81ff">1</span>;
+	solve(f,<span style="color:#ae81ff">0</span>,tmp);
+	<span style="color:#66d9ef">while</span> (T<span style="color:#f92672">--</span>){
+		<span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i<span style="color:#f92672">=</span><span style="color:#ae81ff">0</span>; i<span style="color:#f92672">&lt;</span>n; <span style="color:#f92672">++</span>i) scanf(<span style="color:#e6db74">&#34;%d&#34;</span>,a<span style="color:#f92672">+</span>i);
+		<span style="color:#66d9ef">if</span> (a[n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>]<span style="color:#f92672">!=</span>n) puts(<span style="color:#e6db74">&#34;0&#34;</span>);
+		<span style="color:#66d9ef">else</span> printf(<span style="color:#e6db74">&#34;%d</span><span style="color:#ae81ff">\n</span><span style="color:#e6db74">&#34;</span>,calc(n<span style="color:#f92672">-</span><span style="color:#ae81ff">1</span>));
 	}
-	return 0;
+	<span style="color:#66d9ef">return</span> <span style="color:#ae81ff">0</span>;
 }
-```
-\]</span></p>
+</code></pre></div>
                     
                     <HR width="100%" id="EOF">
 		    <p style="color:#777;">Last modified on 2018-06-21</p>
@@ -574,15 +587,14 @@ app = new Vue({
 
 <script src="https://seraphim.rocks//js/journal.js"></script>
 	
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.css"
-	integrity="sha384-D+9gmBxUQogRLqvARvNLmA9hS2x//eK1FhVb9PiU86gmcrBrJAQT8okdJ4LMp2uv" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css"
+	crossorigin="anonymous">
 
 
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.10.0-rc.1/dist/katex.min.js"
-	integrity="sha384-483A6DwYfKeDa0Q52fJmxFXkcPCFfnXMoXblOkJ4JcA8zATN6Tm78UNL72AKk+0O"
+<script defer src="https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js"
 	crossorigin="anonymous"></script>
-<script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
-	integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
-	onload="renderMathInElement(document.body);"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex/dist/contrib/auto-render.min.js"
+	crossorigin="anonymous" onload="renderMathInElement(document.body);"></script>
+
     </body>
 </html>
