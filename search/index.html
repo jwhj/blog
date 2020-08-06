@@ -1,11 +1,8 @@
 <!DOCTYPE html>
 <html><head>
-	<meta name="generator" content="Hugo 0.74.3" />
-<title>蒟蒻的博客</title>
+<title>Search Results</title>
 
 
-
-  
 
 
 <meta charset="utf-8">
@@ -54,11 +51,17 @@
 
 
 
+  
+    <script src="/js/toc-collapse.js"></script>
+  
 
 
 
 
 
+
+
+<script src='https://unpkg.com/valine@1.4.14/dist/Valine.min.js'></script>
 
 
 
@@ -67,7 +70,7 @@
 <body>
     	<div id="app"><div ref="sideContainer" class="side-container">
     
-    <a class="a-block nav-head active" href="">
+    <a class="a-block nav-head false" href="">
     
         <div class="nav-title">
             蒟蒻的博客
@@ -119,6 +122,104 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </div><div ref="extraContainer" class="extra-container">
     
     
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#initial-setup" onclick="onNavClick(`#initial-setup-nav`)" id="initial-setup-nav">
+									Initial setup
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#searching-additional-fileds" onclick="onNavClick(`#searching-additional-fileds-nav`)" id="searching-additional-fileds-nav">
+									Searching additional fileds
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#edit-layouts_defaultindexjson" onclick="onNavClick(`#edit-layouts_defaultindexjson-nav`)" id="edit-layouts_defaultindexjson-nav">
+									Edit layouts/_default/index.JSON
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#edit-fusejs-options-to-search" onclick="onNavClick(`#edit-fusejs-options-to-search-nav`)" id="edit-fusejs-options-to-search-nav">
+									Edit fuse.js options to Search
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
+    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -134,24 +235,6 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 brightness_7
             </i>
         </a>
-        
-        
-        
-            <div class="pagination-indicator">
-                <span style="text-align: center">
-                    5<br><div style="display: inline-block; transform: rotate(-28deg)">-</div><br>5
-                </span>
-            </div>
-            
-            
-            <a class="pagination-action" href="/page/4/">
-                <i class="material-icons pagination-action-icon">
-                    chevron_left
-                </i>
-            </a>
-            
-
-            
         
         
     </div>
@@ -182,6 +265,104 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 </a>
                 
             
+            
+            <div class="toc">
+
+
+	<div class="toc-content">
+	
+		
+		
+		
+		<center>- CATALOG -</center>
+		
+		
+		<ul>
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#initial-setup" onclick="onNavClick(`#initial-setup-nav`)" id="initial-setup-nav">
+									Initial setup
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#searching-additional-fileds" onclick="onNavClick(`#searching-additional-fileds-nav`)" id="searching-additional-fileds-nav">
+									Searching additional fileds
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+							
+								<ul class="collapse" data-toggle="collapse">
+							
+						
+						
+							<li>
+								<a href="#edit-layouts_defaultindexjson" onclick="onNavClick(`#edit-layouts_defaultindexjson-nav`)" id="edit-layouts_defaultindexjson-nav">
+									Edit layouts/_default/index.JSON
+								</a>
+							</li>
+						
+						
+					
+				
+			
+				
+				
+					
+						
+						
+						
+						
+						
+							<li>
+								<a href="#edit-fusejs-options-to-search" onclick="onNavClick(`#edit-fusejs-options-to-search-nav`)" id="edit-fusejs-options-to-search-nav">
+									Edit fuse.js options to Search
+								</a>
+							</li>
+						
+						
+					
+				
+			
+		</ul>
+	</div>
+
+</div>
             
         </div>
     </div>
@@ -221,311 +402,29 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
     </a>
 </div>
             <div id="content">
-
-<div ref="streamContainer" class="stream-container">
-    <div class="post-list-container post-list-container-no-background">
-        
-            
-            <a href="/posts/bzoj5338/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                bzoj5338题解
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2018-06-15
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    2 min
-    
-    21 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            
-        
-            
-            <a href="/posts/bzoj4314/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                bzoj4314题解
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2018-06-15
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    2 min
-    
-    21 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            
-        
-            
-            <a href="/posts/bzoj4162/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                bzoj4162题解
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2018-06-13
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    3 min
-    
-    45 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            
-        
-            
-            <a href="/posts/loj6375/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                loj6375题解
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2018-06-11
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    42 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            
-        
-            
-            <a href="/posts/test/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                test
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2018-06-10
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    1 second
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            
-        
-            
-            <a href="/posts/gdoi2018/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                GDOI2018退役失败记
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2018-05-02
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    8 min
-    
-    25 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            
-        
-            
-            <a href="/posts/2018-4jz/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-divider">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                2018-4纪中集训总结
-                            </div>
-                            <div class="post-item-summary">
-                                
-                            </div>
-                            <div class="post-item-meta">
-    2018-04-10
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    36 min
-    
-    28 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                        
-                        
-                    </div>
-                </div>
-            
-        
-            
-        
-        </a>
+<div style="width:100%;display:flex;justify-content:center">
+<section class="resume-section p-3 p-lg-5 d-flex flex-column"style="width:50%">
+  <div class="my-auto" >
+    <form action="search">
+      <input id="search-query" name="s"/>
+    </form>
+    <div id="search-results">
+     <h3>Matching pages</h3>
     </div>
+  </div>
+</section>
 </div>
 
-            </div>
+<script id="search-result-template" type="text/x-js-template">
+    <div id="summary-${key}">
+      <h4><a href="${link}">${title}</a></h4>
+      <p>${snippet}</p>
+      ${ isset tags }<p>Tags: ${tags}</p>${ end }
+      ${ isset categories }<p>Categories: ${categories}</p>${ end }
+    </div>
+</script>
 
-<div class="pagination">
-    
-    <a class="pagination-action" href="/page/4/" style="opacity:1">
-    
-        <i class="material-icons pagination-action-icon">
-            chevron_left
-        </i>
-    </a>
-
-        <div class="pagination-indicator">
-            <span>5/5</span>
-        </div>
-
-        
-            <a class="pagination-action" style="opacity:0">
-        
-                <i class="material-icons pagination-action-icon">
-                    chevron_right
-                </i>
-            </a>
-</div>
-
-
-<div id="single-column-footer">
+            </div><div id="single-column-footer">
 Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
 <br>
 Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
@@ -629,6 +528,15 @@ app = new Vue({
         this.mounted = true;
 
         
+            new Valine({
+                el: '#vcomments',
+                appId: "f3NXeNV19jldjC2edxBWAcCY-gzGzoHsz",
+                appKey: "Ulup4a7rnGo7DlW2BROrYln1",
+                requiredFields: ['nick','mail'],
+                enableQQ: true,
+                recordIP: true,
+            })
+        
     },
     destroyed() {
         window.removeEventListener('scroll', this.handleScroll);
@@ -649,5 +557,10 @@ app = new Vue({
 <script defer src="https://cdn.jsdelivr.net/npm/katex@0.12.0/dist/contrib/auto-render.min.js"
 	integrity="sha384-mll67QQFJfxn0IYznZYonOWZ644AWYC+Pt2cHqMaRhXVrursRwvLnLaebdGIlYNa" crossorigin="anonymous"
 	onload="renderMathInElement(document.body);"></script>
+<script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/3.2.0/fuse.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/jquery.mark.min.js"></script>
+<script src="js/search.js"></script>
+
     </body>
 </html>
