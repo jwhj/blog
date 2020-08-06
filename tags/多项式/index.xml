@@ -2,76 +2,76 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>多项式 on 蒟蒻的博客</title>
-    <link>/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/</link>
+    <link>https://seraphim.rocks/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/</link>
     <description>Recent content in 多项式 on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 22 Mar 2019 20:24:47 +0800</lastBuildDate>
     
-	<atom:link href="/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://seraphim.rocks/tags/%E5%A4%9A%E9%A1%B9%E5%BC%8F/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>&#39;[whj什么都不会系列-2]bzoj4734&amp;uoj269题解&#39;</title>
-      <link>/posts/bzoj4734/</link>
+      <link>https://seraphim.rocks/posts/bzoj4734/</link>
       <pubDate>Fri, 22 Mar 2019 20:24:47 +0800</pubDate>
       
-      <guid>/posts/bzoj4734/</guid>
+      <guid>https://seraphim.rocks/posts/bzoj4734/</guid>
       <description>&lt;p&gt;bzoj上的题面真是残缺不全……uoj上有完整的题面.&lt;/p&gt;
 &lt;p&gt;退役久了脑子都不好用了，这么简单的东西推了半天……&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>uoj50题解</title>
-      <link>/posts/uoj50/</link>
+      <link>https://seraphim.rocks/posts/uoj50/</link>
       <pubDate>Fri, 17 Aug 2018 19:28:08 +0800</pubDate>
       
-      <guid>/posts/uoj50/</guid>
+      <guid>https://seraphim.rocks/posts/uoj50/</guid>
       <description>&lt;p&gt;分治fft是非常明显的做法，不过这样是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n\log^2n)\)&lt;/span&gt;的. 把生成函数弄出来之后会发现它是个微分方程，可以有一些神奇的方法来解，具体可以看UR3的题解.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2541题解</title>
-      <link>/posts/loj2541/</link>
+      <link>https://seraphim.rocks/posts/loj2541/</link>
       <pubDate>Mon, 16 Jul 2018 15:47:07 +0800</pubDate>
       
-      <guid>/posts/loj2541/</guid>
+      <guid>https://seraphim.rocks/posts/loj2541/</guid>
       <description>&lt;p&gt;这种求某个东西在最后一个的概率之类的其实可以考虑容斥，设钦定一个集合&lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;在它后面的概率为&lt;span class=&#34;math inline&#34;&gt;\(f(S)\)&lt;/span&gt;，那么最后的答案为&lt;span class=&#34;math inline&#34;&gt;\(\sum (-1)^{|S|}f(S)\)&lt;/span&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2304题解</title>
-      <link>/posts/loj2304/</link>
+      <link>https://seraphim.rocks/posts/loj2304/</link>
       <pubDate>Sat, 23 Jun 2018 10:00:10 +0800</pubDate>
       
-      <guid>/posts/loj2304/</guid>
+      <guid>https://seraphim.rocks/posts/loj2304/</guid>
       <description>&lt;p&gt;首先恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;不好处理，显然要转化为&lt;span class=&#34;math inline&#34;&gt;\(\le k\)&lt;/span&gt;的概率减去&lt;span class=&#34;math inline&#34;&gt;\(\le k-1\)&lt;/span&gt;的概率.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2554题解</title>
-      <link>/posts/loj2554/</link>
+      <link>https://seraphim.rocks/posts/loj2554/</link>
       <pubDate>Thu, 21 Jun 2018 11:25:11 +0800</pubDate>
       
-      <guid>/posts/loj2554/</guid>
+      <guid>https://seraphim.rocks/posts/loj2554/</guid>
       <description>&lt;p&gt;首先注意到给定的区间之间要么不相交，要么嵌套，否则肯定不合法，而且一定有一个覆盖整个序列的区间. 据此我们可以发现区间之间嵌套的关系形成了一个树结构，树中每个点是一个极大的连续的区间. 因此我们只需求出&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;表示长为&lt;span class=&#34;math inline&#34;&gt;\(i+1\)&lt;/span&gt;的，不存在任何不包含最后一位的连续区间的，排列的个数.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj6059题解</title>
-      <link>/posts/loj6059/</link>
+      <link>https://seraphim.rocks/posts/loj6059/</link>
       <pubDate>Sat, 16 Jun 2018 12:50:31 +0800</pubDate>
       
-      <guid>/posts/loj6059/</guid>
+      <guid>https://seraphim.rocks/posts/loj6059/</guid>
       <description>&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j,k}\)&lt;/span&gt;表示&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;位，模&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;余&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;，数字和恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;的数的个数，那么可以写出递推式&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj4314题解</title>
-      <link>/posts/bzoj4314/</link>
+      <link>https://seraphim.rocks/posts/bzoj4314/</link>
       <pubDate>Fri, 15 Jun 2018 10:36:33 +0800</pubDate>
       
-      <guid>/posts/bzoj4314/</guid>
+      <guid>https://seraphim.rocks/posts/bzoj4314/</guid>
       <description>&lt;p&gt;定义&lt;span class=&#34;math inline&#34;&gt;\(f(x,y)=\prod _{i=0}^{n-1}(1+x^iy)\)&lt;/span&gt;，这里做乘法的时候&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;是模&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的循环卷积，而y是普通卷积. 那么答案就是&lt;span class=&#34;math inline&#34;&gt;\([x^0y^k]f(x,y)\)&lt;/span&gt;.&lt;/p&gt;</description>
     </item>
     

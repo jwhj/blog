@@ -2,40 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>uoj on 蒟蒻的博客</title>
-    <link>/tags/uoj/</link>
+    <link>https://seraphim.rocks/tags/uoj/</link>
     <description>Recent content in uoj on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 22 Mar 2019 20:24:47 +0800</lastBuildDate>
     
-	<atom:link href="/tags/uoj/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://seraphim.rocks/tags/uoj/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>&#39;[whj什么都不会系列-2]bzoj4734&amp;uoj269题解&#39;</title>
-      <link>/posts/bzoj4734/</link>
+      <link>https://seraphim.rocks/posts/bzoj4734/</link>
       <pubDate>Fri, 22 Mar 2019 20:24:47 +0800</pubDate>
       
-      <guid>/posts/bzoj4734/</guid>
+      <guid>https://seraphim.rocks/posts/bzoj4734/</guid>
       <description>&lt;p&gt;bzoj上的题面真是残缺不全……uoj上有完整的题面.&lt;/p&gt;
 &lt;p&gt;退役久了脑子都不好用了，这么简单的东西推了半天……&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>uoj50题解</title>
-      <link>/posts/uoj50/</link>
+      <link>https://seraphim.rocks/posts/uoj50/</link>
       <pubDate>Fri, 17 Aug 2018 19:28:08 +0800</pubDate>
       
-      <guid>/posts/uoj50/</guid>
+      <guid>https://seraphim.rocks/posts/uoj50/</guid>
       <description>&lt;p&gt;分治fft是非常明显的做法，不过这样是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n\log^2n)\)&lt;/span&gt;的. 把生成函数弄出来之后会发现它是个微分方程，可以有一些神奇的方法来解，具体可以看UR3的题解.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>uoj387题解</title>
-      <link>/posts/uoj387/</link>
+      <link>https://seraphim.rocks/posts/uoj387/</link>
       <pubDate>Sun, 15 Jul 2018 13:31:44 +0800</pubDate>
       
-      <guid>/posts/uoj387/</guid>
+      <guid>https://seraphim.rocks/posts/uoj387/</guid>
       <description>&lt;p&gt;学到了一个新的技巧，树形的依赖关系，把顺序翻转，就可以在依赖父亲和依赖子树之间相互转化.&lt;/p&gt;</description>
     </item>
     

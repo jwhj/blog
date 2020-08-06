@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>数论 on 蒟蒻的博客</title>
-    <link>/tags/%E6%95%B0%E8%AE%BA/</link>
+    <link>https://seraphim.rocks/tags/%E6%95%B0%E8%AE%BA/</link>
     <description>Recent content in 数论 on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 14 Dec 2018 21:40:41 +0800</lastBuildDate>
     
-	<atom:link href="/tags/%E6%95%B0%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://seraphim.rocks/tags/%E6%95%B0%E8%AE%BA/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>whj什么都不会系列-1</title>
-      <link>/posts/sbwhj-1/</link>
+      <link>https://seraphim.rocks/posts/sbwhj-1/</link>
       <pubDate>Fri, 14 Dec 2018 21:40:41 +0800</pubDate>
       
-      <guid>/posts/sbwhj-1/</guid>
+      <guid>https://seraphim.rocks/posts/sbwhj-1/</guid>
       <description>&lt;p&gt;退役了只有一直没怎么做题，感觉水平退步了不少，以前一些比较显然的思路现在可能都想不到了. 这样下去肯定是不行的，我尽量时不时做点&lt;del&gt;水&lt;/del&gt;题写点题解恢复一点智商吧.&lt;/p&gt;
 &lt;h3 id=&#34;题意&#34;&gt;题意&lt;/h3&gt;
 &lt;p&gt;给定&lt;span class=&#34;math inline&#34;&gt;\(n,m\)&lt;/span&gt;，求有多少对&lt;span class=&#34;math inline&#34;&gt;\((i,j)\)&lt;/span&gt;满足&lt;span class=&#34;math inline&#34;&gt;\(1\le i\le n,1\le j\le m\)&lt;/span&gt;且&lt;span class=&#34;math inline&#34;&gt;\(\gcd(i,j)\)&lt;/span&gt;为素数.&lt;/p&gt;
@@ -26,46 +26,46 @@
     
     <item>
       <title>loj2131题解</title>
-      <link>/posts/loj2131/</link>
+      <link>https://seraphim.rocks/posts/loj2131/</link>
       <pubDate>Mon, 25 Jun 2018 11:07:13 +0800</pubDate>
       
-      <guid>/posts/loj2131/</guid>
+      <guid>https://seraphim.rocks/posts/loj2131/</guid>
       <description>&lt;p&gt;首先注意到选择了一个数就是选择了它的所有素因子，而不超过&lt;span class=&#34;math inline&#34;&gt;\(\sqrt{n}\)&lt;/span&gt;的素数至多只有8个，可以考虑状压. &lt;!-- raw HTML omitted --&gt;超过的那些我们先不管.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2085题解</title>
-      <link>/posts/loj2085/</link>
+      <link>https://seraphim.rocks/posts/loj2085/</link>
       <pubDate>Mon, 25 Jun 2018 08:38:52 +0800</pubDate>
       
-      <guid>/posts/loj2085/</guid>
+      <guid>https://seraphim.rocks/posts/loj2085/</guid>
       <description>&lt;p&gt;挺优美的一道数论题. 当然也有可能是我太菜了.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2264题解</title>
-      <link>/posts/loj2264/</link>
+      <link>https://seraphim.rocks/posts/loj2264/</link>
       <pubDate>Tue, 19 Jun 2018 15:28:33 +0800</pubDate>
       
-      <guid>/posts/loj2264/</guid>
+      <guid>https://seraphim.rocks/posts/loj2264/</guid>
       <description>&lt;p&gt;看了题解才发现loj上面的题面漏了一小部分……uoj上的题面是完整的.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj4314题解</title>
-      <link>/posts/bzoj4314/</link>
+      <link>https://seraphim.rocks/posts/bzoj4314/</link>
       <pubDate>Fri, 15 Jun 2018 10:36:33 +0800</pubDate>
       
-      <guid>/posts/bzoj4314/</guid>
+      <guid>https://seraphim.rocks/posts/bzoj4314/</guid>
       <description>&lt;p&gt;定义&lt;span class=&#34;math inline&#34;&gt;\(f(x,y)=\prod _{i=0}^{n-1}(1+x^iy)\)&lt;/span&gt;，这里做乘法的时候&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;是模&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的循环卷积，而y是普通卷积. 那么答案就是&lt;span class=&#34;math inline&#34;&gt;\([x^0y^k]f(x,y)\)&lt;/span&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj6375题解</title>
-      <link>/posts/loj6375/</link>
+      <link>https://seraphim.rocks/posts/loj6375/</link>
       <pubDate>Mon, 11 Jun 2018 19:08:30 +0800</pubDate>
       
-      <guid>/posts/loj6375/</guid>
+      <guid>https://seraphim.rocks/posts/loj6375/</guid>
       <description>&lt;p&gt;好久没怎么做题了，做道水题练练手.&lt;/p&gt;</description>
     </item>
     

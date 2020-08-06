@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>斜率优化 on 蒟蒻的博客</title>
-    <link>/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/</link>
+    <link>https://seraphim.rocks/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/</link>
     <description>Recent content in 斜率优化 on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 26 Jun 2018 09:03:45 +0800</lastBuildDate>
     
-	<atom:link href="/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://seraphim.rocks/tags/%E6%96%9C%E7%8E%87%E4%BC%98%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>loj2249题解</title>
-      <link>/posts/loj2249/</link>
+      <link>https://seraphim.rocks/posts/loj2249/</link>
       <pubDate>Tue, 26 Jun 2018 09:03:45 +0800</pubDate>
       
-      <guid>/posts/loj2249/</guid>
+      <guid>https://seraphim.rocks/posts/loj2249/</guid>
       <description>&lt;p&gt;一开始居然脑子短路没有想到斜率优化……以后看到这种感觉跟凸包有关系，要求最值/要最优化的问题，可以考虑写个dp方程出来看看能不能斜率优化.&lt;/p&gt;</description>
     </item>
     

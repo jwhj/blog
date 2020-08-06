@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>线性代数 on 蒟蒻的博客</title>
-    <link>/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
+    <link>https://seraphim.rocks/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/</link>
     <description>Recent content in 线性代数 on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 26 Jun 2018 14:45:13 +0800</lastBuildDate>
     
-	<atom:link href="/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://seraphim.rocks/tags/%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>loj2664题解</title>
-      <link>/posts/loj2664/</link>
+      <link>https://seraphim.rocks/posts/loj2664/</link>
       <pubDate>Tue, 26 Jun 2018 14:45:13 +0800</pubDate>
       
-      <guid>/posts/loj2664/</guid>
+      <guid>https://seraphim.rocks/posts/loj2664/</guid>
       <description>&lt;p&gt;把所有向量组合成一个&lt;span class=&#34;math inline&#34;&gt;\(n\times d\)&lt;/span&gt;的矩阵&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;，那么问题其实就是判断&lt;span class=&#34;math inline&#34;&gt;\(AA^T=B\)&lt;/span&gt;除了对角线上是否存在&lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt;（模&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;意义下）.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2304题解</title>
-      <link>/posts/loj2304/</link>
+      <link>https://seraphim.rocks/posts/loj2304/</link>
       <pubDate>Sat, 23 Jun 2018 10:00:10 +0800</pubDate>
       
-      <guid>/posts/loj2304/</guid>
+      <guid>https://seraphim.rocks/posts/loj2304/</guid>
       <description>&lt;p&gt;首先恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;不好处理，显然要转化为&lt;span class=&#34;math inline&#34;&gt;\(\le k\)&lt;/span&gt;的概率减去&lt;span class=&#34;math inline&#34;&gt;\(\le k-1\)&lt;/span&gt;的概率.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj4162题解</title>
-      <link>/posts/bzoj4162/</link>
+      <link>https://seraphim.rocks/posts/bzoj4162/</link>
       <pubDate>Wed, 13 Jun 2018 19:48:56 +0800</pubDate>
       
-      <guid>/posts/bzoj4162/</guid>
+      <guid>https://seraphim.rocks/posts/bzoj4162/</guid>
       <description>&lt;p&gt;几年前刚学矩阵快速幂的时候点开了这道题，写了半天始终TLE，一看题解发现完全看不懂……时隔多年终于A掉了这道题.&lt;/p&gt;</description>
     </item>
     

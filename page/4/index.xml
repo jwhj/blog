@@ -1,23 +1,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>蒟蒻的博客</title>
-    <link>/</link>
+    <link>https://seraphim.rocks/</link>
     <description>Recent content on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Mon, 03 Feb 2020 21:55:41 +0800</lastBuildDate>
     
-        <atom:link href="/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://seraphim.rocks/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
         <title>loj2303题解</title>
-        <link>/posts/loj2303/</link>
+        <link>https://seraphim.rocks/posts/loj2303/</link>
         <pubDate>Sat, 23 Jun 2018 09:53:03 +0800</pubDate>
         
-        <guid>/posts/loj2303/</guid>
-        <description>蒟蒻的博客 /posts/loj2303/ -&lt;p&gt;我怕不是在做noip题……&lt;/p&gt;
+        <guid>https://seraphim.rocks/posts/loj2303/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2303/ -&lt;p&gt;我怕不是在做noip题……&lt;/p&gt;
 &lt;p&gt;注意到&lt;span class=&#34;math inline&#34;&gt;\(k\le 50\)&lt;/span&gt;，询问会涉及到的向后&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;数字串个数为&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(nk)\)&lt;/span&gt;，可以考虑直接把所有这些串的hash值存到hash表里面，进行修改操作的时候受影响的串只有&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(k^2)\)&lt;/span&gt;个，暴力维护即可.&lt;/p&gt;
 &lt;p&gt;卡常死活卡不过去，profile了一发，发现性能瓶颈是unordered_map，改成手写hash表直接3.4s-&amp;gt;0.7s. 以后能手写的时候还是手写吧.&lt;/p&gt;
 &lt;p&gt;代码：&lt;/p&gt;
@@ -159,18 +159,18 @@ hashmap mp;
 	io&lt;span style=&#34;color:#f92672&#34;&gt;::&lt;/span&gt;flush();
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- /posts/loj2303/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2303/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2302题解</title>
-        <link>/posts/loj2302/</link>
+        <link>https://seraphim.rocks/posts/loj2302/</link>
         <pubDate>Fri, 22 Jun 2018 15:35:18 +0800</pubDate>
         
-        <guid>/posts/loj2302/</guid>
-        <description>蒟蒻的博客 /posts/loj2302/ -&lt;p&gt;看到题目很容易想到压位+线段树，但是因为&lt;!-- raw HTML omitted --&gt;我太懒了&lt;!-- raw HTML omitted --&gt;这不太好写，我上网查了查发现了另一个很有意思的做法.&lt;/p&gt;
+        <guid>https://seraphim.rocks/posts/loj2302/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2302/ -&lt;p&gt;看到题目很容易想到压位+线段树，但是因为&lt;!-- raw HTML omitted --&gt;我太懒了&lt;!-- raw HTML omitted --&gt;这不太好写，我上网查了查发现了另一个很有意思的做法.&lt;/p&gt;
 &lt;p&gt;这道题的难点在于处理进位和退位，更准确地说应该是处理退位，因为如果只有进位的话，可以暴力处理，进位的次数是摊还&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(1)\)&lt;/span&gt;的. 那么我们可以把正的数和负的数分开加起来，假设和分别为&lt;span class=&#34;math inline&#34;&gt;\(s _1\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(s _2\)&lt;/span&gt;，每次询问就是要求&lt;span class=&#34;math inline&#34;&gt;\(s _1-s _2\)&lt;/span&gt;第&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;位上的数.&lt;/p&gt;
 &lt;p&gt;为了求这个，我们需要知道做减法的时候在第&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;位上是否出现了退位，判断方法很简单，只需要比较两个数最低的&lt;span class=&#34;math inline&#34;&gt;\(k-1\)&lt;/span&gt;位的大小即可. 用zkw维护&lt;span class=&#34;math inline&#34;&gt;\(s _1\)&lt;/span&gt;异或&lt;span class=&#34;math inline&#34;&gt;\(s _2\)&lt;/span&gt;，找出第&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;位以下第一个为&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;的位，然后检查一下&lt;span class=&#34;math inline&#34;&gt;\(s _1\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(s _2\)&lt;/span&gt;具体哪一个这位为&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;就可以了. 当然要特判一下异或的结果全都是&lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt;的情况.&lt;/p&gt;
 &lt;p&gt;具体实现加法的时候，我是先把从第&lt;span class=&#34;math inline&#34;&gt;\(b\)&lt;/span&gt;位开始的&lt;span class=&#34;math inline&#34;&gt;\(30\)&lt;/span&gt;位拿出来跟&lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt;相加，维护&lt;span class=&#34;math inline&#34;&gt;\(s _1\)&lt;/span&gt;异或&lt;span class=&#34;math inline&#34;&gt;\(s _2\)&lt;/span&gt;，再处理一次进位，不知道这么做有没有减小常数.&lt;/p&gt;
@@ -237,18 +237,18 @@ ele &lt;span style=&#34;color:#a6e22e&#34;&gt;getl&lt;/span&gt;(ele i){
 	}
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- /posts/loj2302/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2302/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2554题解</title>
-        <link>/posts/loj2554/</link>
+        <link>https://seraphim.rocks/posts/loj2554/</link>
         <pubDate>Thu, 21 Jun 2018 11:25:11 +0800</pubDate>
         
-        <guid>/posts/loj2554/</guid>
-        <description>蒟蒻的博客 /posts/loj2554/ -&lt;p&gt;首先注意到给定的区间之间要么不相交，要么嵌套，否则肯定不合法，而且一定有一个覆盖整个序列的区间. 据此我们可以发现区间之间嵌套的关系形成了一个树结构，树中每个点是一个极大的连续的区间. 因此我们只需求出&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;表示长为&lt;span class=&#34;math inline&#34;&gt;\(i+1\)&lt;/span&gt;的，不存在任何不包含最后一位的连续区间的，排列的个数.&lt;/p&gt;
+        <guid>https://seraphim.rocks/posts/loj2554/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2554/ -&lt;p&gt;首先注意到给定的区间之间要么不相交，要么嵌套，否则肯定不合法，而且一定有一个覆盖整个序列的区间. 据此我们可以发现区间之间嵌套的关系形成了一个树结构，树中每个点是一个极大的连续的区间. 因此我们只需求出&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;表示长为&lt;span class=&#34;math inline&#34;&gt;\(i+1\)&lt;/span&gt;的，不存在任何不包含最后一位的连续区间的，排列的个数.&lt;/p&gt;
 &lt;p&gt;假设&lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt;是&lt;span class=&#34;math inline&#34;&gt;\(1,2,\ldots,n\)&lt;/span&gt;的一个排列，令&lt;span class=&#34;math inline&#34;&gt;\(p _i\)&lt;/span&gt;表示&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;在&lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt;中的位置，易知&lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt;中一个连续的区间对应着&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;中一个连续的区间，因此&lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt;满足上一段所述条件等价于&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;中不存在一个不包含最大值的连续区间.&lt;/p&gt;
 &lt;p&gt;考虑跟排列有关的递推&lt;!-- raw HTML omitted --&gt;我只知道&lt;!-- raw HTML omitted --&gt;有两种思路，把&lt;span class=&#34;math inline&#34;&gt;\(n+1\)&lt;/span&gt;插入或者在序列某位放一个&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;，并把前面所有&lt;span class=&#34;math inline&#34;&gt;\(\ge i\)&lt;/span&gt;的数&lt;span class=&#34;math inline&#34;&gt;\(+1\)&lt;/span&gt;. 我一开始想的是后一种思路，结果没想出来. 考虑前一种思路，因为&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;中不存在一个不包含最大值的连续区间，为方便起见插入&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;而不是插入&lt;span class=&#34;math inline&#34;&gt;\(n+1\)&lt;/span&gt;，接下来要讨论两种情况. 为方便起见，下面先假设&lt;span class=&#34;math inline&#34;&gt;\(n\ge 2\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;如果插入前的序列是合法的，那么插入前的序列有&lt;span class=&#34;math inline&#34;&gt;\(f _{n-1}\)&lt;/span&gt;种可能，而插入的位置可以是除了插入前最小值旁边的任何位置，共&lt;span class=&#34;math inline&#34;&gt;\(n-1\)&lt;/span&gt;种，因此这种情况的贡献为&lt;span class=&#34;math inline&#34;&gt;\((n-1)f _{n-1}\)&lt;/span&gt;.&lt;/p&gt;
@@ -380,18 +380,18 @@ int main(){
 	return 0;
 }
 ```
-\]&lt;/span&gt;&lt;/p&gt;- /posts/loj2554/ - </description>
+\]&lt;/span&gt;&lt;/p&gt;- https://seraphim.rocks/posts/loj2554/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2553题解</title>
-        <link>/posts/loj2553/</link>
+        <link>https://seraphim.rocks/posts/loj2553/</link>
         <pubDate>Wed, 20 Jun 2018 19:05:24 +0800</pubDate>
         
-        <guid>/posts/loj2553/</guid>
-        <description>蒟蒻的博客 /posts/loj2553/ -&lt;p&gt;&lt;!-- raw HTML omitted --&gt;点一下，写一年！A到就是赚到！&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+        <guid>https://seraphim.rocks/posts/loj2553/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2553/ -&lt;p&gt;&lt;!-- raw HTML omitted --&gt;点一下，写一年！A到就是赚到！&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;一个自然的思路是枚举&lt;span class=&#34;math inline&#34;&gt;\(\textrm{LCA}^\prime(x,y)\)&lt;/span&gt;，这样&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;在&lt;span class=&#34;math inline&#34;&gt;\(T^\prime\)&lt;/span&gt;上分属&lt;span class=&#34;math inline&#34;&gt;\(\textrm{LCA}^\prime(x,y)\)&lt;/span&gt;的不同子树，剩下在&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;上的部分可以写成&lt;span class=&#34;math inline&#34;&gt;\(f(x,y)=\frac{1}{2}(\textrm{depth}(x)+\textrm{depth}(y)+\textrm{dis}(x,y))\)&lt;/span&gt;，可以做类似dsu on a tree的过程来统计答案. 那么我们需要一个数据结构维护一个点集&lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;，支持对一个点&lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt;查询&lt;span class=&#34;math inline&#34;&gt;\(\min _{v \in S}f(u,v)\)&lt;/span&gt;以及向&lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;中插入一个点.&lt;/p&gt;
 &lt;p&gt;像这样维护树上点集，查询权值在边上的信息的时候，可以考虑使用边分治，先对树&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;建立起一棵边分树，把点集&lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;按照该分治结构划分，形成一棵有&lt;span class=&#34;math inline&#34;&gt;\(O(|S|)\)&lt;/span&gt;个点的树结构，每个点保存&lt;span class=&#34;math inline&#34;&gt;\(\max\textrm{depth}(u)+\textrm{dis}(u,v)\)&lt;/span&gt;，其中&lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt;为该点代表的分治结构里面的关键点，&lt;span class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt;为上一层分治结构的分治边靠近当前分治结构的端点. 那么查询直接在这棵树上面往下走就可以了，插入也可以很容易地处理. 这样我们就可以&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n\log^2 n)\)&lt;/span&gt;地解决这道题.&lt;/p&gt;
 &lt;p&gt;事实上还可以进一步优化，注意到边分树是二叉树结构，可以直接使用类似线段树合并的算法，并顺便计算贡献，而不需要进行启发式合并，这样的复杂度是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n\log n)\)&lt;/span&gt;.&lt;/p&gt;
@@ -561,18 +561,18 @@ node&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34
 &lt;span style=&#34;color:#75715e&#34;&gt;//	while(1);
 &lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- /posts/loj2553/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2553/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2555题解</title>
-        <link>/posts/loj2555/</link>
+        <link>https://seraphim.rocks/posts/loj2555/</link>
         <pubDate>Wed, 20 Jun 2018 09:36:52 +0800</pubDate>
         
-        <guid>/posts/loj2555/</guid>
-        <description>蒟蒻的博客 /posts/loj2555/ -&lt;p&gt;首先考虑&lt;span class=&#34;math inline&#34;&gt;\(m=1\)&lt;/span&gt;的情况，这个时候显然直接二分+按价格贪心就可以了. 如果直接把这个算法应用到原题，复杂度是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(nm\log^2 n)\)&lt;/span&gt;. 结果我就开始想整体二分，想复杂了.&lt;/p&gt;
+        <guid>https://seraphim.rocks/posts/loj2555/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2555/ -&lt;p&gt;首先考虑&lt;span class=&#34;math inline&#34;&gt;\(m=1\)&lt;/span&gt;的情况，这个时候显然直接二分+按价格贪心就可以了. 如果直接把这个算法应用到原题，复杂度是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(nm\log^2 n)\)&lt;/span&gt;. 结果我就开始想整体二分，想复杂了.&lt;/p&gt;
 &lt;p&gt;事实上这种情况下还有一种优化复杂度的思路，就是使用某个数据结构加速单次的查询，即要支持：&lt;/p&gt;
 &lt;ul&gt;
 &lt;li&gt;在果汁集合确定的情况下，快速查询某个&lt;span class=&#34;math inline&#34;&gt;\((g,L)\)&lt;/span&gt;是否可行&lt;/li&gt;
@@ -679,18 +679,18 @@ ele &lt;span style=&#34;color:#a6e22e&#34;&gt;qry&lt;/span&gt;(node &lt;span sty
 	}
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- /posts/loj2555/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2555/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2552题解</title>
-        <link>/posts/loj2552/</link>
+        <link>https://seraphim.rocks/posts/loj2552/</link>
         <pubDate>Tue, 19 Jun 2018 20:05:22 +0800</pubDate>
         
-        <guid>/posts/loj2552/</guid>
-        <description>蒟蒻的博客 /posts/loj2552/ -&lt;p&gt;&lt;strong&gt;由于代码习惯，下文中用&lt;span class=&#34;math inline&#34;&gt;\(h _i\)&lt;/span&gt;表示题目中的&lt;span class=&#34;math inline&#34;&gt;\(m _i\)&lt;/span&gt;.&lt;/strong&gt;&lt;/p&gt;
+        <guid>https://seraphim.rocks/posts/loj2552/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2552/ -&lt;p&gt;&lt;strong&gt;由于代码习惯，下文中用&lt;span class=&#34;math inline&#34;&gt;\(h _i\)&lt;/span&gt;表示题目中的&lt;span class=&#34;math inline&#34;&gt;\(m _i\)&lt;/span&gt;.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;看到998244353不知道为什么就去想NTT……其实完全没有必要，因为&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(h _i\)&lt;/span&gt;都非常小.&lt;/p&gt;
 &lt;p&gt;记&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j}\)&lt;/span&gt;表示&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;这个人生命值恰为&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;的概率，直接暴力dp，每次更新复杂度为&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(m)\)&lt;/span&gt;. 这样就可以求出最后每个人生命值的期望.&lt;/p&gt;
 &lt;p&gt;考虑怎么求另一问，显然&lt;span class=&#34;math inline&#34;&gt;\(f _{i,0}\)&lt;/span&gt;就是&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;这个人死去的概率. 记&lt;span class=&#34;math inline&#34;&gt;\(\textrm{al} _{i,j}\)&lt;/span&gt;表示除了&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;以外还活下来&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;个人的概率，显然可以&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n^3)\)&lt;/span&gt;dp出来. 其实这样做了很多重复的工作，可以直接求出&lt;span class=&#34;math inline&#34;&gt;\(\textrm{al} _j\)&lt;/span&gt;表示有&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;个人活下来的概率，那么要除去某个人，相当于是从背包里面删去一个元素，考虑之前的递推式&lt;span class=&#34;math inline&#34;&gt;\(\textrm{al}^\prime _i=\textrm{al} _i f _{x,0}+\textrm{al} _{i-1}(1-f _{x,0})\)&lt;/span&gt;，可以得到&lt;span class=&#34;math inline&#34;&gt;\(\textrm{al} _i=\frac{\textrm{al}^\prime _i-\textrm{al} _{i-1}(1-f _{x,0})}{f _{x,0}}\)&lt;/span&gt;，这样就能从背包中删去一个元素了. 这部分计算的复杂度就降到了&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n^2)\)&lt;/span&gt;.&lt;/p&gt;
@@ -768,18 +768,18 @@ ele &lt;span style=&#34;color:#a6e22e&#34;&gt;qry&lt;/span&gt;(node &lt;span sty
 	puts(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;);
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- /posts/loj2552/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2552/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2264题解</title>
-        <link>/posts/loj2264/</link>
+        <link>https://seraphim.rocks/posts/loj2264/</link>
         <pubDate>Tue, 19 Jun 2018 15:28:33 +0800</pubDate>
         
-        <guid>/posts/loj2264/</guid>
-        <description>蒟蒻的博客 /posts/loj2264/ -&lt;p&gt;看了题解才发现loj上面的题面漏了一小部分……uoj上的题面是完整的.&lt;/p&gt;
+        <guid>https://seraphim.rocks/posts/loj2264/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2264/ -&lt;p&gt;看了题解才发现loj上面的题面漏了一小部分……uoj上的题面是完整的.&lt;/p&gt;
 &lt;p&gt;由Lucas定理易知&lt;span class=&#34;math inline&#34;&gt;\(\binom{n}{m}\equiv 1\pmod{2}\leftrightarrow m\subset n\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;让&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j}\)&lt;/span&gt;表示从&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;位置或&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;位置之后开始的，所有数都包含于&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;的子序列的方案数，转移显然.&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;那一维可以直接滚动，因为题目保证输入的数互不相同，所以复杂度不会超过枚举子集的复杂度，即&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(3^{\log _2a})\)&lt;/span&gt;，也就是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(a^{\log _23})\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;辣鸡bzoj就非得要我把取模改成减法卡卡常数才让我过……&lt;/p&gt;
@@ -812,18 +812,18 @@ ele &lt;span style=&#34;color:#a6e22e&#34;&gt;qry&lt;/span&gt;(node &lt;span sty
 	printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,ans);
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- /posts/loj2264/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2264/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2586题解</title>
-        <link>/posts/loj2586/</link>
+        <link>https://seraphim.rocks/posts/loj2586/</link>
         <pubDate>Tue, 19 Jun 2018 11:18:45 +0800</pubDate>
         
-        <guid>/posts/loj2586/</guid>
-        <description>蒟蒻的博客 /posts/loj2586/ -&lt;p&gt;因为圆是从大往小选的，所以每次选出一个圆，它能删掉的圆一定在两倍半径范围之内，假设我们有一个数据结构可以快速把两倍半径范围内的圆找出来，那么直接对这些圆暴力判交就可以了.&lt;/p&gt;
+        <guid>https://seraphim.rocks/posts/loj2586/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2586/ -&lt;p&gt;因为圆是从大往小选的，所以每次选出一个圆，它能删掉的圆一定在两倍半径范围之内，假设我们有一个数据结构可以快速把两倍半径范围内的圆找出来，那么直接对这些圆暴力判交就可以了.&lt;/p&gt;
 &lt;p&gt;我们考虑这个算法中，每个圆会跟多少个比它大的圆暴力判交. 假设这些圆构成集合&lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;，那么&lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;中的圆两两不交（否则一定有一个会被另一个先删去）. 于是&lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;中的圆最多只有常数个，因此这么做的时间复杂度是得到保障的.&lt;/p&gt;
 &lt;p&gt;现在问题变成如何快速找出两倍半径范围内的圆. 理论上kdtree是可以做的，但我也不知道为什么就T飞了……&lt;/p&gt;
 &lt;p&gt;事实上，我们不需要真的只找出两倍半径以内的圆，可以划分得更粗略一些. 假设当前选出的圆半径为&lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt;，我们可以把平面划分成若干个&lt;span class=&#34;math inline&#34;&gt;\(r\times r\)&lt;/span&gt;的格子，找出以当前圆为中心的&lt;span class=&#34;math inline&#34;&gt;\(5\times 5\)&lt;/span&gt;的网格中的所有圆，时间复杂度的证明同上. 此时，如果&lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt;是确定的，那么用hashmap套vector就可以维护了. 不过现在&lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt;是不确定的，如果每次&lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt;变化都重新划分的话，时间复杂度就会达到&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n^2)\)&lt;/span&gt;，还不如暴力. 这个时候我们可以划分得再粗略一些，对于半径为&lt;span class=&#34;math inline&#34;&gt;\(r\)&lt;/span&gt;的选出的圆，取&lt;span class=&#34;math inline&#34;&gt;\(k=\max _{2^{k _0}\ge r}k _0\)&lt;/span&gt;，把平面划分成若干个&lt;span class=&#34;math inline&#34;&gt;\(2^k\times 2^k\)&lt;/span&gt;的格子. 这样重新划分的次数为&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\log x)\)&lt;/span&gt;，时间复杂度的证明仍然类似上面.&lt;/p&gt;
@@ -893,18 +893,18 @@ unordered_map&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;ele,
 	puts(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;);
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- /posts/loj2586/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2586/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2585题解</title>
-        <link>/posts/loj2585/</link>
+        <link>https://seraphim.rocks/posts/loj2585/</link>
         <pubDate>Tue, 19 Jun 2018 10:01:24 +0800</pubDate>
         
-        <guid>/posts/loj2585/</guid>
-        <description>蒟蒻的博客 /posts/loj2585/ -&lt;p&gt;算是一个我不太熟悉的技巧吧……感觉大家都会，就我一个考场上没想出来.&lt;/p&gt;
+        <guid>https://seraphim.rocks/posts/loj2585/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2585/ -&lt;p&gt;算是一个我不太熟悉的技巧吧……感觉大家都会，就我一个考场上没想出来.&lt;/p&gt;
 &lt;p&gt;单独考虑某一种商店类型到居住点的距离，它关于坐标的函数一定是一条折线，而且每一段的斜率都只可能是1或-1. 因为最后相当于要把一堆折线取max，所以每一条折线可以看作是一堆射线，即斜率为1的段只考虑右端点，斜率为-1的段只考虑左端点. 这样一来，查询就是给定某个横坐标求这个横坐标上各条射线的最高点，修改就是加入若干条射线，删除若干条射线.&lt;/p&gt;
 &lt;p&gt;考虑用一个数据结构维护这些射线，我的第一反应是lych线段树，但是它不支持删除. 注意到斜率只有两种，而相同斜率的射线方向都是一样的，我们可以把射线按斜率分开，分别按端点横坐标排序，同时维护截距. 那么每次查询其实就是查前缀/后缀的最大截距，插入和删除就是简单的单点修改，用一个平衡树来维护就可以了.&lt;/p&gt;
 &lt;p&gt;复杂度是一个&lt;span class=&#34;math inline&#34;&gt;\(\log\)&lt;/span&gt;的，但是常数应该比较大，截止到写这篇题解的时候，我的代码是loj上AC代码里面最慢的.&lt;/p&gt;
@@ -1064,18 +1064,18 @@ node&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;Q; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%lld&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,res[i]);
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- /posts/loj2585/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2585/ - </description>
         </item>
     
     
     
         <item>
         <title>loj6059题解</title>
-        <link>/posts/loj6059/</link>
+        <link>https://seraphim.rocks/posts/loj6059/</link>
         <pubDate>Sat, 16 Jun 2018 12:50:31 +0800</pubDate>
         
-        <guid>/posts/loj6059/</guid>
-        <description>蒟蒻的博客 /posts/loj6059/ -&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j,k}\)&lt;/span&gt;表示&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;位，模&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;余&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;，数字和恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;的数的个数，那么可以写出递推式&lt;/p&gt;
+        <guid>https://seraphim.rocks/posts/loj6059/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj6059/ -&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j,k}\)&lt;/span&gt;表示&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;位，模&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;余&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;，数字和恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;的数的个数，那么可以写出递推式&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 可以发现这很像一个卷积的形式，但是$j$这一维很难用多项式来优化. 这个时候可以考虑倍增，列出更一般的递推式
 
@@ -1162,7 +1162,7 @@ int main(){
 	puts(&#34;&#34;);
 	return 0;
 }
-```\]&lt;/span&gt;&lt;/p&gt;- /posts/loj6059/ - </description>
+```\]&lt;/span&gt;&lt;/p&gt;- https://seraphim.rocks/posts/loj6059/ - </description>
         </item>
     
     

@@ -2,39 +2,39 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>贪心 on 蒟蒻的博客</title>
-    <link>/tags/%E8%B4%AA%E5%BF%83/</link>
+    <link>https://seraphim.rocks/tags/%E8%B4%AA%E5%BF%83/</link>
     <description>Recent content in 贪心 on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 15 Jul 2018 13:31:44 +0800</lastBuildDate>
     
-	<atom:link href="/tags/%E8%B4%AA%E5%BF%83/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://seraphim.rocks/tags/%E8%B4%AA%E5%BF%83/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>uoj387题解</title>
-      <link>/posts/uoj387/</link>
+      <link>https://seraphim.rocks/posts/uoj387/</link>
       <pubDate>Sun, 15 Jul 2018 13:31:44 +0800</pubDate>
       
-      <guid>/posts/uoj387/</guid>
+      <guid>https://seraphim.rocks/posts/uoj387/</guid>
       <description>&lt;p&gt;学到了一个新的技巧，树形的依赖关系，把顺序翻转，就可以在依赖父亲和依赖子树之间相互转化.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2248题解</title>
-      <link>/posts/loj2248/</link>
+      <link>https://seraphim.rocks/posts/loj2248/</link>
       <pubDate>Mon, 25 Jun 2018 15:27:41 +0800</pubDate>
       
-      <guid>/posts/loj2248/</guid>
+      <guid>https://seraphim.rocks/posts/loj2248/</guid>
       <description>&lt;p&gt;vfk说分不清noi2014和noip2014果然是有道理的……&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2306题解</title>
-      <link>/posts/loj2306/</link>
+      <link>https://seraphim.rocks/posts/loj2306/</link>
       <pubDate>Mon, 25 Jun 2018 08:24:26 +0800</pubDate>
       
-      <guid>/posts/loj2306/</guid>
+      <guid>https://seraphim.rocks/posts/loj2306/</guid>
       <description>&lt;p&gt;这题面写得有毒……应该理解为对于第&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;种蔬菜，有&lt;span class=&#34;math inline&#34;&gt;\(x _i\)&lt;/span&gt;个单位只能在第一天卖，有&lt;span class=&#34;math inline&#34;&gt;\(x _i\)&lt;/span&gt;个单位只能在第二天结束前卖，以此类推. 也就是说，说你把当天结束本来要变质的蔬菜卖了，那天就不会有蔬菜变质了.&lt;/p&gt;</description>
     </item>
     

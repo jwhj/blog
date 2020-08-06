@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>DFT on 蒟蒻的博客</title>
-    <link>/tags/dft/</link>
+    <link>https://seraphim.rocks/tags/dft/</link>
     <description>Recent content in DFT on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 15 Jun 2018 10:36:33 +0800</lastBuildDate>
     
-	<atom:link href="/tags/dft/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://seraphim.rocks/tags/dft/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>bzoj4314题解</title>
-      <link>/posts/bzoj4314/</link>
+      <link>https://seraphim.rocks/posts/bzoj4314/</link>
       <pubDate>Fri, 15 Jun 2018 10:36:33 +0800</pubDate>
       
-      <guid>/posts/bzoj4314/</guid>
+      <guid>https://seraphim.rocks/posts/bzoj4314/</guid>
       <description>&lt;p&gt;定义&lt;span class=&#34;math inline&#34;&gt;\(f(x,y)=\prod _{i=0}^{n-1}(1+x^iy)\)&lt;/span&gt;，这里做乘法的时候&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;是模&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的循环卷积，而y是普通卷积. 那么答案就是&lt;span class=&#34;math inline&#34;&gt;\([x^0y^k]f(x,y)\)&lt;/span&gt;.&lt;/p&gt;</description>
     </item>
     
