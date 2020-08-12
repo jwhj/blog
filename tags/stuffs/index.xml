@@ -6,10 +6,29 @@
     <description>Recent content in stuffs on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Feb 2020 21:55:41 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2020 11:40:51 +0800</lastBuildDate>
     
 	<atom:link href="https://seraphim.rocks/tags/stuffs/index.xml" rel="self" type="application/rss+xml" />
     
+    
+    <item>
+      <title>从hexo迁移至hugo</title>
+      <link>https://seraphim.rocks/posts/hugo/</link>
+      <pubDate>Wed, 12 Aug 2020 11:40:51 +0800</pubDate>
+      
+      <guid>https://seraphim.rocks/posts/hugo/</guid>
+      <description>前段时间觉得hexo还是太慢了，又特别想折腾一下，就把博客从hexo迁移到了hugo。
+众所周知， 我们应该先搞定数学公式支持。那么一个问题就是，怎么防止公式里的下划线等符号被当成markdown解析。hugo使用的默认markdown	parser是goldmark。Goldmark本身无法实现这个需求，不过它有一个比较强大的插件系统，同时正好也有一个插件来实现这个需求。另外，值得一提的是，这个插件会把行内公式和行间公式渲染成\(...\)和\[...\]，所以加载mathjax或者katex的时候甚至不用特意去配置数学公式的定界符。
+可是hugo似乎不能配置markdown parser的插件。 以前有过给goldmark加上这个插件的pr，但是因为某些原因没有被接受。不过问题不大，我们可以自己改源码。如果用过go的话，照着插件的readme来做并不难。大概记录一下步骤。打开/markup/goldmark/convert.go，首先import插件：
+import mathjax &amp;#34;github.com/litao91/goldmark-mathjax&amp;#34; 接着找到如下代码：
+var ( extensions = []goldmark.Extender{ newLinks(), newTocExtension(rendererOptions), } parserOptions []parser.Option ) 添加插件：
+var ( extensions = []goldmark.Extender{ extension.Strikethrough, mathjax.MathJax, newLinks(), newTocExtension(rendererOptions), } parserOptions []parser.Option ) （这里的extension.Strikethrough是我添加的另一个插件，效果是支持在markdown里写删除线）
+接下来编译源码安装就行了。
+为了引入katex，首先在博客根目录下创建/layouts/partials/katex.html，写入
+&amp;lt;!-- CSS File --&amp;gt; &amp;lt;link rel=&amp;#34;stylesheet&amp;#34; href=&amp;#34;https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt; &amp;lt;!-- JS Fle --&amp;gt; &amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; &amp;lt;script defer src=&amp;#34;https://cdn.jsdelivr.net/npm/katex/dist/contrib/auto-render.min.js&amp;#34; crossorigin=&amp;#34;anonymous&amp;#34; onload=&amp;#34;renderMathInElement(document.body);&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; 接着在主题目录下找到/layouts/default/baseof.html或者类似的文件。找个合适的地方加一行{{ partial &amp;quot;katex.html&amp;quot; .}}。
+博文的迁移很容易，写个脚本转换一下front matter的格式就差不多了。
+搜索功能以后再说吧。</description>
+    </item>
     
     <item>
       <title>LevelDB数据丢失问题</title>

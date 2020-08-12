@@ -5,9 +5,59 @@
     <description>Recent content on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Feb 2020 21:55:41 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2020 11:40:51 +0800</lastBuildDate>
     
         <atom:link href="https://seraphim.rocks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>从hexo迁移至hugo</title>
+        <link>https://seraphim.rocks/posts/hugo/</link>
+        <pubDate>Wed, 12 Aug 2020 11:40:51 +0800</pubDate>
+        
+        <guid>https://seraphim.rocks/posts/hugo/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/hugo/ -&lt;p&gt;前段时间觉得hexo还是太慢了，又特别想折腾一下，就把博客从hexo迁移到了hugo。&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+&lt;p&gt;&lt;del&gt;众所周知，&lt;/del&gt; 我们应该先搞定数学公式支持。那么一个问题就是，怎么防止公式里的下划线等符号被当成markdown解析。hugo使用的默认markdown	parser是&lt;a href=&#34;https://github.com/yuin/goldmark&#34;&gt;goldmark&lt;/a&gt;。Goldmark本身无法实现这个需求，不过它有一个比较强大的插件系统，同时正好也有&lt;a href=&#34;https://github.com/litao91/goldmark-mathjax&#34;&gt;一个插件&lt;/a&gt;来实现这个需求。另外，值得一提的是，这个插件会把行内公式和行间公式渲染成&lt;code&gt;\(...\)&lt;/code&gt;和&lt;code&gt;\[...\]&lt;/code&gt;，所以加载mathjax或者katex的时候甚至不用特意去配置数学公式的定界符。&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;可是hugo似乎不能配置markdown parser的插件。&lt;/del&gt; 以前有过给goldmark加上这个插件的pr，但是因为某些原因没有被接受。不过问题不大，我们可以自己改源码。如果用过go的话，照着插件的readme来做并不难。大概记录一下步骤。打开&lt;code&gt;/markup/goldmark/convert.go&lt;/code&gt;，首先import插件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;color:#f92672&#34;&gt;import&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;mathjax&lt;/span&gt; &lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;github.com/litao91/goldmark-mathjax&amp;#34;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;接着找到如下代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; (
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;extensions&lt;/span&gt; = []&lt;span style=&#34;color:#a6e22e&#34;&gt;goldmark&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Extender&lt;/span&gt;{
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;newLinks&lt;/span&gt;(),
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;newTocExtension&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;rendererOptions&lt;/span&gt;),
+	}
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;parserOptions&lt;/span&gt; []&lt;span style=&#34;color:#a6e22e&#34;&gt;parser&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Option&lt;/span&gt;
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;添加插件：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-go&#34; data-lang=&#34;go&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;var&lt;/span&gt; (
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;extensions&lt;/span&gt; = []&lt;span style=&#34;color:#a6e22e&#34;&gt;goldmark&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Extender&lt;/span&gt;{
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;extension&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Strikethrough&lt;/span&gt;,
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;mathjax&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;MathJax&lt;/span&gt;,
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;newLinks&lt;/span&gt;(),
+		&lt;span style=&#34;color:#a6e22e&#34;&gt;newTocExtension&lt;/span&gt;(&lt;span style=&#34;color:#a6e22e&#34;&gt;rendererOptions&lt;/span&gt;),
+	}
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;parserOptions&lt;/span&gt; []&lt;span style=&#34;color:#a6e22e&#34;&gt;parser&lt;/span&gt;.&lt;span style=&#34;color:#a6e22e&#34;&gt;Option&lt;/span&gt;
+)
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;（这里的&lt;code&gt;extension.Strikethrough&lt;/code&gt;是我添加的另一个插件，效果是支持在markdown里写删除线）&lt;/p&gt;
+&lt;p&gt;接下来编译源码安装就行了。&lt;/p&gt;
+&lt;p&gt;为了引入katex，首先在博客根目录下创建&lt;code&gt;/layouts/partials/katex.html&lt;/code&gt;，写入&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- CSS File --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;link&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;rel&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;stylesheet&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;href&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css&amp;#34;&lt;/span&gt;
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;crossorigin&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;anonymous&amp;#34;&lt;/span&gt;&amp;gt;
+
+&lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;!-- JS Fle --&amp;gt;&lt;/span&gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js&amp;#34;&lt;/span&gt;
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;crossorigin&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;anonymous&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+&amp;lt;&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;defer&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;src&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;https://cdn.jsdelivr.net/npm/katex/dist/contrib/auto-render.min.js&amp;#34;&lt;/span&gt;
+	&lt;span style=&#34;color:#a6e22e&#34;&gt;crossorigin&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;anonymous&amp;#34;&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;onload&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;renderMathInElement(document.body);&amp;#34;&lt;/span&gt;&amp;gt;&amp;lt;/&lt;span style=&#34;color:#f92672&#34;&gt;script&lt;/span&gt;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;p&gt;接着在主题目录下找到&lt;code&gt;/layouts/default/baseof.html&lt;/code&gt;&lt;del&gt;或者类似的文件&lt;/del&gt;。找个合适的地方加一行&lt;code&gt;{{ partial &amp;quot;katex.html&amp;quot; .}}&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;博文的迁移很容易，写个脚本转换一下front matter的格式就差不多了。&lt;/p&gt;
+&lt;p&gt;&lt;del&gt;搜索功能以后再说吧。&lt;/del&gt;&lt;/p&gt;
+&lt;!-- raw HTML omitted --&gt;
+- https://seraphim.rocks/posts/hugo/ - </description>
+        </item>
     
     
     
@@ -299,20 +349,6 @@ ele n,m,x,f[maxn],fac[maxn],ifac[maxn],a[maxn],b[maxn];
 &lt;p&gt;源码放在 &lt;a href=&#34;https://github.com/jwhj/nsmo&#34;&gt;https://github.com/jwhj/nsmo&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;!-- raw HTML omitted --&gt;跟arcsine比起来这个才像一个真的游戏.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;&lt;!-- raw HTML omitted --&gt;我感觉还挺好玩的.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;- https://seraphim.rocks/posts/nsmo/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>Arcsine</title>
-        <link>https://seraphim.rocks/posts/arcsine/</link>
-        <pubDate>Sun, 20 Jan 2019 21:24:26 +0800</pubDate>
-        
-        <guid>https://seraphim.rocks/posts/arcsine/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/arcsine/ -&lt;p&gt;厚颜无耻地发一个自己写的小游戏.&lt;/p&gt;
-&lt;p&gt;地址 &lt;a href=&#34;http://jwhj.github.io/arcsine/&#34;&gt;http://jwhj.github.io/arcsine/&lt;/a&gt; ，打开就能玩.&lt;/p&gt;
-&lt;p&gt;源码放在 &lt;a href=&#34;https://github.com/jwhj/arcsine&#34;&gt;https://github.com/jwhj/arcsine&lt;/a&gt; ，写得很丑希望不要被嘲讽. &lt;del&gt;说得好像有人会看一样.&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;游戏功能也许会在未来进一步完善. &lt;del&gt;毕竟我比较懒.&lt;/del&gt;&lt;/p&gt;- https://seraphim.rocks/posts/arcsine/ - </description>
         </item>
     
     

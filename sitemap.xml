@@ -3,27 +3,32 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   
   <url>
-    <loc>https://seraphim.rocks/posts/leveldb-and-git-md/</loc>
-    <lastmod>2020-02-03T21:55:41+08:00</lastmod>
-  </url>
-  
-  <url>
     <loc>https://seraphim.rocks/posts/</loc>
-    <lastmod>2020-02-03T21:55:41+08:00</lastmod>
+    <lastmod>2020-08-12T11:40:51+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://seraphim.rocks/tags/stuffs/</loc>
-    <lastmod>2020-02-03T21:55:41+08:00</lastmod>
+    <lastmod>2020-08-12T11:40:51+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://seraphim.rocks/tags/</loc>
-    <lastmod>2020-02-03T21:55:41+08:00</lastmod>
+    <lastmod>2020-08-12T11:40:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://seraphim.rocks/posts/hugo/</loc>
+    <lastmod>2020-08-12T11:40:51+08:00</lastmod>
   </url>
   
   <url>
     <loc>https://seraphim.rocks/</loc>
+    <lastmod>2020-08-12T11:40:51+08:00</lastmod>
+  </url>
+  
+  <url>
+    <loc>https://seraphim.rocks/posts/leveldb-and-git-md/</loc>
     <lastmod>2020-02-03T21:55:41+08:00</lastmod>
   </url>
   

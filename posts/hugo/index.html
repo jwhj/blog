@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html><head>
-<title>Posts</title>
+<title>从hexo迁移至hugo</title>
 
 
 
@@ -51,11 +51,17 @@
 
 
 
+  
+    <script src="https://seraphim.rocks/js/toc-collapse.js"></script>
+  
 
 
 
 
 
+
+
+<script src='https://unpkg.com/valine@1.4.14/dist/Valine.min.js'></script>
 
 
 
@@ -128,6 +134,11 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
 </div><div ref="extraContainer" class="extra-container">
     
     
+    <div class="toc animated-visibility" :class="{ invisible: scrollY <= 140 }">
+
+
+</div>
+    
     <div class="pagination">
         <a id="globalBackToTop" class="pagination-action animated-visibility" href="#top" :class="{ invisible: scrollY == 0 }">
             <i class="material-icons pagination-action-icon">
@@ -143,24 +154,6 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 brightness_7
             </i>
         </a>
-        
-        
-        
-            <div class="pagination-indicator">
-                <span style="text-align: center">
-                    1<br><div style="display: inline-block; transform: rotate(-28deg)">-</div><br>5
-                </span>
-            </div>
-            
-            
-
-            
-            <a class="pagination-action" href="/posts/page/2/">
-                <i class="material-icons pagination-action-icon">
-                    chevron_right
-                </i>
-            </a>
-            
         
         
     </div>
@@ -205,6 +198,11 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
                 
             
             
+            <div class="toc">
+
+
+</div>
+            
         </div>
     </div>
 </div>
@@ -245,392 +243,133 @@ Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopene
             <div id="content">
 <div ref="streamContainer" class="stream-container">
     <div class="post-list-container post-list-container-shadow">
-        
-            <a class="a-block">
-                <div class="post-item-wrapper post-item-wrapper-no-hover">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title post-item-title-small year">
-                                2020
-                            </div>
-                        </div>
+        <div class="post">
+            
+            
+            
+
+            <div class="post-head-wrapper-text-only"
+                
+            >
+                <div class="post-title">
+                    从hexo迁移至hugo
+                    
+                    <div class="post-meta">
+                        
+                        <time itemprop="datePublished">
+                            2020-08-12 11:40
+                        </time>
+                        
+
+                        
+
+                        
+                            <i class="material-icons" style="">label</i>
+                            
+                                <a href="/tags/stuffs">stuffs</a>
+                                &nbsp;
+                            
+                        
+                        
+                            <i class="material-icons" style="">schedule</i>
+                            
+
+                            
+                            
+
+                            
+                            3 min
+                            
+                            17 s.
+                        
                     </div>
                 </div>
-            </a>
+            </div>
             
-            <a href="/posts/hugo/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                从hexo迁移至hugo
-                            </div>
-                            <div class="post-item-meta">
-    2020-08-12
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
+            <div class="post-body-wrapper">
+                
+                <div class="post-body" v-pre>
+                
+                    <p>前段时间觉得hexo还是太慢了，又特别想折腾一下，就把博客从hexo迁移到了hugo。</p>
+<!-- raw HTML omitted -->
+<p><del>众所周知，</del> 我们应该先搞定数学公式支持。那么一个问题就是，怎么防止公式里的下划线等符号被当成markdown解析。hugo使用的默认markdown	parser是<a href="https://github.com/yuin/goldmark">goldmark</a>。Goldmark本身无法实现这个需求，不过它有一个比较强大的插件系统，同时正好也有<a href="https://github.com/litao91/goldmark-mathjax">一个插件</a>来实现这个需求。另外，值得一提的是，这个插件会把行内公式和行间公式渲染成<code>\(...\)</code>和<code>\[...\]</code>，所以加载mathjax或者katex的时候甚至不用特意去配置数学公式的定界符。</p>
+<p><del>可是hugo似乎不能配置markdown parser的插件。</del> 以前有过给goldmark加上这个插件的pr，但是因为某些原因没有被接受。不过问题不大，我们可以自己改源码。如果用过go的话，照着插件的readme来做并不难。大概记录一下步骤。打开<code>/markup/goldmark/convert.go</code>，首先import插件：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#f92672">import</span> <span style="color:#a6e22e">mathjax</span> <span style="color:#e6db74">&#34;github.com/litao91/goldmark-mathjax&#34;</span>
+</code></pre></div><p>接着找到如下代码：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> (
+	<span style="color:#a6e22e">extensions</span> = []<span style="color:#a6e22e">goldmark</span>.<span style="color:#a6e22e">Extender</span>{
+		<span style="color:#a6e22e">newLinks</span>(),
+		<span style="color:#a6e22e">newTocExtension</span>(<span style="color:#a6e22e">rendererOptions</span>),
+	}
+	<span style="color:#a6e22e">parserOptions</span> []<span style="color:#a6e22e">parser</span>.<span style="color:#a6e22e">Option</span>
+)
+</code></pre></div><p>添加插件：</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-go" data-lang="go"><span style="color:#66d9ef">var</span> (
+	<span style="color:#a6e22e">extensions</span> = []<span style="color:#a6e22e">goldmark</span>.<span style="color:#a6e22e">Extender</span>{
+		<span style="color:#a6e22e">extension</span>.<span style="color:#a6e22e">Strikethrough</span>,
+		<span style="color:#a6e22e">mathjax</span>.<span style="color:#a6e22e">MathJax</span>,
+		<span style="color:#a6e22e">newLinks</span>(),
+		<span style="color:#a6e22e">newTocExtension</span>(<span style="color:#a6e22e">rendererOptions</span>),
+	}
+	<span style="color:#a6e22e">parserOptions</span> []<span style="color:#a6e22e">parser</span>.<span style="color:#a6e22e">Option</span>
+)
+</code></pre></div><p>（这里的<code>extension.Strikethrough</code>是我添加的另一个插件，效果是支持在markdown里写删除线）</p>
+<p>接下来编译源码安装就行了。</p>
+<p>为了引入katex，首先在博客根目录下创建<code>/layouts/partials/katex.html</code>，写入</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- CSS File --&gt;</span>
+&lt;<span style="color:#f92672">link</span> <span style="color:#a6e22e">rel</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;stylesheet&#34;</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/katex/dist/katex.min.css&#34;</span>
+	<span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;
 
-    
-    
+<span style="color:#75715e">&lt;!-- JS Fle --&gt;</span>
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">defer</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/katex/dist/katex.min.js&#34;</span>
+	<span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+&lt;<span style="color:#f92672">script</span> <span style="color:#a6e22e">defer</span> <span style="color:#a6e22e">src</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/npm/katex/dist/contrib/auto-render.min.js&#34;</span>
+	<span style="color:#a6e22e">crossorigin</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;anonymous&#34;</span> <span style="color:#a6e22e">onload</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;renderMathInElement(document.body);&#34;</span>&gt;&lt;/<span style="color:#f92672">script</span>&gt;
+</code></pre></div><p>接着在主题目录下找到<code>/layouts/default/baseof.html</code><del>或者类似的文件</del>。找个合适的地方加一行<code>{{ partial &quot;katex.html&quot; .}}</code>。</p>
+<p>博文的迁移很容易，写个脚本转换一下front matter的格式就差不多了。</p>
+<p><del>搜索功能以后再说吧。</del></p>
+<!-- raw HTML omitted -->
 
-    
-    3 min
-    
-    17 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
+                    
+                    <HR width="100%" id="EOF">
+		    <p style="color:#777;">Last modified on 2020-08-12</p>
+                    
                 </div>
-            </a>
+            </div>
             
-            <a href="/posts/leveldb-and-git-md/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                LevelDB数据丢失问题
-                            </div>
-                            <div class="post-item-meta">
-    2020-02-03
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    1 min
-    
-    3 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
             
-            <a href="/posts/ts-notes/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                Typescript使用笔记
-                            </div>
-                            <div class="post-item-meta">
-    2020-01-22
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
+            <nav class="post-pagination">
 
-    
-    
+                
+                <a class="newer-posts">
+			Next<br>No newer posts.
+                </a>
+                
+                
+                
+                <a class="older-posts" href="https://seraphim.rocks/posts/leveldb-and-git-md/">
+			Previous<br>LevelDB数据丢失问题
+                </a>
+                
+            </nav>
+            <div class="post-comment-wrapper">
+                
 
-    
-    4 min
-    
-    13 s
-    
-    
-    &emsp;
-    
-</div>
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/watch/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                使用增量编译加快typescript项目编译
-                            </div>
-                            <div class="post-item-meta">
-    2020-01-03
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
 
-    
-    
 
-    
-    3 min
-    
-    32 s
-    
-    
-    &emsp;
-    
-</div>
+<div id="vcomments"></div>
 
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-        
-            <a class="a-block">
-                <div class="post-item-wrapper post-item-wrapper-no-hover">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title post-item-title-small year">
-                                2019
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/gitbashutf8/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                在git-bash下输入中文
-                            </div>
-                            <div class="post-item-meta">
-    2019-11-30
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
 
-    
-    
 
-    
-    1 min
-    
-    45 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/sourcehan/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                如何在xelatex中使用思源字体
-                            </div>
-                            <div class="post-item-meta">
-    2019-11-28
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    1 min
-    
-    5 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/pipe/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                使用nodejs的pipe遇到的一点小问题
-                            </div>
-                            <div class="post-item-meta">
-    2019-11-26
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    1 min
-    
-    30 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/gogetpkg/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                解决go get下载缓慢的问题
-                            </div>
-                            <div class="post-item-meta">
-    2019-05-25
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    2 min
-    
-    33 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/bzoj4734/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                &#39;[whj什么都不会系列-2]bzoj4734&amp;uoj269题解&#39;
-                            </div>
-                            <div class="post-item-meta">
-    2019-03-22
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    3 min
-    
-    50 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-            <a href="/posts/nsmo/" class="a-block">
-                <div class="post-item-wrapper">
-                    <div class="post-item post-item-no-gaps">
-                        <div class="post-item-info-wrapper">
-                            <div class="post-item-title">
-                                N Squared Minus One
-                            </div>
-                            <div class="post-item-meta">
-    2019-02-23
-    &emsp;
-    
-    
-    <i class="material-icons" style="font-size:10px">schedule</i>
-    
-
-    
-    
-
-    
-    13 s
-    
-    
-    &emsp;
-    
-</div>
-
-                        </div>
-                    </div>
-                </div>
-            </a>
-            
-        
-    </div>
-</div>
 
 
             </div>
-
-<div class="pagination">
-    
-    <a class="pagination-action" style="opacity:0">
-    
-        <i class="material-icons pagination-action-icon">
-            chevron_left
-        </i>
-    </a>
-
-        <div class="pagination-indicator">
-            <span>1/5</span>
         </div>
-
-        
-        <a class="pagination-action" href="/posts/page/2/"
-           style="opacity:1">
-        
-                <i class="material-icons pagination-action-icon">
-                    chevron_right
-                </i>
-            </a>
+    </div>
 </div>
 
-
-<div id="single-column-footer">
+            </div><div id="single-column-footer">
 Hugo Theme <a href="https://github.com/amazingrise/hugo-theme-diary">Diary</a> by <a href="https://amazingrise.net">Rise</a>
 <br>
 Ported from <a href="https://mak1t0.cc/" target="_blank" rel="noreferrer noopener">Makito</a>'s <a href="https://github.com/SumiMakito/hexo-theme-journal/" target="_blank" rel="noreferrer noopener">Journal.</a> <br>
@@ -733,6 +472,15 @@ app = new Vue({
         this.handleResize();
         this.mounted = true;
 
+        
+            new Valine({
+                el: '#vcomments',
+                appId: "f3NXeNV19jldjC2edxBWAcCY-gzGzoHsz",
+                appKey: "Ulup4a7rnGo7DlW2BROrYln1",
+                requiredFields: ['nick','mail'],
+                enableQQ: true,
+                recordIP: true,
+            })
         
     },
     destroyed() {

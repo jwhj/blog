@@ -5,9 +5,90 @@
     <description>Recent content on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Feb 2020 21:55:41 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2020 11:40:51 +0800</lastBuildDate>
     
         <atom:link href="https://seraphim.rocks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>loj2304题解</title>
+        <link>https://seraphim.rocks/posts/loj2304/</link>
+        <pubDate>Sat, 23 Jun 2018 10:00:10 +0800</pubDate>
+        
+        <guid>https://seraphim.rocks/posts/loj2304/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2304/ -&lt;p&gt;首先恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;不好处理，显然要转化为&lt;span class=&#34;math inline&#34;&gt;\(\le k\)&lt;/span&gt;的概率减去&lt;span class=&#34;math inline&#34;&gt;\(\le k-1\)&lt;/span&gt;的概率.&lt;/p&gt;
+&lt;p&gt;看上去就是个dp，让&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;表示共&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;列，安全泳池面积&lt;span class=&#34;math inline&#34;&gt;\(\le k\)&lt;/span&gt;的概率，考虑怎么递推. 假设最底下一行有一个格子是危险的，那么显然这一列两边互不干扰可以分开计算. 但是这里有一个问题，底下一行可能没有危险的格子. 于是我们把状态改为&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j}\)&lt;/span&gt;表示共&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;列，下面&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;行均安全，第&lt;span class=&#34;math inline&#34;&gt;\(j+1\)&lt;/span&gt;行至少有一个危险的格子，且安全泳池面积&lt;span class=&#34;math inline&#34;&gt;\(\le k\)&lt;/span&gt;的概率. 记&lt;span class=&#34;math inline&#34;&gt;\(g _{i,j}=\sum _{w\ge j}f _{i,w}\)&lt;/span&gt;，即共&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;列，下面&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;行均安全，且安全泳池面积&lt;span class=&#34;math inline&#34;&gt;\(\le k\)&lt;/span&gt;的概率.&lt;/p&gt;
+&lt;p&gt;那么我们就可以枚举第&lt;span class=&#34;math inline&#34;&gt;\(j+1\)&lt;/span&gt;行最后一个危险格子的位置，得到递推式&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f _{i,j}=\sum _{r\lt i,~r(j+1)\le k}g _{r,j+1}g _{i-r-1,j}q^j(1-q)
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;注意到&lt;span class=&#34;math inline&#34;&gt;\(\forall ij&gt;k,~f _{i,j}=0\)&lt;/span&gt;，直接dp就可以得到70分.&lt;/p&gt;
+&lt;p&gt;考虑怎么拿剩下的30分. 显然当&lt;span class=&#34;math inline&#34;&gt;\(i\gt k\)&lt;/span&gt;时只需要考虑&lt;span class=&#34;math inline&#34;&gt;\(f _{i,0}\)&lt;/span&gt;，而且此时&lt;span class=&#34;math inline&#34;&gt;\(f _{i,0}=g _{i,0}\)&lt;/span&gt;. 而&lt;span class=&#34;math inline&#34;&gt;\(r\le\frac{k}{j+1}\le k\)&lt;/span&gt;，所以当&lt;span class=&#34;math inline&#34;&gt;\(i\ge 2k+2\)&lt;/span&gt;时，递推式可以写成&lt;/p&gt;
+&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[g _{i,0}=\sum _{r=0}^k(1-q)g _{r,1}g _{i-r-1,0}
+\]&lt;/span&gt;&lt;/p&gt;
+&lt;p&gt;这是一个常系数线性齐次递推式，前面暴力递推到&lt;span class=&#34;math inline&#34;&gt;\(i=2k+1\)&lt;/span&gt;，后面的用特征多项式可以做到&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(k^2\log n)\)&lt;/span&gt;.&lt;/p&gt;
+&lt;p&gt;代码：&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ele int
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ll long long
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; std;
+&lt;span style=&#34;color:#75715e&#34;&gt;#define maxk 4010
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define MOD 998244353
+&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;ele n,K,x,y,q,f[maxk][maxk];
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;pw&lt;/span&gt;(ele a,ele x){
+	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (; x; x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)tmp&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)ans&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;mul&lt;/span&gt;(ele K,ele &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;a,ele &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;b){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; ele c[maxk];
+	memset(c,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(c));
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;K; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;K; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;j)
+			(c[i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;j]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;(ll)a[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;b[j]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&lt;/span&gt;K; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;i)
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;K; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;j)
+			(c[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;j&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;(ll)c[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;f[j][&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(MOD&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;q)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
+	memcpy(a,c,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(ele)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(K&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;));
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;calc&lt;/span&gt;(ele K){
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) f[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;][i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;n &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i){
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;K; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;j){
+			f[i][j]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+			ele tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)pw(q,j)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(MOD&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;q)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+			&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; r&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;i &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; r&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;(j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;K; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;r){
+				ele t1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)f[r][j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;f[i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;r&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;][j]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+				(f[i][j]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;t1)&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
+			}
+		}
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; &lt;span style=&#34;color:#f92672&#34;&gt;~&lt;/span&gt;j; &lt;span style=&#34;color:#f92672&#34;&gt;--&lt;/span&gt;j) (f[i][j]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;f[i][j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;])&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
+	}
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (n&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) &lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; f[n][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;];
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; ele a[maxk],b[maxk];
+	memset(a,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(a)); memset(b,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(b));
+	a[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; b[&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (ele n1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;n&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; n1; n1&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,mul(K,b,b))
+		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (n1&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) mul(K,a,b);
+	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;=&lt;/span&gt;K; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i)
+		(ans&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;(ll)a[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;f[K&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;i][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
+}
+&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(){
+	scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;n,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;K,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;x,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;y);
+	q&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)x&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;pw(y,MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
+	ele t1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;calc(K);
+	ele t2&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;calc(K&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;);
+	(t1&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;t2)&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
+	printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,t1);
+	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
+}
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2304/ - </description>
+        </item>
     
     
     
@@ -1058,102 +1139,6 @@ node&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2585/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>loj6059题解</title>
-        <link>https://seraphim.rocks/posts/loj6059/</link>
-        <pubDate>Sat, 16 Jun 2018 12:50:31 +0800</pubDate>
-        
-        <guid>https://seraphim.rocks/posts/loj6059/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj6059/ -&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j,k}\)&lt;/span&gt;表示&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;位，模&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;余&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;，数字和恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;的数的个数，那么可以写出递推式&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f _{i+1,j,k}=\sum _{10j _1+j _2\equiv j\pmod{p},~k _1+k _2=k}f _{i,j _1,k _1}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;可以发现这很像一个卷积的形式，但是&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;这一维很难用多项式来优化. 这个时候可以考虑倍增，列出更一般的递推式&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[f _{i _1+i _2,j,k}=\sum _{10^{i _2}j _1+j _2\equiv j\pmod{p},~k _1+k _2=k}f _{i _1,j _1,k _1}f _{i _2,j _2,k _2}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;这样让&lt;span class=&#34;math inline&#34;&gt;\(F _i(x,y)=\sum f _{i,j,k}x^jy^k\)&lt;/span&gt;就可以用倍增+NTT来加速了，（&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;直接暴力卷积，&lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;用NTT优化）.&lt;/p&gt;
-&lt;p&gt;代码：&lt;/p&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstring&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;algorithm&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ele int
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define ll long long
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;using&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;namespace&lt;/span&gt; std;
-&lt;span style=&#34;color:#75715e&#34;&gt;#define maxn 2048
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define maxp 55
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define MOD 998244353
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#define g 3
-&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;&lt;/span&gt;ele n,p,m,a[maxp][maxn],b[maxp][maxn];
-&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; ele &lt;span style=&#34;color:#a6e22e&#34;&gt;pw&lt;/span&gt;(ele a,ele x){
-	ele ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (; x; x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)tmp&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)
-		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (x&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) ans&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)ans&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; ans;
-}
-&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;NTT&lt;/span&gt;(ele K,ele n,ele &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;y){
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; ele f[maxn];
-	f[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i){
-		f[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;f[i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
-		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) f[i]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;n&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
-		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;f[i]) swap(y[i],y[f[i]]);
-	}
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; p&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;; p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;){
-		ele o&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;pw(g,(MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;p&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
-		o&lt;span style=&#34;color:#f92672&#34;&gt;=~&lt;/span&gt;K&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;o:pw(o,MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
-		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; i&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;(p&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;)){
-			ele o1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
-			&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;i; j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;j,o1&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)o1&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;o&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD){
-				ele u&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;y[j],v&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)y[j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;o1&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
-				y[j]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(u&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;v)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
-				y[j&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;p]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(u&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;v&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;MOD)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
-			}
-		}
-	}
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!~&lt;/span&gt;K){
-		ele invn&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;pw(n,MOD&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;2&lt;/span&gt;);
-		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;n; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) y[i]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(ll)y[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;invn&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD;
-	}
-}
-&lt;span style=&#34;color:#66d9ef&#34;&gt;inline&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;mul&lt;/span&gt;(ele a[maxp][maxn],ele b[maxp][maxn],ele k){
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;static&lt;/span&gt; ele c[maxp][maxn],d[maxp][maxn],e[maxp][maxn];
-	memset(c,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(c));
-	ele tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;while&lt;/span&gt; (tmp&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;m&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;m&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) tmp&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&amp;lt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
-	memset(d,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(d)); memcpy(e,b,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(e));
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i){
-		ele j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;i&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;k&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;p;
-		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; r&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;m; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;r) (d[j][r]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;a[i][r])&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
-	}
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) NTT(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,d[i]),NTT(&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,e[i]);
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i)
-		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;j){
-			ele k&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;(i&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;j)&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;p;
-			&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; r&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; r&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;tmp; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;r)
-				(c[k][r]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;(ll)d[i][r]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;e[j][r]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD)&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
-		}
-	memcpy(a,c,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(c));
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) NTT(&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,tmp,a[i]);
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;p; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i)
-		&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; j&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;m; j&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;tmp; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;j) a[i][j]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
-}
-&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;main&lt;/span&gt;(){
-	scanf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d%d%d&amp;#34;&lt;/span&gt;,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;n,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;p,&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;m); &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;m;
-	memset(a,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(a)); memset(b,&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#66d9ef&#34;&gt;sizeof&lt;/span&gt;(b));
-	a[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;][&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;]&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt; &lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&amp;amp;&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;m; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) b[i&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;p][i]&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;;
-	ele k&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;10&lt;/span&gt;;
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (; n; n&lt;span style=&#34;color:#f92672&#34;&gt;&amp;gt;&amp;gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;,mul(b,b,k),k&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;k&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;k&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;p)
-		&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (n&lt;span style=&#34;color:#f92672&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;) mul(a,b,k);
-	ele cnt&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;m; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) (cnt&lt;span style=&#34;color:#f92672&#34;&gt;+=&lt;/span&gt;a[&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;][i])&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD,printf(i&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34; %d&amp;#34;&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;:&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&amp;#34;&lt;/span&gt;,cnt);
-	puts(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;);
-	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj6059/ - </description>
         </item>
     
     

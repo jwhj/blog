@@ -5,9 +5,23 @@
     <description>Recent content on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
-    <lastBuildDate>Mon, 03 Feb 2020 21:55:41 +0800</lastBuildDate>
+    <lastBuildDate>Wed, 12 Aug 2020 11:40:51 +0800</lastBuildDate>
     
         <atom:link href="https://seraphim.rocks/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    
+        <item>
+        <title>Arcsine</title>
+        <link>https://seraphim.rocks/posts/arcsine/</link>
+        <pubDate>Sun, 20 Jan 2019 21:24:26 +0800</pubDate>
+        
+        <guid>https://seraphim.rocks/posts/arcsine/</guid>
+        <description>蒟蒻的博客 https://seraphim.rocks/posts/arcsine/ -&lt;p&gt;厚颜无耻地发一个自己写的小游戏.&lt;/p&gt;
+&lt;p&gt;地址 &lt;a href=&#34;http://jwhj.github.io/arcsine/&#34;&gt;http://jwhj.github.io/arcsine/&lt;/a&gt; ，打开就能玩.&lt;/p&gt;
+&lt;p&gt;源码放在 &lt;a href=&#34;https://github.com/jwhj/arcsine&#34;&gt;https://github.com/jwhj/arcsine&lt;/a&gt; ，写得很丑希望不要被嘲讽. &lt;del&gt;说得好像有人会看一样.&lt;/del&gt;&lt;/p&gt;
+&lt;p&gt;游戏功能也许会在未来进一步完善. &lt;del&gt;毕竟我比较懒.&lt;/del&gt;&lt;/p&gt;- https://seraphim.rocks/posts/arcsine/ - </description>
+        </item>
     
     
     
@@ -630,145 +644,6 @@ pair&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;ele,ele&lt;sp
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/bzoj2324/ - </description>
-        </item>
-    
-    
-    
-        <item>
-        <title>雅礼2018年7月集训总结</title>
-        <link>https://seraphim.rocks/posts/yali201807/</link>
-        <pubDate>Sun, 01 Jul 2018 20:15:04 +0800</pubDate>
-        
-        <guid>https://seraphim.rocks/posts/yali201807/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/yali201807/ -&lt;p&gt;&lt;del&gt;NOI前的垂死挣扎.&lt;/del&gt;&lt;/p&gt;
-&lt;h2 id=&#34;7-1&#34;&gt;7-1&lt;/h2&gt;
-&lt;p&gt;考得还不错的样子，但是还有可以完善的地方.&lt;/p&gt;
-&lt;h3 id=&#34;t1&#34;&gt;T1&lt;/h3&gt;
-&lt;p&gt;想到了出题人想到的状压dp，然后别人想出来了一个&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n^3)\)&lt;/span&gt;的dp. 其实我是看到了题目的&lt;span class=&#34;math inline&#34;&gt;\(n\le 24\)&lt;/span&gt;就去想状压的，如果数据范围大一点我应该也能想到？&lt;/p&gt;
-&lt;h3 id=&#34;t2&#34;&gt;T2&lt;/h3&gt;
-&lt;p&gt;被卡常卡成60分了，主要是因为方点的情况我强行把分治FFT的做法搬过来写出了8倍常数. 事实上比赛的时候我已经注意到了方点相当于是没有度数限制的，而用在圆点上的分治FFT本来就是为了处理度数限制的问题，所以完全没有必要照搬，可以直接用一个线性的dp解决方点的情况.&lt;/p&gt;
-&lt;h3 id=&#34;t3&#34;&gt;T3&lt;/h3&gt;
-&lt;p&gt;写完+检查完前两道题的时候已经过去4h了，写暴力又花了一些时间导致我没什么时间想这道题. 当时我已经想出了&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n^3)\)&lt;/span&gt;的dp做法，其实再注意到一些细节就可以优化到&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n)\)&lt;/span&gt;，但是剩下的时间连打完我想到的那个dp都很勉强. 说到底还是我思维比较迟缓，并且码力太过底下，前面debug了太长的时间，还是要多做点题.&lt;/p&gt;
-&lt;h2 id=&#34;7-2&#34;&gt;7-2&lt;/h2&gt;
-&lt;p&gt;区分度极低+极度劝退，rk8后面就是rk29. &lt;!-- raw HTML omitted --&gt;很荣幸能够挤进前10.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
-&lt;h3 id=&#34;t1-1&#34;&gt;T1&lt;/h3&gt;
-&lt;p&gt;挺不错的一道题，链剖的做法也没有那么容易想到，不过想到了的话打起来非常舒服.&lt;/p&gt;
-&lt;h3 id=&#34;t2-1&#34;&gt;T2&lt;/h3&gt;
-&lt;p&gt;没怎么卡过空间，各种会分块会主席树但是MLE……&lt;/p&gt;
-&lt;p&gt;首先询问区间中有多少种数是经典的难以合并信息的问题，询问一个区间还有分块或者主席树的做法，询问多个区间的话，没什么好的想法，就只能bitset卡一卡了.&lt;/p&gt;
-&lt;p&gt;用bitset的话第一个问题是想办法做到&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\frac{nm}{w})\)&lt;/span&gt;而不是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\frac{nm\log n}{w})\)&lt;/span&gt;. 直接ST表的话会MLE. 如果可以离线，就能用莫队把每个询问区间的bitset预处理出来. 其实反正已经用了bitset这么暴力的东西了，不妨维护的时候也暴力一点，把整个区间分成&lt;span class=&#34;math inline&#34;&gt;\(w\)&lt;/span&gt;个块，预处理出&lt;span class=&#34;math inline&#34;&gt;\(w^2\)&lt;/span&gt;个块对之间的bitset，每个询问区间在整块的基础上加上&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\frac{n}{w})\)&lt;/span&gt;个数. 这样子空间开不下，可以把预处理&lt;span class=&#34;math inline&#34;&gt;\(w^2\)&lt;/span&gt;个块对改为用ST表维护各个块，就能把空间卡进去了.&lt;/p&gt;
-&lt;h3 id=&#34;t3-1&#34;&gt;T3&lt;/h3&gt;
-&lt;p&gt;差分之后按位置模&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;分类然后计算交错和什么的都很容易想到，关键是判无解非常麻烦，在左右端点需要特殊处理的情况下判无解更加麻烦，反正我在赛场上没想到优美的方法. 标解是利用hash，给每个模&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;的余数分配一个&lt;span class=&#34;math inline&#34;&gt;\([0,2^{64})\)&lt;/span&gt;之间的随机权值，那么计算询问区间中的&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;的位置的异或和再进行判断就可以了. 要注意求多类位置分别的前缀交错和的和写法比较特殊，要让&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;表示让最后一个位置的权值为&lt;span class=&#34;math inline&#34;&gt;\(+1\)&lt;/span&gt;时的前缀交错和，这样区间中每类位置均出现偶数次的时候，就能拿两个前缀和做个差得到区间交错和了.&lt;/p&gt;
-&lt;h2 id=&#34;7-3&#34;&gt;7-3&lt;/h2&gt;
-&lt;p&gt;似乎基本都听过一遍？&lt;/p&gt;
-&lt;h2 id=&#34;7-4&#34;&gt;7-4&lt;/h2&gt;
-&lt;p&gt;除去std还有11个人ak&lt;!-- raw HTML omitted --&gt;，我是第12名&lt;!-- raw HTML omitted --&gt;. 后来可能还重测了几个丢了程序的人.&lt;/p&gt;
-&lt;h3 id=&#34;t1-2&#34;&gt;T1&lt;/h3&gt;
-&lt;p&gt;我的做法是想象高维空间，一个&lt;span class=&#34;math inline&#34;&gt;\(n+1\)&lt;/span&gt;维的基础图形实际上就是由&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;维的在第&lt;span class=&#34;math inline&#34;&gt;\(n+1\)&lt;/span&gt;维上平移得到的. 那么平移前后，每一维成分的数量首先是翻了一倍，另外平移前和平移后对应的&lt;span class=&#34;math inline&#34;&gt;\(j-1\)&lt;/span&gt;维的成分构成了一个&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;维的成分. 以二维到三维为例，一个正方形向上平移，得到了&lt;span class=&#34;math inline&#34;&gt;\(8\)&lt;/span&gt;个点和&lt;span class=&#34;math inline&#34;&gt;\(8\)&lt;/span&gt;条边，设平移前正方形为&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;，平移后正方形为&lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt;，那么&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt;的每对对应点形成一条新的边，每对对应边形成一个新的面. 设&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j}\)&lt;/span&gt;为&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;维基础图形中&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;维的个数，即有&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j}=2f _{i-1,j}+f _{i-1,j-1}\)&lt;/span&gt;，记&lt;span class=&#34;math inline&#34;&gt;\(F _i(z)=\sum f _{i,j}z^j\)&lt;/span&gt;，即有&lt;span class=&#34;math inline&#34;&gt;\(F _{i+1}(z)=(2+z)F _i(z)\)&lt;/span&gt;即&lt;span class=&#34;math inline&#34;&gt;\(F _n(z)=(2+z)^n\)&lt;/span&gt;，那么&lt;span class=&#34;math inline&#34;&gt;\(f _{n,m}=2^{n-m}\binom{n}{m}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;h3 id=&#34;t2-2&#34;&gt;T2&lt;/h3&gt;
-&lt;p&gt;跟以前见过的一道dp题比较像. 考虑从小到大决策每个元素，它的贡献依赖于前面的元素的决策，但是这个不方便表示为状态. 假设当前要加入的元素为&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;,可以把前面的元素分成跟&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;加在一起无贡献和有贡献的两部分，有贡献的部分只需要保存两边的数量就可以了，而无贡献的部分随着&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;的增大只会不断减少，所以我们可以先不决策无贡献的部分，当其中的元素变成有贡献的时候再进行决策，到最后都还是无贡献的那一部分放在哪边都不影响答案，所以最后乘一个&lt;span class=&#34;math inline&#34;&gt;\(2^\textrm{cnt}\)&lt;/span&gt;即可.&lt;/p&gt;
-&lt;h3 id=&#34;t3-2&#34;&gt;T3&lt;/h3&gt;
-&lt;p&gt;居然没想出来真是丢人. 我想到了容斥而且会做&lt;span class=&#34;math inline&#34;&gt;\(k=0\)&lt;/span&gt;居然还做不出来，可能是因为我总是想着一步把式子推到位，而没有把一些关键的量记为一个符号来简化思考.&lt;/p&gt;
-&lt;p&gt;显然这道题就是要求极长同色子段恰有&lt;span class=&#34;math inline&#34;&gt;\(n-k\)&lt;/span&gt;个的方案数，用指数生成函数很容易算出段数不超过&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;的元次&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;. 其实这个时候就可以凑容斥系数了. 考虑一个实际有&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;段的方案，它只对&lt;span class=&#34;math inline&#34;&gt;\(j\ge i\)&lt;/span&gt;的&lt;span class=&#34;math inline&#34;&gt;\(f _j\)&lt;/span&gt;有贡献，且贡献的系数为&lt;span class=&#34;math inline&#34;&gt;\(\binom{n-i}{j-i}\)&lt;/span&gt;. 这是因为有&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;段相当于切了&lt;span class=&#34;math inline&#34;&gt;\(i-1\)&lt;/span&gt;刀，还有&lt;span class=&#34;math inline&#34;&gt;\(n-i\)&lt;/span&gt;个位置可以切，为了被算进&lt;span class=&#34;math inline&#34;&gt;\(f _j\)&lt;/span&gt;里面，还需要切&lt;span class=&#34;math inline&#34;&gt;\(j-i\)&lt;/span&gt;刀，所以共&lt;span class=&#34;math inline&#34;&gt;\(\binom{n-i}{j-i}\)&lt;/span&gt;种切法. 于是我们可以列出式子&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\sum _{j=i}^nc _j\binom{n-i}{j-i}=[i=n-k]
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;化得好看一些&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\sum _{p=0}^{n-i}c _{i+p}\binom{n-i}{p}=[k=n-i]
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;右边这个东西如果利用&lt;span class=&#34;math inline&#34;&gt;\([n=0]=\sum (-1)^i\binom{n}{i}\)&lt;/span&gt;来做，反正我不会. 注意到&lt;span class=&#34;math inline&#34;&gt;\(i\le n-k\)&lt;/span&gt;（否则不可能有贡献，一般不会去考虑），可以启发我们展开&lt;span class=&#34;math inline&#34;&gt;\((z+1-1)^{n-i}\)&lt;/span&gt;，得到&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[[z^k] (z+1-1)^{n-i}=\sum 1^p(-1)^{n-i-k-p}\frac{(n-i)!}{k!p!(n-i-k-p)!}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;于是有&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[c _{i+p}=\frac{(-1)^{n-i-k-p}(n-i-p)!}{k!(n-i-k-p)!}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;也就是&lt;span class=&#34;math inline&#34;&gt;\(c _j=(-1)^{n-k-j}\binom{n-j}{k}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;如果不想凑系数的话，也可以考虑求一个&lt;span class=&#34;math inline&#34;&gt;\(g _i\)&lt;/span&gt;表示恰好有&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;段的方案数. 注意到&lt;span class=&#34;math inline&#34;&gt;\(f _i=\sum _{j\le i}g _j\binom{n-j}{i-j}\)&lt;/span&gt;，强行反演其实就相当于上面的凑系数，或者你也可以写成&lt;span class=&#34;math inline&#34;&gt;\((n-i)!g _i=(n-i)!f _i-\sum _{j\lt i}(n-j)!g _j\cdot\frac{1}{(i-j)!}\)&lt;/span&gt;，用多项式求逆的套路让&lt;span class=&#34;math inline&#34;&gt;\(F(z)=\sum(n-i)!f _iz^i,G(z)=\sum(n-i)!g _iz^i\)&lt;/span&gt;，就有&lt;span class=&#34;math inline&#34;&gt;\(G(z)=F(z)-(e^z-1)G(z)\)&lt;/span&gt;，即&lt;span class=&#34;math inline&#34;&gt;\(G(z)=F(z)e^{-z}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;感觉这是一道挺不错的计数题，这里面包含的几个新套路，一个是展开&lt;span class=&#34;math inline&#34;&gt;\((z+1-1)^{n-i}\)&lt;/span&gt;，一个是&lt;span class=&#34;math inline&#34;&gt;\(\binom{n-i}{j-i}\)&lt;/span&gt;这个系数，都要记下来.&lt;/p&gt;
-&lt;h2 id=&#34;7-5&#34;&gt;7-5&lt;/h2&gt;
-&lt;h3 id=&#34;t1-3&#34;&gt;T1&lt;/h3&gt;
-&lt;p&gt;题目保证给定的点都在凸包上，所以询问区间中的点一定都在这些点的凸包上，也就是说只需要计算&lt;span class=&#34;math inline&#34;&gt;\(\sum _{i=0}^{L-1}P _i\times P _{i+1}(P _L=P _0)\)&lt;/span&gt;，其中&lt;span class=&#34;math inline&#34;&gt;\(L\)&lt;/span&gt;为询问区间的长度&lt;span class=&#34;math inline&#34;&gt;\(P _0,P _1,\ldots,P _{L-1}\)&lt;/span&gt;为询问区间中的点按照极角排序之后的结果.&lt;/p&gt;
-&lt;p&gt;那么&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n\sqrt{n}\log n)\)&lt;/span&gt;的莫队就是显然的了. 想办法继续优化，注意到插入是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\log n)\)&lt;/span&gt;的，但删除可以做到&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(1)\)&lt;/span&gt;，可以用删除的撤销来代替插入. 具体来讲，把询问排序的时候，右端点从小到大改为从大到小，设当前询问区间的左端点所在块的左端点为&lt;span class=&#34;math inline&#34;&gt;\(l _0\)&lt;/span&gt;，维护&lt;span class=&#34;math inline&#34;&gt;\([l _0,n)\)&lt;/span&gt;的凸包，每次询问的时候移动端点就只需要删除了，询问结束后恢复左端点. 如果左端点所在的块变化了，就恢复右端点，然后把左边的块删掉（此次不用恢复）. 只有插入的莫队思路略有不同，挺好想的就不讲了.&lt;/p&gt;
-&lt;p&gt;只有插入或者只有删除的莫队算是个以前没见过的技巧吧，要记下来.&lt;/p&gt;
-&lt;h3 id=&#34;t2-3&#34;&gt;T2&lt;/h3&gt;
-&lt;p&gt;可以用各种方法花式AC，稍微记录一下感觉比较有意思的.&lt;/p&gt;
-&lt;p&gt;这一个是我用的方法，答案保证严格大于&lt;span class=&#34;math inline&#34;&gt;\(\frac{n}{2}\)&lt;/span&gt;，所以中位数一定在答案里面，第一次输入把所有的数按照高&lt;span class=&#34;math inline&#34;&gt;\(16\)&lt;/span&gt;位分类，那么答案只可能在最中间的三类里面，第二次输入的时候把中间三类的数的低&lt;span class=&#34;math inline&#34;&gt;\(16\)&lt;/span&gt;位存在&lt;span class=&#34;math inline&#34;&gt;\(3\)&lt;/span&gt;个桶里，然后暴力就可以了.&lt;/p&gt;
-&lt;p&gt;另外有一个挺有意思的随机化的做法，因为答案超过一般，随机选择&lt;span class=&#34;math inline&#34;&gt;\(20\)&lt;/span&gt;个位置，那么有很大概率至少选到了一个在答案里面的数，第二次读入的时候分别钦定这&lt;span class=&#34;math inline&#34;&gt;\(20\)&lt;/span&gt;个数在答案里，分别算出答案取最优.&lt;/p&gt;
-&lt;h3 id=&#34;t3-3&#34;&gt;T3&lt;/h3&gt;
-&lt;p&gt;这个题的构造也不知道是怎么想出来的，非构造解法晚点再研究吧.&lt;/p&gt;
-&lt;p&gt;从&lt;span class=&#34;math inline&#34;&gt;\(m=2\)&lt;/span&gt;入手，定义&lt;span class=&#34;math inline&#34;&gt;\(g _0=g _1=g _2=1,g _n=g _{n-1}+g _{n-2}(n\ge 3)\)&lt;/span&gt;，那么&lt;!-- raw HTML omitted --&gt;神仙&lt;!-- raw HTML omitted --&gt;具有敏锐洞察力的选手就可以观察到如果&lt;span class=&#34;math inline&#34;&gt;\(g _n=\sum _{i=1}^kg _{a _i}\)&lt;/span&gt;，这里&lt;span class=&#34;math inline&#34;&gt;\(a _1\gt a _2\gt\cdots\gt a _k\ge 2\)&lt;/span&gt;（容易证明一定有这样的一个划分），那么&lt;span class=&#34;math inline&#34;&gt;\(f(n)=\sum _{i=1}^kg _{a _i-1}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;为什么是这样呢？首先把题目里面的式子移项，得到&lt;span class=&#34;math inline&#34;&gt;\(f(n)+f _m(n-1)=n\)&lt;/span&gt;，又有&lt;/p&gt;
-&lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\begin{aligned}n&amp;=\sum _{i=1}^kg _{a _i}\\\\f(n)&amp;=\sum _{i=1}^kg _{a _i-1}\\\\f _2(n)&amp;=\sum _{i=1}^kg _{a _i-2}\end{aligned}
-\]&lt;/span&gt;&lt;/p&gt;
-&lt;p&gt;后面两个式子加起来跟前一个比较，发现如果是&lt;span class=&#34;math inline&#34;&gt;\(f(n)+f _m(n)=n\)&lt;/span&gt;，似乎就有&lt;span class=&#34;math inline&#34;&gt;\(g _n=g _{n-1}+g _{n-2}\)&lt;/span&gt;了. 但是这里是&lt;span class=&#34;math inline&#34;&gt;\(n-1\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;注意到&lt;span class=&#34;math inline&#34;&gt;\(n-1\)&lt;/span&gt;的分拆里面，前&lt;span class=&#34;math inline&#34;&gt;\(k-1\)&lt;/span&gt;个数跟&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的分拆肯定是一样的，因而前&lt;span class=&#34;math inline&#34;&gt;\(k-1\)&lt;/span&gt;项仍满足上式，我们讨论&lt;span class=&#34;math inline&#34;&gt;\(g _{a _k}\)&lt;/span&gt;.&lt;/p&gt;
-&lt;ul&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(g _{a _k}=1\)&lt;/span&gt;，此时&lt;span class=&#34;math inline&#34;&gt;\(n-1\)&lt;/span&gt;的分拆没有最后一项，因为&lt;span class=&#34;math inline&#34;&gt;\(1=1+0\)&lt;/span&gt;，最后一项仍满足上式.&lt;/p&gt;
-&lt;/li&gt;
-&lt;li&gt;
-&lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(g _{a _k}&gt;1\)&lt;/span&gt;，此时相当于&lt;span class=&#34;math inline&#34;&gt;\(f _2(n-1)\)&lt;/span&gt;的分拆最后一项变成了&lt;span class=&#34;math inline&#34;&gt;\(f _2(g _{a _k}-1)\)&lt;/span&gt;的分拆形式，由题目我们知道它等于&lt;span class=&#34;math inline&#34;&gt;\(g _{a _k}-f(g _{a _k})=g _{a _k}-g _{a _k-1}=g _{a _k-2}\)&lt;/span&gt;，即最后一项仍满足上式.&lt;/p&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;p&gt;规定&lt;span class=&#34;math inline&#34;&gt;\(g _0=1\)&lt;/span&gt;而不是&lt;span class=&#34;math inline&#34;&gt;\(g _0=0\)&lt;/span&gt;是因为要考虑&lt;span class=&#34;math inline&#34;&gt;\(f(1)\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;对于一般的情况，定义&lt;span class=&#34;math inline&#34;&gt;\(g _0=g _1=\cdots=g _m=1,g _n=g _{n-1}+g _{n-m}(n\gt m)\)&lt;/span&gt;即可.&lt;/p&gt;
-&lt;p&gt;其实这个时候你会发现如果那一项是&lt;span class=&#34;math inline&#34;&gt;\(f _m(n)\)&lt;/span&gt;的话反而可能会出一些问题.&lt;/p&gt;
-&lt;h2 id=&#34;7-7&#34;&gt;7-7&lt;/h2&gt;
-&lt;p&gt;网络流题好像有一个比较常见的思路是，当每个东西有多个决策的时候，先全部假定一下，然后再用网络流去调整.&lt;/p&gt;
-&lt;h2 id=&#34;7-8&#34;&gt;7-8&lt;/h2&gt;
-&lt;p&gt;挂了挂了……&lt;/p&gt;
-&lt;h3 id=&#34;t1-4&#34;&gt;T1&lt;/h3&gt;
-&lt;p&gt;最小树形图的朱刘算法.&lt;/p&gt;
-&lt;p&gt;也不知道出题人是怎么想的……&lt;/p&gt;
-&lt;h3 id=&#34;t2-4&#34;&gt;T2&lt;/h3&gt;
-&lt;p&gt;我的做法似乎比std更nb一些？反正std4k跑5s，我的代码2.4k跑0.5s.&lt;/p&gt;
-&lt;p&gt;定义每个软件包开始安装的时间为&lt;span class=&#34;math inline&#34;&gt;\(S _i\)&lt;/span&gt;，实际安装花费的时间为&lt;span class=&#34;math inline&#34;&gt;\(a _i\)&lt;/span&gt;，最后答案为&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;. 那么首先有&lt;span class=&#34;math inline&#34;&gt;\(\forall(i,j)\in E,S _j-S _i\ge a _i\)&lt;/span&gt;. 总花费不超过&lt;span class=&#34;math inline&#34;&gt;\(w\)&lt;/span&gt;，可以表示成&lt;span class=&#34;math inline&#34;&gt;\(\sum c _i(t _i-a _i)\le w\)&lt;/span&gt;. 由题显然有&lt;span class=&#34;math inline&#34;&gt;\(0\le a _i\le t _i\)&lt;/span&gt;. 最后答案其实相当于是对&lt;span class=&#34;math inline&#34;&gt;\(S _i+a _i\)&lt;/span&gt;取&lt;span class=&#34;math inline&#34;&gt;\(\max\)&lt;/span&gt;，可以加入&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;个约束&lt;span class=&#34;math inline&#34;&gt;\(T\ge S _i+a _i\)&lt;/span&gt;，然后就是要在满足上面所有这些约束的前提下最小化&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;，直接上单纯形就可以了.&lt;/p&gt;
-&lt;p&gt;考试的时候我想到了基本相同的思路，但是没有往线性规划的方向去想，强行建了一个点数极多的图，还不知道哪里写错了一点东西，最后没拿到分. 其实网络流和线性规划很多地方是有联系的，以后想网络流建图类的问题时，不妨结合线性规划一起想，毕竟有的时候网络流更简单一些，有的时候线性规划更简单一些.&lt;/p&gt;
-&lt;p&gt;出题人列出的线性规划式子要考虑每一条路径，所以约束个数可能达到指数级，要先对偶再转化成网络流来做. 我列出的式子和出题人不太一样，只有&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n)\)&lt;/span&gt;个变量，&lt;span class=&#34;math inline&#34;&gt;\(O(n+m)\)&lt;/span&gt;个约束，直接跑单纯形就非常快了.&lt;/p&gt;
-&lt;p&gt;不过现在还遗留了一个小问题，无论是我的做法还是出题人的做法，似乎都不能保证减少之后的安装时间是整数. 我想了一想，觉得好像可以证明至多只有一个&lt;span class=&#34;math inline&#34;&gt;\(a _i\)&lt;/span&gt;不是整数，所以最后只需要把答案向上取整就可以了，当然有单纯形的话需要考虑一下精度问题，先减去一个eps再向上取整. 出题人的做法要二分答案，所以只需要把二分的精度限制在整数就可以了.&lt;/p&gt;
-&lt;h3 id=&#34;t3-4&#34;&gt;T3&lt;/h3&gt;
-&lt;p&gt;毒瘤！&lt;/p&gt;
-&lt;h2 id=&#34;7-9&#34;&gt;7-9&lt;/h2&gt;
-&lt;p&gt;今天的题目是上交的，长得根本不像NOI模拟赛……&lt;/p&gt;
-&lt;p&gt;题目比较水，而我第二题被卡常卡掉了52分，最后只能排rk29.&lt;/p&gt;
-&lt;h3 id=&#34;t1-5&#34;&gt;T1&lt;/h3&gt;
-&lt;p&gt;水题.&lt;/p&gt;
-&lt;p&gt;不过倒是学到了一个东西：线性预处理&lt;span class=&#34;math inline&#34;&gt;\(1,2,\ldots,n\)&lt;/span&gt;逆元的&lt;code&gt;(MOD-MOD/i)*inv[MOD%i]&lt;/code&gt;的做法虽然看上去很炫酷，但是里面用了除法，实际上常数很大，需要卡常的时候得注意一下.&lt;/p&gt;
-&lt;h3 id=&#34;t2-5&#34;&gt;T2&lt;/h3&gt;
-&lt;p&gt;第一反应是世界树那道题，我以前因为太难码放弃了，这回在考场上硬生生码了200+行代码写了出来，可是A掉了bzoj的世界树那题，模拟赛里面的这道题却被卡常卡成48分了.&lt;/p&gt;
-&lt;p&gt;事实上这道题是世界树那道题的简化版，有一个常数&lt;del&gt;应该&lt;/del&gt;更小的做法. 这道题目只需要询问&lt;span class=&#34;math inline&#34;&gt;\(a _1\)&lt;/span&gt;占领了哪些点，所以可以对每个&lt;span class=&#34;math inline&#34;&gt;\(j\in[2,k]\)&lt;/span&gt;，求出&lt;span class=&#34;math inline&#34;&gt;\(a _1\)&lt;/span&gt;与&lt;span class=&#34;math inline&#34;&gt;\(a _j\)&lt;/span&gt;的中点&lt;span class=&#34;math inline&#34;&gt;\(m _j\)&lt;/span&gt;，那么&lt;span class=&#34;math inline&#34;&gt;\(m _j\)&lt;/span&gt;靠&lt;span class=&#34;math inline&#34;&gt;\(a _j\)&lt;/span&gt;的那一边肯定不会被&lt;span class=&#34;math inline&#34;&gt;\(a _1\)&lt;/span&gt;占领，这对应着树上的一棵子树或除了一棵子树以外的其它部分，而对每个&lt;span class=&#34;math inline&#34;&gt;\(a _j\)&lt;/span&gt;去掉那些部分之后，剩下的就是&lt;span class=&#34;math inline&#34;&gt;\(a _1\)&lt;/span&gt;可以占领的点了. 这样只需要用一棵线段树在dfs序上做区间修改，应该比虚树的做法好写很多.&lt;/p&gt;
-&lt;h3 id=&#34;t3-5&#34;&gt;T3&lt;/h3&gt;
-&lt;blockquote&gt;
-&lt;p&gt;题目：为了锻炼你的水平，建议使用在线算法.&lt;/p&gt;
-&lt;p&gt;我：我没有水平，我离线！&lt;/p&gt;
-&lt;/blockquote&gt;
-&lt;p&gt;于是我就写了一个按时间分治水了过去. &lt;del&gt;其实码力低下的我还是因为一个弱智的bug耽搁了很久.&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;考虑在线算法，如果只在一段加和删，那显然可以直接做背包，删除可以看做是插入的撤销，直接再插入的时候做一个之前时刻的备份就可以了. 如果在两端加和删，可以在两端分别用一个背包来维护，每次查询相当于是要把两个背包合并起来，直接合并是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\text{MOD}^2)\)&lt;/span&gt;的，但是因为只需要合并两个背包而不是多个，也只需要求合并后一段区间里面的最值，而不是背包的完整信息，可以枚举其中一个背包中的值，然后在另一个背包里做区间查询，复杂度降到&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\text{MOD}\log\text{MOD})\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;加入删除之后会出现一个问题，就是一边背包被删空了会开始删另一个背包的另一端. 一个显然的思路是暴力把另一个背包栈的开口反向，但这样的话如果左边删一个右边删一个循环的话复杂度就不对了. 解决方法也很简单，这种时候把另一个背包的一半元素分离出来，反向，另一半保持不变，均摊分析一下会发现复杂度是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\text{MOD}\log m)\)&lt;/span&gt;的.&lt;/p&gt;
-&lt;p&gt;最后，这个在线算法的复杂度为&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(m\text{MOD}(\log\text{MOD}+\log m))\)&lt;/span&gt;.&lt;/p&gt;
-&lt;h2 id=&#34;7-10&#34;&gt;7-10&lt;/h2&gt;
-&lt;p&gt;本来应该200分rk3的……一定要吸取教训. 我T2打了一个&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(m\sqrt{L}\log L)\)&lt;/span&gt;的做法，本来可以拿90分，但是数组开得比较大MLE了，但事实上是跑不满的，这也就导致用任务管理器之类的东西看内存消耗看的也远小于开的数组的大小. 可是很多评测软件看的是你开了多少而不是用了多少，所以以后还是尽量要手算空间，如果觉得跑不满又开不下，还是用vector或者别的一些方法动态开空间吧. 这个一定要记住，今天这种情况真的非常可惜.&lt;/p&gt;
-&lt;h3 id=&#34;t2-6&#34;&gt;T2&lt;/h3&gt;
-&lt;p&gt;这种题对于&lt;span class=&#34;math inline&#34;&gt;\(\gt\sqrt{L}\)&lt;/span&gt;的情况要善于勇敢地暴力，做这道题的时候我考虑&lt;span class=&#34;math inline&#34;&gt;\(\gt\sqrt{L}\)&lt;/span&gt;的情况考虑了很久，最后发现单独处理这些串的时候，每个串就算是暴力枚举前缀，暴力与前面的比对，复杂度都是对的.&lt;/p&gt;
-&lt;p&gt;还是写一下做法吧怕自己忘了. 记&lt;span class=&#34;math inline&#34;&gt;\(L=\sum|s _i|\)&lt;/span&gt;，对于每个询问考虑&lt;span class=&#34;math inline&#34;&gt;\(|S|\le\sqrt{L}\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(|S|\gt\sqrt{L}\)&lt;/span&gt;两种情况.&lt;/p&gt;
-&lt;p&gt;对于第一种情况，各种套路想一遍发现按右端点排序来做的套路比较靠谱，设&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j}\)&lt;/span&gt;代表以&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;为右端点，要使得存在长度为&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;的前缀有贡献，左端点最右的位置，这个可以根据&lt;span class=&#34;math inline&#34;&gt;\(f _{i-1,j}\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;这个串长度为&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;的前缀的贡献来计算. 要计算后者，可以把所有串长度不超过&lt;span class=&#34;math inline&#34;&gt;\(\sqrt{L}\)&lt;/span&gt;的前缀取出来，记录一个&lt;span class=&#34;math inline&#34;&gt;\(\text{pos} _s\)&lt;/span&gt;表示以&lt;span class=&#34;math inline&#34;&gt;\(s\)&lt;/span&gt;为前缀的串的位置列表，然后在上面查就可以了. 事实上因为&lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt;可以存下来，这一步不需要离线.&lt;/p&gt;
-&lt;p&gt;对于第二种情况，有贡献的串至多&lt;span class=&#34;math inline&#34;&gt;\(\sqrt{L}\)&lt;/span&gt;个，把询问按照包含这些串的区间分类，离线下来，记第&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;个询问包含这些串的区间是&lt;span class=&#34;math inline&#34;&gt;\([u _i,v _i]\)&lt;/span&gt;. 以&lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt;为第一关键字，&lt;span class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt;为第二关键字排序，这样固定&lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt;之后&lt;span class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt;增大就相当于在后面暴力加串. 加串的话，可以暴力枚举前缀，然后暴力扫一遍前面的串来统计这个前缀的出现次数，判断它有没有贡献（要事先预处理长度&lt;span class=&#34;math inline&#34;&gt;\(\gt\sqrt{L}\)&lt;/span&gt;的串两两之间的lcp，这个也可以暴力预处理）. 这样加串的总复杂度不超过&lt;span class=&#34;math inline&#34;&gt;\(\sum\sqrt{L}|S|=L\sqrt{L}\)&lt;/span&gt;，同样暴力预处理lcp的复杂度也不超过这个.&lt;/p&gt;
-&lt;p&gt;按照以上的方法就可以求出有贡献的长度的集合，要统计答案，支持加一个长度和删一个长度，随便用个数据结构就可以维护了.&lt;/p&gt;
-&lt;p&gt;但这样是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(m\sqrt{L}\log L)\)&lt;/span&gt;的，跑最后一个点很悬. 如果要继续优化的话，注意到只有插入会带&lt;span class=&#34;math inline&#34;&gt;\(\log\)&lt;/span&gt;，删除不会，使用熟悉的套路，把插入看成删除的撤销即可. 具体来讲，&lt;span class=&#34;math inline&#34;&gt;\(\le\sqrt{L}\)&lt;/span&gt;的部分全程删除和全程插入是一样的，因为原来算法是把有贡献的插入，改成一开始全部插入好，利用&lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt;数组找出没贡献的删掉就行了，最后再恢复成删掉之前的样子来处理下一个询问. 至于&lt;span class=&#34;math inline&#34;&gt;\(\gt\sqrt{L}\)&lt;/span&gt;的部分，改成&lt;span class=&#34;math inline&#34;&gt;\(u\)&lt;/span&gt;从小到大，&lt;span class=&#34;math inline&#34;&gt;\(v\)&lt;/span&gt;从大到小，就变成全程都是删除了.&lt;/p&gt;
-&lt;p&gt;再讲讲我不优化算法是怎么卡常卡进去的. 首先维护的数据结构不要用set或者线段树这么大常数的东西，用zkw，顺手把删除写成&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(1)\)&lt;/span&gt;的，再加个读入优化，这个时候已经从12s优化到4.9s了，放到lemon上面跑的时候因为玄学原因变快了一些就过了.&lt;/p&gt;
-&lt;h3 id=&#34;t3-6&#34;&gt;T3&lt;/h3&gt;
-&lt;p&gt;先坑着.&lt;/p&gt;
-&lt;h2 id=&#34;7-12&#34;&gt;7-12&lt;/h2&gt;
-&lt;p&gt;居然rk1了？&lt;/p&gt;
-&lt;h3 id=&#34;t1-6&#34;&gt;T1&lt;/h3&gt;
-&lt;p&gt;先坑着.&lt;/p&gt;
-&lt;h3 id=&#34;t2-7&#34;&gt;T2&lt;/h3&gt;
-&lt;p&gt;首先一个很显然的思路是链上修改单点查询转化为单点修改子树查询，然后就可以做树上的启发式合并，来得到每个点对应的trie了. 事实上trie的合并可以像线段树合并那样做，就可以少一个&lt;span class=&#34;math inline&#34;&gt;\(\log\)&lt;/span&gt;. 求期望的路径长度的话，每个点记一个&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;表示从&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;出发的期望步数，它的转移跟父亲有关，有一个经典的技巧是把&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;表示成&lt;span class=&#34;math inline&#34;&gt;\(a _i+b _if _{\text{fa} _i}\)&lt;/span&gt;的形式，这样就可以不用高斯消元，第一遍dfs先把&lt;span class=&#34;math inline&#34;&gt;\(a,b\)&lt;/span&gt;求出来，第二遍dfs把&lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt;求出来. 不过此题要算的是所有&lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt;的和，而且还要动态维护，所以再记一个&lt;span class=&#34;math inline&#34;&gt;\(s _i\)&lt;/span&gt;表示以&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;为根的子树的&lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt;的和，发现&lt;span class=&#34;math inline&#34;&gt;\(s _i\)&lt;/span&gt;也可以表示为&lt;span class=&#34;math inline&#34;&gt;\(c _i+d _if _{\text{fa} _i}\)&lt;/span&gt;的形式. &lt;span class=&#34;math inline&#34;&gt;\(a,b,c,d\)&lt;/span&gt;都可以很方便地在trie上动态维护，这样就能快速地求出答案了.&lt;/p&gt;
-&lt;p&gt;评测的时候最后两个点好像爆栈了？但是noi应该会开无限栈的吧.&lt;/p&gt;
-&lt;h3 id=&#34;t3-7&#34;&gt;T3&lt;/h3&gt;
-&lt;p&gt;一开始的时候觉得多项式开根常数太大了，就写了个分治来求&lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt;，结果&lt;span class=&#34;math inline&#34;&gt;\(b _i\le 10^5\)&lt;/span&gt;的点跑了6.7s. 麦老大说开根常数再大也不会比&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n\log^2n)\)&lt;/span&gt;的分治慢. 膜拜10min打完多项式板子的dalao……&lt;/p&gt;
-&lt;p&gt;假设我们已经把&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;求出来了，考虑一个简单一点的问题，已经知道&lt;span class=&#34;math inline&#34;&gt;\(x,x^2,x^3,\ldots,x^n\)&lt;/span&gt;，怎么求出&lt;span class=&#34;math inline&#34;&gt;\(x^{n+1}\)&lt;/span&gt;. 这个显然用脚都能求出来. 但是现在它是一堆东西加起来，所以应该使用线性的方法，换句话说可以考虑把&lt;span class=&#34;math inline&#34;&gt;\(x^{n+1}\)&lt;/span&gt;表示成&lt;span class=&#34;math inline&#34;&gt;\(x,x^2,x^3,\ldots,x^n\)&lt;/span&gt;的线性组合. 回忆一下在哪里干过类似的事，可以联想到求常系数线性递推的时候，把&lt;span class=&#34;math inline&#34;&gt;\(M^n\)&lt;/span&gt;表示成&lt;span class=&#34;math inline&#34;&gt;\(I,M,M^2,\ldots,M^{n-1}\)&lt;/span&gt;的线性组合. 当时是利用了&lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;的化零多项式，容易想到现在也要构造一个多项式&lt;span class=&#34;math inline&#34;&gt;\(p(t)\)&lt;/span&gt;使得&lt;span class=&#34;math inline&#34;&gt;\(f _{b _1},f _{b _2},\ldots,f _{b _n}\)&lt;/span&gt;是它的根，显然&lt;span class=&#34;math inline&#34;&gt;\(p(t)=\prod(t-f _{b _i})\)&lt;/span&gt;，这个用分治fft来求就可以了.&lt;/p&gt;
-&lt;p&gt;下面考虑一下如何更高效地求出&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;. 我们知道&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;的生成函数&lt;span class=&#34;math inline&#34;&gt;\(F(z)=\frac{1-\sqrt{1-4z^2-16z^3-16z^4}}{2z(1+2z)}\)&lt;/span&gt;，这是一个多项式开根的经典题目，但是这里它有一个特殊性质，就是这些式子的次数都很低，不妨把它写成&lt;span class=&#34;math inline&#34;&gt;\(\frac{A(z)-\sqrt{C(z)}}{B(z)}\)&lt;/span&gt;的形式，先考虑怎么算&lt;span class=&#34;math inline&#34;&gt;\(D(z)/B(z)=X(z)\)&lt;/span&gt;，移项得到&lt;span class=&#34;math inline&#34;&gt;\(B(z)X(z)=D(z)\)&lt;/span&gt;，代入&lt;span class=&#34;math inline&#34;&gt;\(B(z)=2z(1+2z)\)&lt;/span&gt;，比较&lt;span class=&#34;math inline&#34;&gt;\(z^n\)&lt;/span&gt;的系数，得到&lt;span class=&#34;math inline&#34;&gt;\(d _n=2x _{n-1}+4x _{n-2}\)&lt;/span&gt;，即&lt;span class=&#34;math inline&#34;&gt;\(x _n=\frac{d _{n+1}-4x _{n-1}}{2}\)&lt;/span&gt;，这样就可以线性递推了. 接下来考虑怎么计算&lt;span class=&#34;math inline&#34;&gt;\(\sqrt{C(z)}=Y(z)\)&lt;/span&gt;，求导得到&lt;span class=&#34;math inline&#34;&gt;\(Y^\prime(z)=\frac{C^\prime(z)Y(z)}{2C(z)}\)&lt;/span&gt;，即&lt;span class=&#34;math inline&#34;&gt;\(2C(z)Y^\prime(z)=C^\prime(z)Y(z)\)&lt;/span&gt;. 代入再比较&lt;span class=&#34;math inline&#34;&gt;\(z^n\)&lt;/span&gt;的系数，得到&lt;span class=&#34;math inline&#34;&gt;\(2((n+1)h _{n+1}-4(n-1)h _{n-1}-16(n-2)h _{n-2}-16(n-3)h _{n-3})=-8h _{n-1}-48h _{n-2}-64h _{n-3}\)&lt;/span&gt;，把下标平移一下再化简，得到&lt;span class=&#34;math inline&#34;&gt;\(nh _n=(4n-12)h _{n-2}+(16n-72)h _{n-3}+(16n-96)h _{n-4}\)&lt;/span&gt;. 这样就可以线性递推了.&lt;/p&gt;
-&lt;p&gt;感觉有的时候求个导可以得到一些奇奇怪怪的但是有用的东西.&lt;/p&gt;- https://seraphim.rocks/posts/yali201807/ - </description>
         </item>
     
     
