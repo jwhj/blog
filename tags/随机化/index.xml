@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>随机化 on 蒟蒻的博客</title>
-    <link>https://seraphim.rocks/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96/</link>
+    <link>https://sensiki.xyz/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96/</link>
     <description>Recent content in 随机化 on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Tue, 26 Jun 2018 14:45:13 +0800</lastBuildDate>
     
-	<atom:link href="https://seraphim.rocks/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sensiki.xyz/tags/%E9%9A%8F%E6%9C%BA%E5%8C%96/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>loj2664题解</title>
-      <link>https://seraphim.rocks/posts/loj2664/</link>
+      <link>https://sensiki.xyz/posts/loj2664/</link>
       <pubDate>Tue, 26 Jun 2018 14:45:13 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2664/</guid>
+      <guid>https://sensiki.xyz/posts/loj2664/</guid>
       <description>&lt;p&gt;把所有向量组合成一个&lt;span class=&#34;math inline&#34;&gt;\(n\times d\)&lt;/span&gt;的矩阵&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;，那么问题其实就是判断&lt;span class=&#34;math inline&#34;&gt;\(AA^T=B\)&lt;/span&gt;除了对角线上是否存在&lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt;（模&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;意义下）.&lt;/p&gt;</description>
     </item>
     

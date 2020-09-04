@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Posts on 蒟蒻的博客</title>
-    <link>https://seraphim.rocks/posts/</link>
+    <link>https://sensiki.xyz/posts/</link>
     <description>Recent content in Posts on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 12 Aug 2020 11:40:51 +0800</lastBuildDate>
     
-	<atom:link href="https://seraphim.rocks/posts/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sensiki.xyz/posts/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>从hexo迁移至hugo</title>
-      <link>https://seraphim.rocks/posts/hugo/</link>
+      <link>https://sensiki.xyz/posts/hugo/</link>
       <pubDate>Wed, 12 Aug 2020 11:40:51 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/hugo/</guid>
+      <guid>https://sensiki.xyz/posts/hugo/</guid>
       <description>前段时间觉得hexo还是太慢了，又特别想折腾一下，就把博客从hexo迁移到了hugo。
 众所周知， 我们应该先搞定数学公式支持。那么一个问题就是，怎么防止公式里的下划线等符号被当成markdown解析。hugo使用的默认markdown	parser是goldmark。Goldmark本身无法实现这个需求，不过它有一个比较强大的插件系统，同时正好也有一个插件来实现这个需求。另外，值得一提的是，这个插件会把行内公式和行间公式渲染成\(...\)和\[...\]，所以加载mathjax或者katex的时候甚至不用特意去配置数学公式的定界符。
 可是hugo似乎不能配置markdown parser的插件。 以前有过给goldmark加上这个插件的pr，但是因为某些原因没有被接受。不过问题不大，我们可以自己改源码。如果用过go的话，照着插件的readme来做并不难。大概记录一下步骤。打开/markup/goldmark/convert.go，首先import插件：
@@ -32,10 +32,10 @@ var ( extensions = []goldmark.Extender{ extension.Strikethrough, mathjax.MathJax
     
     <item>
       <title>LevelDB数据丢失问题</title>
-      <link>https://seraphim.rocks/posts/leveldb-and-git-md/</link>
+      <link>https://sensiki.xyz/posts/leveldb-and-git-md/</link>
       <pubDate>Mon, 03 Feb 2020 21:55:41 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/leveldb-and-git-md/</guid>
+      <guid>https://sensiki.xyz/posts/leveldb-and-git-md/</guid>
       <description>我存在levelDB里面的数据丢了好几次，最近研究了一下，虽然不确定具体的原理，但大概知道怎么避免类似情况了。
 经过观察可以发现，就算不对数据库进行修改，仅仅是查询，文件也会发生变化。而我丢失数据，均发生在使用git切换分支，再切换回来的时候。我推测这之中某个时候，因为读数据发生了文件变动，然后切换分支又撤销了一部分文件变动，导致了数据库的损坏。
 暂时不清楚损坏过程，但是要记住，不要把数据库放到git repo里面！
@@ -44,10 +44,10 @@ var ( extensions = []goldmark.Extender{ extension.Strikethrough, mathjax.MathJax
     
     <item>
       <title>Typescript使用笔记</title>
-      <link>https://seraphim.rocks/posts/ts-notes/</link>
+      <link>https://sensiki.xyz/posts/ts-notes/</link>
       <pubDate>Wed, 22 Jan 2020 21:34:54 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/ts-notes/</guid>
+      <guid>https://sensiki.xyz/posts/ts-notes/</guid>
       <description>使用AnyTypescript已经有一段时间了，这期间踩了不少坑，也发现了一些骚操作。这里简单记录一下。
 CommonJS与ES Module兼容的问题 由于各种原因，CommonJS的模块化方式与ES Module的模块化方式之间并不能很容易地一一对应起来。ES Module中有default export的概念，如果在0.js中写
 export default A 那么就可以在1.js里面使用
@@ -64,10 +64,10 @@ Typescript的编译器提供了一个编译选项--esModuleInterop，加上它�
     
     <item>
       <title>使用增量编译加快typescript项目编译</title>
-      <link>https://seraphim.rocks/posts/watch/</link>
+      <link>https://sensiki.xyz/posts/watch/</link>
       <pubDate>Fri, 03 Jan 2020 01:16:23 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/watch/</guid>
+      <guid>https://sensiki.xyz/posts/watch/</guid>
       <description>前段时间开始试着用typescript，感觉有一个很明显的问题是，习惯了脚本语言之后，我不太有耐性等待一两秒的编译。最近折腾了各种方法，一开始我想禁用掉typescript的类型检查来提升编译速度（反正编辑器里就会进行检查），结果发现tsc并没有这个编译选项，倒是ts-node有一个-T选项可以做到这点。其实一个更好的解决方案可能是使用增量编译。
 tsc本身就能实现增量编译的效果，运行
 tsc --watch src/*.ts --outDir dist --sourceMap 就能启动一个服务，在检测到文件修改的时候，进行增量编译。一般来讲，增量编译会比重新编译整个项目快得多。这个方法在用typescript写后端的时候应该够用了。
@@ -79,10 +79,10 @@ UPD： 不知道为什么，把一条import语句去掉的时候编译可能会�
     
     <item>
       <title>在git-bash下输入中文</title>
-      <link>https://seraphim.rocks/posts/gitbashutf8/</link>
+      <link>https://sensiki.xyz/posts/gitbashutf8/</link>
       <pubDate>Sat, 30 Nov 2019 22:54:46 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/gitbashutf8/</guid>
+      <guid>https://sensiki.xyz/posts/gitbashutf8/</guid>
       <description>Windows Terminal终于支持显示中文/输入中文了，真是大快人心。
 我平时在Windows Terminal里面使用git-bash，输入中文一直会遇到一些问题，今天终于把问题折腾没了。
 具体来讲，就是输入中文以后，要多次退格才能删除一个中文字符，而且即使删除了，仍然会有不可见字符。但是这个问题在我使用git-bash自带的mintty的时候又会神秘解决。
@@ -93,10 +93,10 @@ export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8 我怀疑只需要其中一行
     
     <item>
       <title>如何在xelatex中使用思源字体</title>
-      <link>https://seraphim.rocks/posts/sourcehan/</link>
+      <link>https://sensiki.xyz/posts/sourcehan/</link>
       <pubDate>Thu, 28 Nov 2019 22:32:27 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/sourcehan/</guid>
+      <guid>https://sensiki.xyz/posts/sourcehan/</guid>
       <description>早就听说微软雅黑存在版权问题，而思源字体非常优越，但是我之前折腾了半天一直装不上就很尴尬了。
 首先思源字体可以从github上面下载。按照网上大多数人的说法，安装字体后，在xelatex里面使用如下代码就能使用思源字体了。然而并不能。
 \usepackage{xeCJK} \usepackage{fontspec} \setCJKmainfont{Source Han Serif} 今天我终于弄清楚了为什么：安装字体的时候要选择为所有用户安装。这也太惨了。
@@ -105,10 +105,10 @@ export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8 我怀疑只需要其中一行
     
     <item>
       <title>使用nodejs的pipe遇到的一点小问题</title>
-      <link>https://seraphim.rocks/posts/pipe/</link>
+      <link>https://sensiki.xyz/posts/pipe/</link>
       <pubDate>Tue, 26 Nov 2019 23:31:11 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/pipe/</guid>
+      <guid>https://sensiki.xyz/posts/pipe/</guid>
       <description>随便发点东西就当除草。
 这个东西调了我一整晚……心态爆炸
 简单来讲就是，使用nodejs stream的pipe的时候，它可能会在某些地方进行编码转换，有些地方你可以手动指定为只传输二进制，但有的地方似乎不行 (也有可能是我还没找到)。
@@ -120,56 +120,56 @@ export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8 我怀疑只需要其中一行
     
     <item>
       <title>解决go get下载缓慢的问题</title>
-      <link>https://seraphim.rocks/posts/gogetpkg/</link>
+      <link>https://sensiki.xyz/posts/gogetpkg/</link>
       <pubDate>Sat, 25 May 2019 11:17:50 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/gogetpkg/</guid>
+      <guid>https://sensiki.xyz/posts/gogetpkg/</guid>
       <description>&lt;p&gt;go get下载第三方包的时候大多数情况要从github上面pull，有的时候还要从&lt;code&gt;golang.org&lt;/code&gt;之类的地方下载源码. 由于众所周知的原因git clone速度极慢，golang.org根本不能访问，所以golang下载第三方包的时候总是极其麻烦. 最近写了个程序解决这个问题.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>&#39;[whj什么都不会系列-2]bzoj4734&amp;uoj269题解&#39;</title>
-      <link>https://seraphim.rocks/posts/bzoj4734/</link>
+      <link>https://sensiki.xyz/posts/bzoj4734/</link>
       <pubDate>Fri, 22 Mar 2019 20:24:47 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/bzoj4734/</guid>
+      <guid>https://sensiki.xyz/posts/bzoj4734/</guid>
       <description>&lt;p&gt;bzoj上的题面真是残缺不全……uoj上有完整的题面.&lt;/p&gt;
 &lt;p&gt;退役久了脑子都不好用了，这么简单的东西推了半天……&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>N Squared Minus One</title>
-      <link>https://seraphim.rocks/posts/nsmo/</link>
+      <link>https://sensiki.xyz/posts/nsmo/</link>
       <pubDate>Sat, 23 Feb 2019 21:58:34 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/nsmo/</guid>
+      <guid>https://sensiki.xyz/posts/nsmo/</guid>
       <description>&lt;p&gt;再厚颜无耻地放个小游戏.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Arcsine</title>
-      <link>https://seraphim.rocks/posts/arcsine/</link>
+      <link>https://sensiki.xyz/posts/arcsine/</link>
       <pubDate>Sun, 20 Jan 2019 21:24:26 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/arcsine/</guid>
+      <guid>https://sensiki.xyz/posts/arcsine/</guid>
       <description>&lt;p&gt;厚颜无耻地发一个自己写的小游戏.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>用markdown做slides</title>
-      <link>https://seraphim.rocks/posts/mdslide/</link>
+      <link>https://sensiki.xyz/posts/mdslide/</link>
       <pubDate>Sat, 15 Dec 2018 21:43:39 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/mdslide/</guid>
+      <guid>https://sensiki.xyz/posts/mdslide/</guid>
       <description>&lt;p&gt;厚颜无耻地把自己的项目发上来.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>whj什么都不会系列-1</title>
-      <link>https://seraphim.rocks/posts/sbwhj-1/</link>
+      <link>https://sensiki.xyz/posts/sbwhj-1/</link>
       <pubDate>Fri, 14 Dec 2018 21:40:41 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/sbwhj-1/</guid>
+      <guid>https://sensiki.xyz/posts/sbwhj-1/</guid>
       <description>&lt;p&gt;退役了只有一直没怎么做题，感觉水平退步了不少，以前一些比较显然的思路现在可能都想不到了. 这样下去肯定是不行的，我尽量时不时做点&lt;del&gt;水&lt;/del&gt;题写点题解恢复一点智商吧.&lt;/p&gt;
 &lt;h3 id=&#34;题意&#34;&gt;题意&lt;/h3&gt;
 &lt;p&gt;给定&lt;span class=&#34;math inline&#34;&gt;\(n,m\)&lt;/span&gt;，求有多少对&lt;span class=&#34;math inline&#34;&gt;\((i,j)\)&lt;/span&gt;满足&lt;span class=&#34;math inline&#34;&gt;\(1\le i\le n,1\le j\le m\)&lt;/span&gt;且&lt;span class=&#34;math inline&#34;&gt;\(\gcd(i,j)\)&lt;/span&gt;为素数.&lt;/p&gt;
@@ -179,321 +179,321 @@ export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8 我怀疑只需要其中一行
     
     <item>
       <title>O(1)快速乘</title>
-      <link>https://seraphim.rocks/posts/fastmul/</link>
+      <link>https://sensiki.xyz/posts/fastmul/</link>
       <pubDate>Fri, 30 Nov 2018 22:19:28 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/fastmul/</guid>
+      <guid>https://sensiki.xyz/posts/fastmul/</guid>
       <description>&lt;p&gt;AFO有段时间了，感觉自己什么都不会了，随便研究点东西证明我还活着……&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>黑科技</title>
-      <link>https://seraphim.rocks/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</link>
+      <link>https://sensiki.xyz/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</link>
       <pubDate>Sun, 30 Sep 2018 21:43:03 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</guid>
+      <guid>https://sensiki.xyz/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</guid>
       <description>&lt;p&gt;好久没写博客了，随便扔点东西上来除个草.&lt;/p&gt;
 &lt;p&gt;其实也说不上是黑科技，就是自己平时折腾linux，折腾vim之类的东西的时候发现的一些小技巧罢了.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>NOI2018退役记</title>
-      <link>https://seraphim.rocks/posts/farewelloi/</link>
+      <link>https://sensiki.xyz/posts/farewelloi/</link>
       <pubDate>Sat, 01 Sep 2018 21:34:49 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/farewelloi/</guid>
+      <guid>https://sensiki.xyz/posts/farewelloi/</guid>
       <description>&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;退役之后一直有点消沉，没有写退役记什么的，最近想了想还是多少放点东西上来.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>uoj50题解</title>
-      <link>https://seraphim.rocks/posts/uoj50/</link>
+      <link>https://sensiki.xyz/posts/uoj50/</link>
       <pubDate>Fri, 17 Aug 2018 19:28:08 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/uoj50/</guid>
+      <guid>https://sensiki.xyz/posts/uoj50/</guid>
       <description>&lt;p&gt;分治fft是非常明显的做法，不过这样是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n\log^2n)\)&lt;/span&gt;的. 把生成函数弄出来之后会发现它是个微分方程，可以有一些神奇的方法来解，具体可以看UR3的题解.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2541题解</title>
-      <link>https://seraphim.rocks/posts/loj2541/</link>
+      <link>https://sensiki.xyz/posts/loj2541/</link>
       <pubDate>Mon, 16 Jul 2018 15:47:07 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2541/</guid>
+      <guid>https://sensiki.xyz/posts/loj2541/</guid>
       <description>&lt;p&gt;这种求某个东西在最后一个的概率之类的其实可以考虑容斥，设钦定一个集合&lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;在它后面的概率为&lt;span class=&#34;math inline&#34;&gt;\(f(S)\)&lt;/span&gt;，那么最后的答案为&lt;span class=&#34;math inline&#34;&gt;\(\sum (-1)^{|S|}f(S)\)&lt;/span&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>uoj387题解</title>
-      <link>https://seraphim.rocks/posts/uoj387/</link>
+      <link>https://sensiki.xyz/posts/uoj387/</link>
       <pubDate>Sun, 15 Jul 2018 13:31:44 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/uoj387/</guid>
+      <guid>https://sensiki.xyz/posts/uoj387/</guid>
       <description>&lt;p&gt;学到了一个新的技巧，树形的依赖关系，把顺序翻转，就可以在依赖父亲和依赖子树之间相互转化.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj2324题解</title>
-      <link>https://seraphim.rocks/posts/bzoj2324/</link>
+      <link>https://sensiki.xyz/posts/bzoj2324/</link>
       <pubDate>Sat, 07 Jul 2018 20:49:50 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/bzoj2324/</guid>
+      <guid>https://sensiki.xyz/posts/bzoj2324/</guid>
       <description>&lt;p&gt;前置技能：DAG的最小路径覆盖和最小链覆盖.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>雅礼2018年7月集训总结</title>
-      <link>https://seraphim.rocks/posts/yali201807/</link>
+      <link>https://sensiki.xyz/posts/yali201807/</link>
       <pubDate>Sun, 01 Jul 2018 20:15:04 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/yali201807/</guid>
+      <guid>https://sensiki.xyz/posts/yali201807/</guid>
       <description>&lt;p&gt;&lt;del&gt;NOI前的垂死挣扎.&lt;/del&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2305题解</title>
-      <link>https://seraphim.rocks/posts/loj2305/</link>
+      <link>https://sensiki.xyz/posts/loj2305/</link>
       <pubDate>Wed, 27 Jun 2018 10:24:18 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2305/</guid>
+      <guid>https://sensiki.xyz/posts/loj2305/</guid>
       <description>&lt;p&gt;又写了一遍，tarjan真的容易写错……&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj6189题解</title>
-      <link>https://seraphim.rocks/posts/loj6189/</link>
+      <link>https://sensiki.xyz/posts/loj6189/</link>
       <pubDate>Wed, 27 Jun 2018 08:09:36 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj6189/</guid>
+      <guid>https://sensiki.xyz/posts/loj6189/</guid>
       <description>&lt;p&gt;要知道某个数的最高位，其实就是要知道它对数的小数部分，于是可以想到维护对数的和.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2664题解</title>
-      <link>https://seraphim.rocks/posts/loj2664/</link>
+      <link>https://sensiki.xyz/posts/loj2664/</link>
       <pubDate>Tue, 26 Jun 2018 14:45:13 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2664/</guid>
+      <guid>https://sensiki.xyz/posts/loj2664/</guid>
       <description>&lt;p&gt;把所有向量组合成一个&lt;span class=&#34;math inline&#34;&gt;\(n\times d\)&lt;/span&gt;的矩阵&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;，那么问题其实就是判断&lt;span class=&#34;math inline&#34;&gt;\(AA^T=B\)&lt;/span&gt;除了对角线上是否存在&lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt;（模&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;意义下）.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2249题解</title>
-      <link>https://seraphim.rocks/posts/loj2249/</link>
+      <link>https://sensiki.xyz/posts/loj2249/</link>
       <pubDate>Tue, 26 Jun 2018 09:03:45 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2249/</guid>
+      <guid>https://sensiki.xyz/posts/loj2249/</guid>
       <description>&lt;p&gt;一开始居然脑子短路没有想到斜率优化……以后看到这种感觉跟凸包有关系，要求最值/要最优化的问题，可以考虑写个dp方程出来看看能不能斜率优化.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj3533题解</title>
-      <link>https://seraphim.rocks/posts/bzoj3533/</link>
+      <link>https://sensiki.xyz/posts/bzoj3533/</link>
       <pubDate>Mon, 25 Jun 2018 19:55:55 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/bzoj3533/</guid>
+      <guid>https://sensiki.xyz/posts/bzoj3533/</guid>
       <description>&lt;p&gt;容易发现答案一定在凸包上，询问的&lt;span class=&#34;math inline&#34;&gt;\(y\lt 0\)&lt;/span&gt;则在上凸壳，否则在下凸壳.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2248题解</title>
-      <link>https://seraphim.rocks/posts/loj2248/</link>
+      <link>https://sensiki.xyz/posts/loj2248/</link>
       <pubDate>Mon, 25 Jun 2018 15:27:41 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2248/</guid>
+      <guid>https://sensiki.xyz/posts/loj2248/</guid>
       <description>&lt;p&gt;vfk说分不清noi2014和noip2014果然是有道理的……&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2131题解</title>
-      <link>https://seraphim.rocks/posts/loj2131/</link>
+      <link>https://sensiki.xyz/posts/loj2131/</link>
       <pubDate>Mon, 25 Jun 2018 11:07:13 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2131/</guid>
+      <guid>https://sensiki.xyz/posts/loj2131/</guid>
       <description>&lt;p&gt;首先注意到选择了一个数就是选择了它的所有素因子，而不超过&lt;span class=&#34;math inline&#34;&gt;\(\sqrt{n}\)&lt;/span&gt;的素数至多只有8个，可以考虑状压. &lt;!-- raw HTML omitted --&gt;超过的那些我们先不管.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2085题解</title>
-      <link>https://seraphim.rocks/posts/loj2085/</link>
+      <link>https://sensiki.xyz/posts/loj2085/</link>
       <pubDate>Mon, 25 Jun 2018 08:38:52 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2085/</guid>
+      <guid>https://sensiki.xyz/posts/loj2085/</guid>
       <description>&lt;p&gt;挺优美的一道数论题. 当然也有可能是我太菜了.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2306题解</title>
-      <link>https://seraphim.rocks/posts/loj2306/</link>
+      <link>https://sensiki.xyz/posts/loj2306/</link>
       <pubDate>Mon, 25 Jun 2018 08:24:26 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2306/</guid>
+      <guid>https://sensiki.xyz/posts/loj2306/</guid>
       <description>&lt;p&gt;这题面写得有毒……应该理解为对于第&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;种蔬菜，有&lt;span class=&#34;math inline&#34;&gt;\(x _i\)&lt;/span&gt;个单位只能在第一天卖，有&lt;span class=&#34;math inline&#34;&gt;\(x _i\)&lt;/span&gt;个单位只能在第二天结束前卖，以此类推. 也就是说，说你把当天结束本来要变质的蔬菜卖了，那天就不会有蔬菜变质了.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2304题解</title>
-      <link>https://seraphim.rocks/posts/loj2304/</link>
+      <link>https://sensiki.xyz/posts/loj2304/</link>
       <pubDate>Sat, 23 Jun 2018 10:00:10 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2304/</guid>
+      <guid>https://sensiki.xyz/posts/loj2304/</guid>
       <description>&lt;p&gt;首先恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;不好处理，显然要转化为&lt;span class=&#34;math inline&#34;&gt;\(\le k\)&lt;/span&gt;的概率减去&lt;span class=&#34;math inline&#34;&gt;\(\le k-1\)&lt;/span&gt;的概率.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2303题解</title>
-      <link>https://seraphim.rocks/posts/loj2303/</link>
+      <link>https://sensiki.xyz/posts/loj2303/</link>
       <pubDate>Sat, 23 Jun 2018 09:53:03 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2303/</guid>
+      <guid>https://sensiki.xyz/posts/loj2303/</guid>
       <description>&lt;p&gt;我怕不是在做noip题……&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2302题解</title>
-      <link>https://seraphim.rocks/posts/loj2302/</link>
+      <link>https://sensiki.xyz/posts/loj2302/</link>
       <pubDate>Fri, 22 Jun 2018 15:35:18 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2302/</guid>
+      <guid>https://sensiki.xyz/posts/loj2302/</guid>
       <description>&lt;p&gt;看到题目很容易想到压位+线段树，但是因为&lt;!-- raw HTML omitted --&gt;我太懒了&lt;!-- raw HTML omitted --&gt;这不太好写，我上网查了查发现了另一个很有意思的做法.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2554题解</title>
-      <link>https://seraphim.rocks/posts/loj2554/</link>
+      <link>https://sensiki.xyz/posts/loj2554/</link>
       <pubDate>Thu, 21 Jun 2018 11:25:11 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2554/</guid>
+      <guid>https://sensiki.xyz/posts/loj2554/</guid>
       <description>&lt;p&gt;首先注意到给定的区间之间要么不相交，要么嵌套，否则肯定不合法，而且一定有一个覆盖整个序列的区间. 据此我们可以发现区间之间嵌套的关系形成了一个树结构，树中每个点是一个极大的连续的区间. 因此我们只需求出&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;表示长为&lt;span class=&#34;math inline&#34;&gt;\(i+1\)&lt;/span&gt;的，不存在任何不包含最后一位的连续区间的，排列的个数.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2553题解</title>
-      <link>https://seraphim.rocks/posts/loj2553/</link>
+      <link>https://sensiki.xyz/posts/loj2553/</link>
       <pubDate>Wed, 20 Jun 2018 19:05:24 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2553/</guid>
+      <guid>https://sensiki.xyz/posts/loj2553/</guid>
       <description>&lt;p&gt;&lt;!-- raw HTML omitted --&gt;点一下，写一年！A到就是赚到！&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2555题解</title>
-      <link>https://seraphim.rocks/posts/loj2555/</link>
+      <link>https://sensiki.xyz/posts/loj2555/</link>
       <pubDate>Wed, 20 Jun 2018 09:36:52 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2555/</guid>
+      <guid>https://sensiki.xyz/posts/loj2555/</guid>
       <description>&lt;p&gt;首先考虑&lt;span class=&#34;math inline&#34;&gt;\(m=1\)&lt;/span&gt;的情况，这个时候显然直接二分+按价格贪心就可以了. 如果直接把这个算法应用到原题，复杂度是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(nm\log^2 n)\)&lt;/span&gt;. 结果我就开始想整体二分，想复杂了.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2552题解</title>
-      <link>https://seraphim.rocks/posts/loj2552/</link>
+      <link>https://sensiki.xyz/posts/loj2552/</link>
       <pubDate>Tue, 19 Jun 2018 20:05:22 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2552/</guid>
+      <guid>https://sensiki.xyz/posts/loj2552/</guid>
       <description>&lt;p&gt;&lt;strong&gt;由于代码习惯，下文中用&lt;span class=&#34;math inline&#34;&gt;\(h _i\)&lt;/span&gt;表示题目中的&lt;span class=&#34;math inline&#34;&gt;\(m _i\)&lt;/span&gt;.&lt;/strong&gt;&lt;/p&gt;
 &lt;p&gt;看到998244353不知道为什么就去想NTT……其实完全没有必要，因为&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(h _i\)&lt;/span&gt;都非常小.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2264题解</title>
-      <link>https://seraphim.rocks/posts/loj2264/</link>
+      <link>https://sensiki.xyz/posts/loj2264/</link>
       <pubDate>Tue, 19 Jun 2018 15:28:33 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2264/</guid>
+      <guid>https://sensiki.xyz/posts/loj2264/</guid>
       <description>&lt;p&gt;看了题解才发现loj上面的题面漏了一小部分……uoj上的题面是完整的.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2586题解</title>
-      <link>https://seraphim.rocks/posts/loj2586/</link>
+      <link>https://sensiki.xyz/posts/loj2586/</link>
       <pubDate>Tue, 19 Jun 2018 11:18:45 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2586/</guid>
+      <guid>https://sensiki.xyz/posts/loj2586/</guid>
       <description>&lt;p&gt;因为圆是从大往小选的，所以每次选出一个圆，它能删掉的圆一定在两倍半径范围之内，假设我们有一个数据结构可以快速把两倍半径范围内的圆找出来，那么直接对这些圆暴力判交就可以了.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj2585题解</title>
-      <link>https://seraphim.rocks/posts/loj2585/</link>
+      <link>https://sensiki.xyz/posts/loj2585/</link>
       <pubDate>Tue, 19 Jun 2018 10:01:24 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj2585/</guid>
+      <guid>https://sensiki.xyz/posts/loj2585/</guid>
       <description>&lt;p&gt;算是一个我不太熟悉的技巧吧……感觉大家都会，就我一个考场上没想出来.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj6059题解</title>
-      <link>https://seraphim.rocks/posts/loj6059/</link>
+      <link>https://sensiki.xyz/posts/loj6059/</link>
       <pubDate>Sat, 16 Jun 2018 12:50:31 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj6059/</guid>
+      <guid>https://sensiki.xyz/posts/loj6059/</guid>
       <description>&lt;p&gt;令&lt;span class=&#34;math inline&#34;&gt;\(f _{i,j,k}\)&lt;/span&gt;表示&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;位，模&lt;span class=&#34;math inline&#34;&gt;\(p\)&lt;/span&gt;余&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;，数字和恰好为&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;的数的个数，那么可以写出递推式&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj5338题解</title>
-      <link>https://seraphim.rocks/posts/bzoj5338/</link>
+      <link>https://sensiki.xyz/posts/bzoj5338/</link>
       <pubDate>Fri, 15 Jun 2018 17:34:10 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/bzoj5338/</guid>
+      <guid>https://sensiki.xyz/posts/bzoj5338/</guid>
       <description>&lt;p&gt;智商有点下线想复杂了.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj4314题解</title>
-      <link>https://seraphim.rocks/posts/bzoj4314/</link>
+      <link>https://sensiki.xyz/posts/bzoj4314/</link>
       <pubDate>Fri, 15 Jun 2018 10:36:33 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/bzoj4314/</guid>
+      <guid>https://sensiki.xyz/posts/bzoj4314/</guid>
       <description>&lt;p&gt;定义&lt;span class=&#34;math inline&#34;&gt;\(f(x,y)=\prod _{i=0}^{n-1}(1+x^iy)\)&lt;/span&gt;，这里做乘法的时候&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;是模&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的循环卷积，而y是普通卷积. 那么答案就是&lt;span class=&#34;math inline&#34;&gt;\([x^0y^k]f(x,y)\)&lt;/span&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj4162题解</title>
-      <link>https://seraphim.rocks/posts/bzoj4162/</link>
+      <link>https://sensiki.xyz/posts/bzoj4162/</link>
       <pubDate>Wed, 13 Jun 2018 19:48:56 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/bzoj4162/</guid>
+      <guid>https://sensiki.xyz/posts/bzoj4162/</guid>
       <description>&lt;p&gt;几年前刚学矩阵快速幂的时候点开了这道题，写了半天始终TLE，一看题解发现完全看不懂……时隔多年终于A掉了这道题.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>loj6375题解</title>
-      <link>https://seraphim.rocks/posts/loj6375/</link>
+      <link>https://sensiki.xyz/posts/loj6375/</link>
       <pubDate>Mon, 11 Jun 2018 19:08:30 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/loj6375/</guid>
+      <guid>https://sensiki.xyz/posts/loj6375/</guid>
       <description>&lt;p&gt;好久没怎么做题了，做道水题练练手.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>test</title>
-      <link>https://seraphim.rocks/posts/test/</link>
+      <link>https://sensiki.xyz/posts/test/</link>
       <pubDate>Sun, 10 Jun 2018 19:08:17 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/test/</guid>
+      <guid>https://sensiki.xyz/posts/test/</guid>
       <description>&lt;p&gt;其它测试&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(E=mc^2\)&lt;/span&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>GDOI2018退役失败记</title>
-      <link>https://seraphim.rocks/posts/gdoi2018/</link>
+      <link>https://sensiki.xyz/posts/gdoi2018/</link>
       <pubDate>Wed, 02 May 2018 22:26:00 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/gdoi2018/</guid>
+      <guid>https://sensiki.xyz/posts/gdoi2018/</guid>
       <description>&lt;p&gt;&lt;!-- raw HTML omitted --&gt;在退役的边缘试探.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;居然rk2进入A队了，rp大概用光了吧……&lt;!-- raw HTML omitted --&gt;你看看你最近抽卡抽出来的都是什么鬼东西！&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>2018-4纪中集训总结</title>
-      <link>https://seraphim.rocks/posts/2018-4jz/</link>
+      <link>https://sensiki.xyz/posts/2018-4jz/</link>
       <pubDate>Tue, 10 Apr 2018 17:33:00 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/2018-4jz/</guid>
+      <guid>https://sensiki.xyz/posts/2018-4jz/</guid>
       <description>&lt;p&gt;我好菜啊……&lt;/p&gt;</description>
     </item>
     

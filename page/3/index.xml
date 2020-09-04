@@ -1,23 +1,23 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>蒟蒻的博客</title>
-    <link>https://seraphim.rocks/</link>
+    <link>https://sensiki.xyz/</link>
     <description>Recent content on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 12 Aug 2020 11:40:51 +0800</lastBuildDate>
     
-        <atom:link href="https://seraphim.rocks/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://sensiki.xyz/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
         <title>雅礼2018年7月集训总结</title>
-        <link>https://seraphim.rocks/posts/yali201807/</link>
+        <link>https://sensiki.xyz/posts/yali201807/</link>
         <pubDate>Sun, 01 Jul 2018 20:15:04 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/yali201807/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/yali201807/ -&lt;p&gt;&lt;del&gt;NOI前的垂死挣扎.&lt;/del&gt;&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/yali201807/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/yali201807/ -&lt;p&gt;&lt;del&gt;NOI前的垂死挣扎.&lt;/del&gt;&lt;/p&gt;
 &lt;h2 id=&#34;7-1&#34;&gt;7-1&lt;/h2&gt;
 &lt;p&gt;考得还不错的样子，但是还有可以完善的地方.&lt;/p&gt;
 &lt;h3 id=&#34;t1&#34;&gt;T1&lt;/h3&gt;
@@ -145,18 +145,18 @@
 &lt;p&gt;一开始的时候觉得多项式开根常数太大了，就写了个分治来求&lt;span class=&#34;math inline&#34;&gt;\(f\)&lt;/span&gt;，结果&lt;span class=&#34;math inline&#34;&gt;\(b _i\le 10^5\)&lt;/span&gt;的点跑了6.7s. 麦老大说开根常数再大也不会比&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n\log^2n)\)&lt;/span&gt;的分治慢. 膜拜10min打完多项式板子的dalao……&lt;/p&gt;
 &lt;p&gt;假设我们已经把&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;求出来了，考虑一个简单一点的问题，已经知道&lt;span class=&#34;math inline&#34;&gt;\(x,x^2,x^3,\ldots,x^n\)&lt;/span&gt;，怎么求出&lt;span class=&#34;math inline&#34;&gt;\(x^{n+1}\)&lt;/span&gt;. 这个显然用脚都能求出来. 但是现在它是一堆东西加起来，所以应该使用线性的方法，换句话说可以考虑把&lt;span class=&#34;math inline&#34;&gt;\(x^{n+1}\)&lt;/span&gt;表示成&lt;span class=&#34;math inline&#34;&gt;\(x,x^2,x^3,\ldots,x^n\)&lt;/span&gt;的线性组合. 回忆一下在哪里干过类似的事，可以联想到求常系数线性递推的时候，把&lt;span class=&#34;math inline&#34;&gt;\(M^n\)&lt;/span&gt;表示成&lt;span class=&#34;math inline&#34;&gt;\(I,M,M^2,\ldots,M^{n-1}\)&lt;/span&gt;的线性组合. 当时是利用了&lt;span class=&#34;math inline&#34;&gt;\(M\)&lt;/span&gt;的化零多项式，容易想到现在也要构造一个多项式&lt;span class=&#34;math inline&#34;&gt;\(p(t)\)&lt;/span&gt;使得&lt;span class=&#34;math inline&#34;&gt;\(f _{b _1},f _{b _2},\ldots,f _{b _n}\)&lt;/span&gt;是它的根，显然&lt;span class=&#34;math inline&#34;&gt;\(p(t)=\prod(t-f _{b _i})\)&lt;/span&gt;，这个用分治fft来求就可以了.&lt;/p&gt;
 &lt;p&gt;下面考虑一下如何更高效地求出&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;. 我们知道&lt;span class=&#34;math inline&#34;&gt;\(f _i\)&lt;/span&gt;的生成函数&lt;span class=&#34;math inline&#34;&gt;\(F(z)=\frac{1-\sqrt{1-4z^2-16z^3-16z^4}}{2z(1+2z)}\)&lt;/span&gt;，这是一个多项式开根的经典题目，但是这里它有一个特殊性质，就是这些式子的次数都很低，不妨把它写成&lt;span class=&#34;math inline&#34;&gt;\(\frac{A(z)-\sqrt{C(z)}}{B(z)}\)&lt;/span&gt;的形式，先考虑怎么算&lt;span class=&#34;math inline&#34;&gt;\(D(z)/B(z)=X(z)\)&lt;/span&gt;，移项得到&lt;span class=&#34;math inline&#34;&gt;\(B(z)X(z)=D(z)\)&lt;/span&gt;，代入&lt;span class=&#34;math inline&#34;&gt;\(B(z)=2z(1+2z)\)&lt;/span&gt;，比较&lt;span class=&#34;math inline&#34;&gt;\(z^n\)&lt;/span&gt;的系数，得到&lt;span class=&#34;math inline&#34;&gt;\(d _n=2x _{n-1}+4x _{n-2}\)&lt;/span&gt;，即&lt;span class=&#34;math inline&#34;&gt;\(x _n=\frac{d _{n+1}-4x _{n-1}}{2}\)&lt;/span&gt;，这样就可以线性递推了. 接下来考虑怎么计算&lt;span class=&#34;math inline&#34;&gt;\(\sqrt{C(z)}=Y(z)\)&lt;/span&gt;，求导得到&lt;span class=&#34;math inline&#34;&gt;\(Y^\prime(z)=\frac{C^\prime(z)Y(z)}{2C(z)}\)&lt;/span&gt;，即&lt;span class=&#34;math inline&#34;&gt;\(2C(z)Y^\prime(z)=C^\prime(z)Y(z)\)&lt;/span&gt;. 代入再比较&lt;span class=&#34;math inline&#34;&gt;\(z^n\)&lt;/span&gt;的系数，得到&lt;span class=&#34;math inline&#34;&gt;\(2((n+1)h _{n+1}-4(n-1)h _{n-1}-16(n-2)h _{n-2}-16(n-3)h _{n-3})=-8h _{n-1}-48h _{n-2}-64h _{n-3}\)&lt;/span&gt;，把下标平移一下再化简，得到&lt;span class=&#34;math inline&#34;&gt;\(nh _n=(4n-12)h _{n-2}+(16n-72)h _{n-3}+(16n-96)h _{n-4}\)&lt;/span&gt;. 这样就可以线性递推了.&lt;/p&gt;
-&lt;p&gt;感觉有的时候求个导可以得到一些奇奇怪怪的但是有用的东西.&lt;/p&gt;- https://seraphim.rocks/posts/yali201807/ - </description>
+&lt;p&gt;感觉有的时候求个导可以得到一些奇奇怪怪的但是有用的东西.&lt;/p&gt;- https://sensiki.xyz/posts/yali201807/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2305题解</title>
-        <link>https://seraphim.rocks/posts/loj2305/</link>
+        <link>https://sensiki.xyz/posts/loj2305/</link>
         <pubDate>Wed, 27 Jun 2018 10:24:18 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/loj2305/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2305/ -&lt;p&gt;又写了一遍，tarjan真的容易写错……&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/loj2305/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/loj2305/ -&lt;p&gt;又写了一遍，tarjan真的容易写错……&lt;/p&gt;
 &lt;p&gt;如果没有x类型显然就是2SAT，如果有的话一个很自然的想法就是枚举它是A，B还是C. 但是注意到我们在做2SAT，只要把可能的情况限制在2种以内就可以了. 所以对于x类型的地图，可以枚举它不是A和它不是B两种情况（不需要枚举不是C，因为这肯定包含在前两种情况里面）.&lt;/p&gt;
 &lt;p&gt;错误的tarjan：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;color:#66d9ef&#34;&gt;void&lt;/span&gt; &lt;span style=&#34;color:#a6e22e&#34;&gt;tarjan&lt;/span&gt;(ele i){
@@ -319,18 +319,18 @@ edge &lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;h[maxn];
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;if&lt;/span&gt; (&lt;span style=&#34;color:#f92672&#34;&gt;!&lt;/span&gt;flag) puts(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-1&amp;#34;&lt;/span&gt;);
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2305/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/loj2305/ - </description>
         </item>
     
     
     
         <item>
         <title>loj6189题解</title>
-        <link>https://seraphim.rocks/posts/loj6189/</link>
+        <link>https://sensiki.xyz/posts/loj6189/</link>
         <pubDate>Wed, 27 Jun 2018 08:09:36 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/loj6189/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj6189/ -&lt;p&gt;要知道某个数的最高位，其实就是要知道它对数的小数部分，于是可以想到维护对数的和.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/loj6189/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/loj6189/ -&lt;p&gt;要知道某个数的最高位，其实就是要知道它对数的小数部分，于是可以想到维护对数的和.&lt;/p&gt;
 &lt;p&gt;因为要给区间排序，容易想到线段树合并的做法，不过这里还要进行区间查询而非单点查询，理论上外面还需要套一个平衡树之类的东西，但这样就非常难写了.&lt;/p&gt;
 &lt;p&gt;注意到线段树合并的做法本来外面套着一个类似ODT的东西，而这道题的排序操作正好就相当于是区间覆盖，所以外面可以套ODT而不是平衡树，就非常好写了.&lt;/p&gt;
 &lt;p&gt;如果直接就这么交上去，你会发现前面有几个点T掉了，再仔细读一遍题，发现&lt;/p&gt;
@@ -463,18 +463,18 @@ node&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt; &lt;span style=&#34
 	}
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj6189/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/loj6189/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2664题解</title>
-        <link>https://seraphim.rocks/posts/loj2664/</link>
+        <link>https://sensiki.xyz/posts/loj2664/</link>
         <pubDate>Tue, 26 Jun 2018 14:45:13 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/loj2664/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2664/ -&lt;p&gt;把所有向量组合成一个&lt;span class=&#34;math inline&#34;&gt;\(n\times d\)&lt;/span&gt;的矩阵&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;，那么问题其实就是判断&lt;span class=&#34;math inline&#34;&gt;\(AA^T=B\)&lt;/span&gt;除了对角线上是否存在&lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt;（模&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;意义下）.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/loj2664/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/loj2664/ -&lt;p&gt;把所有向量组合成一个&lt;span class=&#34;math inline&#34;&gt;\(n\times d\)&lt;/span&gt;的矩阵&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;，那么问题其实就是判断&lt;span class=&#34;math inline&#34;&gt;\(AA^T=B\)&lt;/span&gt;除了对角线上是否存在&lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt;（模&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;意义下）.&lt;/p&gt;
 &lt;p&gt;先忽略对角线这个问题，判断&lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt;中是否存在&lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt;，如果&lt;span class=&#34;math inline&#34;&gt;\(k=2\)&lt;/span&gt;，其实就是要判断&lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt;是否为全&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;矩阵. 判断是否相等有一个套路，就是随机一个&lt;span class=&#34;math inline&#34;&gt;\(1\times n\)&lt;/span&gt;的向量&lt;span class=&#34;math inline&#34;&gt;\(X\)&lt;/span&gt;，判断&lt;span class=&#34;math inline&#34;&gt;\(XAA^T\)&lt;/span&gt;是否等于&lt;span class=&#34;math inline&#34;&gt;\(XB\)&lt;/span&gt;，这样时间复杂度降至&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(nd)\)&lt;/span&gt;. 如果判断发现相等，错误率为&lt;span class=&#34;math inline&#34;&gt;\(\frac{1}{2}\)&lt;/span&gt;，重复若干次即可让错误率足够小.&lt;/p&gt;
 &lt;p&gt;下面考虑&lt;span class=&#34;math inline&#34;&gt;\(k=3\)&lt;/span&gt;的情况. 如果&lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt;中不存在&lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt;，&lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt;中的元素仍可能为&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;或&lt;span class=&#34;math inline&#34;&gt;\(2\)&lt;/span&gt;. 定义&lt;span class=&#34;math inline&#34;&gt;\(C _{i,j}=B _{i,j}^2\)&lt;/span&gt;，那么如果&lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt;中不存在&lt;span class=&#34;math inline&#34;&gt;\(0\)&lt;/span&gt;，则&lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt;为全&lt;span class=&#34;math inline&#34;&gt;\(1\)&lt;/span&gt;矩阵，关键是表示出这个&lt;span class=&#34;math inline&#34;&gt;\(C\)&lt;/span&gt;. 注意到&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[\left(\sum _{i=1}^da _ib _i\right)^2=\sum _{i=1}^d\sum _{j=1}^da _ia _jb _ib _j
@@ -557,18 +557,18 @@ ele n,d,d1,k,a[maxn][maxd],b[maxn],c[&lt;span style=&#34;color:#ae81ff&#34;&gt;1
 	puts(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;-1 -1&amp;#34;&lt;/span&gt;);
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2664/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/loj2664/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2249题解</title>
-        <link>https://seraphim.rocks/posts/loj2249/</link>
+        <link>https://sensiki.xyz/posts/loj2249/</link>
         <pubDate>Tue, 26 Jun 2018 09:03:45 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/loj2249/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2249/ -&lt;p&gt;一开始居然脑子短路没有想到斜率优化……以后看到这种感觉跟凸包有关系，要求最值/要最优化的问题，可以考虑写个dp方程出来看看能不能斜率优化.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/loj2249/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/loj2249/ -&lt;p&gt;一开始居然脑子短路没有想到斜率优化……以后看到这种感觉跟凸包有关系，要求最值/要最优化的问题，可以考虑写个dp方程出来看看能不能斜率优化.&lt;/p&gt;
 &lt;p&gt;首先考虑链上，没有&lt;span class=&#34;math inline&#34;&gt;\(l _v\)&lt;/span&gt;的限制的情况，可以写出dp方程&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 这显然可以斜率优化，把$j$看成点$(d _j,\textrm{res} _j)$，那么使得答案最优的转移点一定在凸包上.
@@ -704,18 +704,18 @@ int main(){
 	return 0;
 }
 ```
-\]&lt;/span&gt;&lt;/p&gt;- https://seraphim.rocks/posts/loj2249/ - </description>
+\]&lt;/span&gt;&lt;/p&gt;- https://sensiki.xyz/posts/loj2249/ - </description>
         </item>
     
     
     
         <item>
         <title>bzoj3533题解</title>
-        <link>https://seraphim.rocks/posts/bzoj3533/</link>
+        <link>https://sensiki.xyz/posts/bzoj3533/</link>
         <pubDate>Mon, 25 Jun 2018 19:55:55 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/bzoj3533/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/bzoj3533/ -&lt;p&gt;容易发现答案一定在凸包上，询问的&lt;span class=&#34;math inline&#34;&gt;\(y\lt 0\)&lt;/span&gt;则在上凸壳，否则在下凸壳.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/bzoj3533/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/bzoj3533/ -&lt;p&gt;容易发现答案一定在凸包上，询问的&lt;span class=&#34;math inline&#34;&gt;\(y\lt 0\)&lt;/span&gt;则在上凸壳，否则在下凸壳.&lt;/p&gt;
 &lt;p&gt;容易发现&lt;span class=&#34;math inline&#34;&gt;\(A\cup B\)&lt;/span&gt;凸包上的点一定在&lt;span class=&#34;math inline&#34;&gt;\(A\)&lt;/span&gt;或&lt;span class=&#34;math inline&#34;&gt;\(B\)&lt;/span&gt;的凸包上，所以可以考虑用线段树来维护，每个节点保存对应区间的凸包，每个询问查询&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\log n)\)&lt;/span&gt;个线段树上的节点.&lt;/p&gt;
 &lt;p&gt;但是这里有一个问题，凸包无法高效合并，插入也很麻烦，但是如果知道最后的点集的话离线构建是非常容易的. 这种情况一般可以考虑二进制分组. 对于本题，把二进制分组放到线段树上，也就是说当一个节点对应的区间被填满的时候，再构建这个节点的凸包.&lt;/p&gt;
 &lt;p&gt;有一个细节一定要记住：求凸壳的时候两维坐标都要排序：从大到小和从小到大都没问题，两个维度顺序相反也没问题，但是一定要排序. &lt;!-- raw HTML omitted --&gt;我也不是很清楚为什么. &lt;!-- raw HTML omitted --&gt;以后遇到给struct排序的情况，最好是给每一个属性都定一个顺序.&lt;/p&gt;
@@ -819,18 +819,18 @@ vector&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;pt&lt;span 
 	}
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/bzoj3533/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/bzoj3533/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2248题解</title>
-        <link>https://seraphim.rocks/posts/loj2248/</link>
+        <link>https://sensiki.xyz/posts/loj2248/</link>
         <pubDate>Mon, 25 Jun 2018 15:27:41 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/loj2248/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2248/ -&lt;p&gt;vfk说分不清noi2014和noip2014果然是有道理的……&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/loj2248/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/loj2248/ -&lt;p&gt;vfk说分不清noi2014和noip2014果然是有道理的……&lt;/p&gt;
 &lt;p&gt;因为要求字典序最小，可以直接从小到大枚举每个数，如果能加进字典序中，就贪心地加进去，正确性显然.&lt;/p&gt;
 &lt;p&gt;现在问题是怎么判断一个数能否加在当前的字典序里面. 注意到一条路径合法等价于它的横坐标和纵坐标均单调不减，维护&lt;span class=&#34;math inline&#34;&gt;\(c _i\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(d _i\)&lt;/span&gt;表示当前已经加进去的点中，横坐标为&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;的点的最小值和最大值. 每次加入一个点，先用zkw线段树找出小于它的最大的横坐标和大于它的最小的横坐标，假设为&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;，判断它的纵坐标是否在&lt;span class=&#34;math inline&#34;&gt;\(d _j\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(c _k\)&lt;/span&gt;之间即可.&lt;/p&gt;
 &lt;p&gt;代码：&lt;/p&gt;
@@ -900,18 +900,18 @@ ele &lt;span style=&#34;color:#a6e22e&#34;&gt;getr&lt;/span&gt;(ele i){
 	puts(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&amp;#34;&lt;/span&gt;);
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2248/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/loj2248/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2131题解</title>
-        <link>https://seraphim.rocks/posts/loj2131/</link>
+        <link>https://sensiki.xyz/posts/loj2131/</link>
         <pubDate>Mon, 25 Jun 2018 11:07:13 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/loj2131/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2131/ -&lt;p&gt;首先注意到选择了一个数就是选择了它的所有素因子，而不超过&lt;span class=&#34;math inline&#34;&gt;\(\sqrt{n}\)&lt;/span&gt;的素数至多只有8个，可以考虑状压. &lt;!-- raw HTML omitted --&gt;超过的那些我们先不管.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/loj2131/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/loj2131/ -&lt;p&gt;首先注意到选择了一个数就是选择了它的所有素因子，而不超过&lt;span class=&#34;math inline&#34;&gt;\(\sqrt{n}\)&lt;/span&gt;的素数至多只有8个，可以考虑状压. &lt;!-- raw HTML omitted --&gt;超过的那些我们先不管.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;我一开始想的是枚举每个素数被分在哪边，这样是&lt;span class=&#34;math inline&#34;&gt;\(3^8\)&lt;/span&gt;的，但是我没想出来. 事实上完全可以暴力一点到&lt;span class=&#34;math inline&#34;&gt;\(4^8\)&lt;/span&gt;，这样可以把状态表示为&lt;span class=&#34;math inline&#34;&gt;\((s _1,s _2)\)&lt;/span&gt;，即第一个人选了集合&lt;span class=&#34;math inline&#34;&gt;\(s _1\)&lt;/span&gt;，第二个人选了集合&lt;span class=&#34;math inline&#34;&gt;\(s _2\)&lt;/span&gt;（可以有交），最后把所有&lt;span class=&#34;math inline&#34;&gt;\(s _1\cap s _2=\emptyset\)&lt;/span&gt;的状态的答案加起来即可.&lt;/p&gt;
 &lt;p&gt;现在考虑大于&lt;span class=&#34;math inline&#34;&gt;\(\sqrt{n}\)&lt;/span&gt;的素因子，每个数最多只有一个，因此我们可以把数按照这个素因子来分类. 我一开始的想法是对每一类分别dp再合并起来，但是发现不方便合并. 很多这种不方便合并的情况，可以考虑在前一个的基础上去dp下一个.&lt;/p&gt;
 &lt;p&gt;具体来讲，让&lt;span class=&#34;math inline&#34;&gt;\(f _{j,k}\)&lt;/span&gt;表示之前dp出来的结果，dp出&lt;span class=&#34;math inline&#34;&gt;\(g _{j,k}\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\(h _{j,k}\)&lt;/span&gt;分别表示只有第一/二个人能选当前这一类，最后两人选的集合为&lt;span class=&#34;math inline&#34;&gt;\(j,k\)&lt;/span&gt;的方案数，最后再让&lt;span class=&#34;math inline&#34;&gt;\(f _{j,k}=g _{j,k}+h _{j,k}-f _{j,k}\)&lt;/span&gt;，最后一项是因为两个人都不选这一类的情况被算了两次.&lt;/p&gt;
@@ -986,18 +986,18 @@ vector&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;ele&lt;span
 	printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,ans);
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2131/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/loj2131/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2085题解</title>
-        <link>https://seraphim.rocks/posts/loj2085/</link>
+        <link>https://sensiki.xyz/posts/loj2085/</link>
         <pubDate>Mon, 25 Jun 2018 08:38:52 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/loj2085/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2085/ -&lt;p&gt;挺优美的一道数论题. 当然也有可能是我太菜了.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/loj2085/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/loj2085/ -&lt;p&gt;挺优美的一道数论题. 当然也有可能是我太菜了.&lt;/p&gt;
 &lt;p&gt;首先显然是考虑只计算既约分数来避免算重，即只计算&lt;span class=&#34;math inline&#34;&gt;\(x\perp y\)&lt;/span&gt;. 考虑&lt;span class=&#34;math inline&#34;&gt;\(k=10\)&lt;/span&gt;的时候，&lt;span class=&#34;math inline&#34;&gt;\(\frac{x}{y}\)&lt;/span&gt;符合题目条件当且仅当&lt;span class=&#34;math inline&#34;&gt;\(y\)&lt;/span&gt;没有因数&lt;span class=&#34;math inline&#34;&gt;\(2,5\)&lt;/span&gt;. 容易证明对于所有情况，&lt;span class=&#34;math inline&#34;&gt;\(\frac{x}{y}\)&lt;/span&gt;符合题目条件等价于&lt;span class=&#34;math inline&#34;&gt;\(y\perp k\)&lt;/span&gt;. 所以我们要计算的其实就是&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math display&#34;&gt;\[
 一开始我很傻地把两个中括号都拆开了，其实应该先只拆一个观望一下. 因为$[x\perp y]$这一项复杂一些，所以考虑先拆这个&lt;del&gt;（其实还是在瞎猜）&lt;/del&gt;，得到
@@ -1108,18 +1108,18 @@ int main(){
 	printf(&#34;%lld\n&#34;,ans);
 	return 0;
 }
-```\]&lt;/span&gt;&lt;/p&gt;- https://seraphim.rocks/posts/loj2085/ - </description>
+```\]&lt;/span&gt;&lt;/p&gt;- https://sensiki.xyz/posts/loj2085/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2306题解</title>
-        <link>https://seraphim.rocks/posts/loj2306/</link>
+        <link>https://sensiki.xyz/posts/loj2306/</link>
         <pubDate>Mon, 25 Jun 2018 08:24:26 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/loj2306/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2306/ -&lt;p&gt;这题面写得有毒……应该理解为对于第&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;种蔬菜，有&lt;span class=&#34;math inline&#34;&gt;\(x _i\)&lt;/span&gt;个单位只能在第一天卖，有&lt;span class=&#34;math inline&#34;&gt;\(x _i\)&lt;/span&gt;个单位只能在第二天结束前卖，以此类推. 也就是说，说你把当天结束本来要变质的蔬菜卖了，那天就不会有蔬菜变质了.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/loj2306/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/loj2306/ -&lt;p&gt;这题面写得有毒……应该理解为对于第&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;种蔬菜，有&lt;span class=&#34;math inline&#34;&gt;\(x _i\)&lt;/span&gt;个单位只能在第一天卖，有&lt;span class=&#34;math inline&#34;&gt;\(x _i\)&lt;/span&gt;个单位只能在第二天结束前卖，以此类推. 也就是说，说你把当天结束本来要变质的蔬菜卖了，那天就不会有蔬菜变质了.&lt;/p&gt;
 &lt;p&gt;那么我们就有一个朴素的贪心策略：每种蔬菜尽量等到它快要变质了才卖，也就是时间上从后往前贪心. 如果有两种蔬菜要抢夺某一天出售的机会，那肯定是从贵的开始贪心.&lt;/p&gt;
 &lt;p&gt;这个算法看上去很正确，但是它没有办法处理&lt;span class=&#34;math inline&#34;&gt;\(s _i\)&lt;/span&gt;. 方法是把每种蔬菜拆成两部分：&lt;span class=&#34;math inline&#34;&gt;\((a _i,c _i-1)\)&lt;/span&gt;和&lt;span class=&#34;math inline&#34;&gt;\((a _i+s _i,1)\)&lt;/span&gt;，后者的过期时间即为该种蔬菜最晚的销售时间，然后把所有这些东西按价格排序，每种价格从后往前贪心就可以了. 每种蔬菜在某一天可以销售的量等于贪心到那个时候还剩下的量减去那天之前变质的量. 要用并查集或者set来查询上一个还可以销售的时间.&lt;/p&gt;
 &lt;p&gt;但是这样只能处理一个询问. 用反证法容易证明&lt;span class=&#34;math inline&#34;&gt;\(k\)&lt;/span&gt;天的答案一定是&lt;span class=&#34;math inline&#34;&gt;\(k+1\)&lt;/span&gt;天的答案的子集，而在较后时间出售的蔬菜在较前的时间显然也可以出售，那么只需要对&lt;span class=&#34;math inline&#34;&gt;\(\max p _i\)&lt;/span&gt;算出答案，然后每天去掉最廉价的若干单位蔬菜就可以了. 每天需要去掉的量其实就是，把蔬菜的销售尽量往前放之后，当天销售的量.&lt;/p&gt;
@@ -1193,7 +1193,7 @@ ele &lt;span style=&#34;color:#a6e22e&#34;&gt;getf&lt;/span&gt;(ele &lt;span sty
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;for&lt;/span&gt; (&lt;span style=&#34;color:#66d9ef&#34;&gt;int&lt;/span&gt; i&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;; i&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;K; &lt;span style=&#34;color:#f92672&#34;&gt;++&lt;/span&gt;i) printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%lld&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,res[p[i]]);
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2306/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/loj2306/ - </description>
         </item>
     
     

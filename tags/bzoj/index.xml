@@ -2,58 +2,58 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>bzoj on 蒟蒻的博客</title>
-    <link>https://seraphim.rocks/tags/bzoj/</link>
+    <link>https://sensiki.xyz/tags/bzoj/</link>
     <description>Recent content in bzoj on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 22 Mar 2019 20:24:47 +0800</lastBuildDate>
     
-	<atom:link href="https://seraphim.rocks/tags/bzoj/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sensiki.xyz/tags/bzoj/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>&#39;[whj什么都不会系列-2]bzoj4734&amp;uoj269题解&#39;</title>
-      <link>https://seraphim.rocks/posts/bzoj4734/</link>
+      <link>https://sensiki.xyz/posts/bzoj4734/</link>
       <pubDate>Fri, 22 Mar 2019 20:24:47 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/bzoj4734/</guid>
+      <guid>https://sensiki.xyz/posts/bzoj4734/</guid>
       <description>&lt;p&gt;bzoj上的题面真是残缺不全……uoj上有完整的题面.&lt;/p&gt;
 &lt;p&gt;退役久了脑子都不好用了，这么简单的东西推了半天……&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj2324题解</title>
-      <link>https://seraphim.rocks/posts/bzoj2324/</link>
+      <link>https://sensiki.xyz/posts/bzoj2324/</link>
       <pubDate>Sat, 07 Jul 2018 20:49:50 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/bzoj2324/</guid>
+      <guid>https://sensiki.xyz/posts/bzoj2324/</guid>
       <description>&lt;p&gt;前置技能：DAG的最小路径覆盖和最小链覆盖.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj5338题解</title>
-      <link>https://seraphim.rocks/posts/bzoj5338/</link>
+      <link>https://sensiki.xyz/posts/bzoj5338/</link>
       <pubDate>Fri, 15 Jun 2018 17:34:10 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/bzoj5338/</guid>
+      <guid>https://sensiki.xyz/posts/bzoj5338/</guid>
       <description>&lt;p&gt;智商有点下线想复杂了.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj4314题解</title>
-      <link>https://seraphim.rocks/posts/bzoj4314/</link>
+      <link>https://sensiki.xyz/posts/bzoj4314/</link>
       <pubDate>Fri, 15 Jun 2018 10:36:33 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/bzoj4314/</guid>
+      <guid>https://sensiki.xyz/posts/bzoj4314/</guid>
       <description>&lt;p&gt;定义&lt;span class=&#34;math inline&#34;&gt;\(f(x,y)=\prod _{i=0}^{n-1}(1+x^iy)\)&lt;/span&gt;，这里做乘法的时候&lt;span class=&#34;math inline&#34;&gt;\(x\)&lt;/span&gt;是模&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的循环卷积，而y是普通卷积. 那么答案就是&lt;span class=&#34;math inline&#34;&gt;\([x^0y^k]f(x,y)\)&lt;/span&gt;.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>bzoj4162题解</title>
-      <link>https://seraphim.rocks/posts/bzoj4162/</link>
+      <link>https://sensiki.xyz/posts/bzoj4162/</link>
       <pubDate>Wed, 13 Jun 2018 19:48:56 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/bzoj4162/</guid>
+      <guid>https://sensiki.xyz/posts/bzoj4162/</guid>
       <description>&lt;p&gt;几年前刚学矩阵快速幂的时候点开了这道题，写了半天始终TLE，一看题解发现完全看不懂……时隔多年终于A掉了这道题.&lt;/p&gt;</description>
     </item>
     

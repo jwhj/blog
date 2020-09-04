@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>stuffs on 蒟蒻的博客</title>
-    <link>https://seraphim.rocks/tags/stuffs/</link>
+    <link>https://sensiki.xyz/tags/stuffs/</link>
     <description>Recent content in stuffs on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 12 Aug 2020 11:40:51 +0800</lastBuildDate>
     
-	<atom:link href="https://seraphim.rocks/tags/stuffs/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sensiki.xyz/tags/stuffs/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>从hexo迁移至hugo</title>
-      <link>https://seraphim.rocks/posts/hugo/</link>
+      <link>https://sensiki.xyz/posts/hugo/</link>
       <pubDate>Wed, 12 Aug 2020 11:40:51 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/hugo/</guid>
+      <guid>https://sensiki.xyz/posts/hugo/</guid>
       <description>前段时间觉得hexo还是太慢了，又特别想折腾一下，就把博客从hexo迁移到了hugo。
 众所周知， 我们应该先搞定数学公式支持。那么一个问题就是，怎么防止公式里的下划线等符号被当成markdown解析。hugo使用的默认markdown	parser是goldmark。Goldmark本身无法实现这个需求，不过它有一个比较强大的插件系统，同时正好也有一个插件来实现这个需求。另外，值得一提的是，这个插件会把行内公式和行间公式渲染成\(...\)和\[...\]，所以加载mathjax或者katex的时候甚至不用特意去配置数学公式的定界符。
 可是hugo似乎不能配置markdown parser的插件。 以前有过给goldmark加上这个插件的pr，但是因为某些原因没有被接受。不过问题不大，我们可以自己改源码。如果用过go的话，照着插件的readme来做并不难。大概记录一下步骤。打开/markup/goldmark/convert.go，首先import插件：
@@ -32,10 +32,10 @@ var ( extensions = []goldmark.Extender{ extension.Strikethrough, mathjax.MathJax
     
     <item>
       <title>LevelDB数据丢失问题</title>
-      <link>https://seraphim.rocks/posts/leveldb-and-git-md/</link>
+      <link>https://sensiki.xyz/posts/leveldb-and-git-md/</link>
       <pubDate>Mon, 03 Feb 2020 21:55:41 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/leveldb-and-git-md/</guid>
+      <guid>https://sensiki.xyz/posts/leveldb-and-git-md/</guid>
       <description>我存在levelDB里面的数据丢了好几次，最近研究了一下，虽然不确定具体的原理，但大概知道怎么避免类似情况了。
 经过观察可以发现，就算不对数据库进行修改，仅仅是查询，文件也会发生变化。而我丢失数据，均发生在使用git切换分支，再切换回来的时候。我推测这之中某个时候，因为读数据发生了文件变动，然后切换分支又撤销了一部分文件变动，导致了数据库的损坏。
 暂时不清楚损坏过程，但是要记住，不要把数据库放到git repo里面！
@@ -44,10 +44,10 @@ var ( extensions = []goldmark.Extender{ extension.Strikethrough, mathjax.MathJax
     
     <item>
       <title>使用增量编译加快typescript项目编译</title>
-      <link>https://seraphim.rocks/posts/watch/</link>
+      <link>https://sensiki.xyz/posts/watch/</link>
       <pubDate>Fri, 03 Jan 2020 01:16:23 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/watch/</guid>
+      <guid>https://sensiki.xyz/posts/watch/</guid>
       <description>前段时间开始试着用typescript，感觉有一个很明显的问题是，习惯了脚本语言之后，我不太有耐性等待一两秒的编译。最近折腾了各种方法，一开始我想禁用掉typescript的类型检查来提升编译速度（反正编辑器里就会进行检查），结果发现tsc并没有这个编译选项，倒是ts-node有一个-T选项可以做到这点。其实一个更好的解决方案可能是使用增量编译。
 tsc本身就能实现增量编译的效果，运行
 tsc --watch src/*.ts --outDir dist --sourceMap 就能启动一个服务，在检测到文件修改的时候，进行增量编译。一般来讲，增量编译会比重新编译整个项目快得多。这个方法在用typescript写后端的时候应该够用了。
@@ -59,10 +59,10 @@ UPD： 不知道为什么，把一条import语句去掉的时候编译可能会�
     
     <item>
       <title>在git-bash下输入中文</title>
-      <link>https://seraphim.rocks/posts/gitbashutf8/</link>
+      <link>https://sensiki.xyz/posts/gitbashutf8/</link>
       <pubDate>Sat, 30 Nov 2019 22:54:46 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/gitbashutf8/</guid>
+      <guid>https://sensiki.xyz/posts/gitbashutf8/</guid>
       <description>Windows Terminal终于支持显示中文/输入中文了，真是大快人心。
 我平时在Windows Terminal里面使用git-bash，输入中文一直会遇到一些问题，今天终于把问题折腾没了。
 具体来讲，就是输入中文以后，要多次退格才能删除一个中文字符，而且即使删除了，仍然会有不可见字符。但是这个问题在我使用git-bash自带的mintty的时候又会神秘解决。
@@ -73,10 +73,10 @@ export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8 我怀疑只需要其中一行
     
     <item>
       <title>如何在xelatex中使用思源字体</title>
-      <link>https://seraphim.rocks/posts/sourcehan/</link>
+      <link>https://sensiki.xyz/posts/sourcehan/</link>
       <pubDate>Thu, 28 Nov 2019 22:32:27 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/sourcehan/</guid>
+      <guid>https://sensiki.xyz/posts/sourcehan/</guid>
       <description>早就听说微软雅黑存在版权问题，而思源字体非常优越，但是我之前折腾了半天一直装不上就很尴尬了。
 首先思源字体可以从github上面下载。按照网上大多数人的说法，安装字体后，在xelatex里面使用如下代码就能使用思源字体了。然而并不能。
 \usepackage{xeCJK} \usepackage{fontspec} \setCJKmainfont{Source Han Serif} 今天我终于弄清楚了为什么：安装字体的时候要选择为所有用户安装。这也太惨了。
@@ -85,10 +85,10 @@ export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8 我怀疑只需要其中一行
     
     <item>
       <title>使用nodejs的pipe遇到的一点小问题</title>
-      <link>https://seraphim.rocks/posts/pipe/</link>
+      <link>https://sensiki.xyz/posts/pipe/</link>
       <pubDate>Tue, 26 Nov 2019 23:31:11 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/pipe/</guid>
+      <guid>https://sensiki.xyz/posts/pipe/</guid>
       <description>随便发点东西就当除草。
 这个东西调了我一整晚……心态爆炸
 简单来讲就是，使用nodejs stream的pipe的时候，它可能会在某些地方进行编码转换，有些地方你可以手动指定为只传输二进制，但有的地方似乎不行 (也有可能是我还没找到)。
@@ -100,94 +100,94 @@ export LC_ALL=en_US.UTF-8 export LANG=en_US.UTF-8 我怀疑只需要其中一行
     
     <item>
       <title>解决go get下载缓慢的问题</title>
-      <link>https://seraphim.rocks/posts/gogetpkg/</link>
+      <link>https://sensiki.xyz/posts/gogetpkg/</link>
       <pubDate>Sat, 25 May 2019 11:17:50 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/gogetpkg/</guid>
+      <guid>https://sensiki.xyz/posts/gogetpkg/</guid>
       <description>&lt;p&gt;go get下载第三方包的时候大多数情况要从github上面pull，有的时候还要从&lt;code&gt;golang.org&lt;/code&gt;之类的地方下载源码. 由于众所周知的原因git clone速度极慢，golang.org根本不能访问，所以golang下载第三方包的时候总是极其麻烦. 最近写了个程序解决这个问题.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>N Squared Minus One</title>
-      <link>https://seraphim.rocks/posts/nsmo/</link>
+      <link>https://sensiki.xyz/posts/nsmo/</link>
       <pubDate>Sat, 23 Feb 2019 21:58:34 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/nsmo/</guid>
+      <guid>https://sensiki.xyz/posts/nsmo/</guid>
       <description>&lt;p&gt;再厚颜无耻地放个小游戏.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>Arcsine</title>
-      <link>https://seraphim.rocks/posts/arcsine/</link>
+      <link>https://sensiki.xyz/posts/arcsine/</link>
       <pubDate>Sun, 20 Jan 2019 21:24:26 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/arcsine/</guid>
+      <guid>https://sensiki.xyz/posts/arcsine/</guid>
       <description>&lt;p&gt;厚颜无耻地发一个自己写的小游戏.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>用markdown做slides</title>
-      <link>https://seraphim.rocks/posts/mdslide/</link>
+      <link>https://sensiki.xyz/posts/mdslide/</link>
       <pubDate>Sat, 15 Dec 2018 21:43:39 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/mdslide/</guid>
+      <guid>https://sensiki.xyz/posts/mdslide/</guid>
       <description>&lt;p&gt;厚颜无耻地把自己的项目发上来.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>O(1)快速乘</title>
-      <link>https://seraphim.rocks/posts/fastmul/</link>
+      <link>https://sensiki.xyz/posts/fastmul/</link>
       <pubDate>Fri, 30 Nov 2018 22:19:28 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/fastmul/</guid>
+      <guid>https://sensiki.xyz/posts/fastmul/</guid>
       <description>&lt;p&gt;AFO有段时间了，感觉自己什么都不会了，随便研究点东西证明我还活着……&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>黑科技</title>
-      <link>https://seraphim.rocks/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</link>
+      <link>https://sensiki.xyz/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</link>
       <pubDate>Sun, 30 Sep 2018 21:43:03 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</guid>
+      <guid>https://sensiki.xyz/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</guid>
       <description>&lt;p&gt;好久没写博客了，随便扔点东西上来除个草.&lt;/p&gt;
 &lt;p&gt;其实也说不上是黑科技，就是自己平时折腾linux，折腾vim之类的东西的时候发现的一些小技巧罢了.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>NOI2018退役记</title>
-      <link>https://seraphim.rocks/posts/farewelloi/</link>
+      <link>https://sensiki.xyz/posts/farewelloi/</link>
       <pubDate>Sat, 01 Sep 2018 21:34:49 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/farewelloi/</guid>
+      <guid>https://sensiki.xyz/posts/farewelloi/</guid>
       <description>&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;退役之后一直有点消沉，没有写退役记什么的，最近想了想还是多少放点东西上来.&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>雅礼2018年7月集训总结</title>
-      <link>https://seraphim.rocks/posts/yali201807/</link>
+      <link>https://sensiki.xyz/posts/yali201807/</link>
       <pubDate>Sun, 01 Jul 2018 20:15:04 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/yali201807/</guid>
+      <guid>https://sensiki.xyz/posts/yali201807/</guid>
       <description>&lt;p&gt;&lt;del&gt;NOI前的垂死挣扎.&lt;/del&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>test</title>
-      <link>https://seraphim.rocks/posts/test/</link>
+      <link>https://sensiki.xyz/posts/test/</link>
       <pubDate>Sun, 10 Jun 2018 19:08:17 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/test/</guid>
+      <guid>https://sensiki.xyz/posts/test/</guid>
       <description>&lt;p&gt;其它测试&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(E=mc^2\)&lt;/span&gt;&lt;/p&gt;</description>
     </item>
     
     <item>
       <title>GDOI2018退役失败记</title>
-      <link>https://seraphim.rocks/posts/gdoi2018/</link>
+      <link>https://sensiki.xyz/posts/gdoi2018/</link>
       <pubDate>Wed, 02 May 2018 22:26:00 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/gdoi2018/</guid>
+      <guid>https://sensiki.xyz/posts/gdoi2018/</guid>
       <description>&lt;p&gt;&lt;!-- raw HTML omitted --&gt;在退役的边缘试探.&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;
 &lt;p&gt;居然rk2进入A队了，rp大概用光了吧……&lt;!-- raw HTML omitted --&gt;你看看你最近抽卡抽出来的都是什么鬼东西！&lt;!-- raw HTML omitted --&gt;&lt;/p&gt;</description>
     </item>

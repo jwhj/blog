@@ -1,51 +1,51 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>蒟蒻的博客</title>
-    <link>https://seraphim.rocks/</link>
+    <link>https://sensiki.xyz/</link>
     <description>Recent content on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Wed, 12 Aug 2020 11:40:51 +0800</lastBuildDate>
     
-        <atom:link href="https://seraphim.rocks/index.xml" rel="self" type="application/rss+xml" />
+        <atom:link href="https://sensiki.xyz/index.xml" rel="self" type="application/rss+xml" />
     
     
     
         <item>
         <title>Arcsine</title>
-        <link>https://seraphim.rocks/posts/arcsine/</link>
+        <link>https://sensiki.xyz/posts/arcsine/</link>
         <pubDate>Sun, 20 Jan 2019 21:24:26 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/arcsine/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/arcsine/ -&lt;p&gt;厚颜无耻地发一个自己写的小游戏.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/arcsine/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/arcsine/ -&lt;p&gt;厚颜无耻地发一个自己写的小游戏.&lt;/p&gt;
 &lt;p&gt;地址 &lt;a href=&#34;http://jwhj.github.io/arcsine/&#34;&gt;http://jwhj.github.io/arcsine/&lt;/a&gt; ，打开就能玩.&lt;/p&gt;
 &lt;p&gt;源码放在 &lt;a href=&#34;https://github.com/jwhj/arcsine&#34;&gt;https://github.com/jwhj/arcsine&lt;/a&gt; ，写得很丑希望不要被嘲讽. &lt;del&gt;说得好像有人会看一样.&lt;/del&gt;&lt;/p&gt;
-&lt;p&gt;游戏功能也许会在未来进一步完善. &lt;del&gt;毕竟我比较懒.&lt;/del&gt;&lt;/p&gt;- https://seraphim.rocks/posts/arcsine/ - </description>
+&lt;p&gt;游戏功能也许会在未来进一步完善. &lt;del&gt;毕竟我比较懒.&lt;/del&gt;&lt;/p&gt;- https://sensiki.xyz/posts/arcsine/ - </description>
         </item>
     
     
     
         <item>
         <title>用markdown做slides</title>
-        <link>https://seraphim.rocks/posts/mdslide/</link>
+        <link>https://sensiki.xyz/posts/mdslide/</link>
         <pubDate>Sat, 15 Dec 2018 21:43:39 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/mdslide/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/mdslide/ -&lt;p&gt;厚颜无耻地把自己的项目发上来.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/mdslide/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/mdslide/ -&lt;p&gt;厚颜无耻地把自己的项目发上来.&lt;/p&gt;
 &lt;p&gt;其实也没写什么东西，就是把&lt;code&gt;reveal.js&lt;/code&gt;封装了一下. 这样就可以比较方便地用markdown直接写，也可以一条命令导出，方便在其他电脑上播放.&lt;/p&gt;
 &lt;p&gt;暂时还没有写文档，也许会在有生之年补上.&lt;/p&gt;
-&lt;p&gt;&lt;a href=&#34;https://github.com/jwhj/mdslide&#34;&gt;项目地址&lt;/a&gt;&lt;/p&gt;- https://seraphim.rocks/posts/mdslide/ - </description>
+&lt;p&gt;&lt;a href=&#34;https://github.com/jwhj/mdslide&#34;&gt;项目地址&lt;/a&gt;&lt;/p&gt;- https://sensiki.xyz/posts/mdslide/ - </description>
         </item>
     
     
     
         <item>
         <title>whj什么都不会系列-1</title>
-        <link>https://seraphim.rocks/posts/sbwhj-1/</link>
+        <link>https://sensiki.xyz/posts/sbwhj-1/</link>
         <pubDate>Fri, 14 Dec 2018 21:40:41 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/sbwhj-1/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/sbwhj-1/ -&lt;p&gt;退役了只有一直没怎么做题，感觉水平退步了不少，以前一些比较显然的思路现在可能都想不到了. 这样下去肯定是不行的，我尽量时不时做点&lt;del&gt;水&lt;/del&gt;题写点题解恢复一点智商吧.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/sbwhj-1/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/sbwhj-1/ -&lt;p&gt;退役了只有一直没怎么做题，感觉水平退步了不少，以前一些比较显然的思路现在可能都想不到了. 这样下去肯定是不行的，我尽量时不时做点&lt;del&gt;水&lt;/del&gt;题写点题解恢复一点智商吧.&lt;/p&gt;
 &lt;h3 id=&#34;题意&#34;&gt;题意&lt;/h3&gt;
 &lt;p&gt;给定&lt;span class=&#34;math inline&#34;&gt;\(n,m\)&lt;/span&gt;，求有多少对&lt;span class=&#34;math inline&#34;&gt;\((i,j)\)&lt;/span&gt;满足&lt;span class=&#34;math inline&#34;&gt;\(1\le i\le n,1\le j\le m\)&lt;/span&gt;且&lt;span class=&#34;math inline&#34;&gt;\(\gcd(i,j)\)&lt;/span&gt;为素数.&lt;/p&gt;
 &lt;p&gt;共&lt;span class=&#34;math inline&#34;&gt;\(T\)&lt;/span&gt;组数据.&lt;/p&gt;
@@ -71,18 +71,18 @@ f(n,m)=&amp;\sum _{i}\sum _{j}\sum _{d|\gcd(i,j)}\mu(d)\\
 \]&lt;/span&gt;&lt;/p&gt;
 &lt;p&gt;记&lt;span class=&#34;math inline&#34;&gt;\(g(T)=\sum _{p|T,p\text{ is prime}}\mu(T/p)\)&lt;/span&gt;，观察一下可以发现&lt;span class=&#34;math inline&#34;&gt;\(g(n)\)&lt;/span&gt;很有规律.&lt;/p&gt;
 &lt;p&gt;记&lt;span class=&#34;math inline&#34;&gt;\(s _1(n),s _2(n)\)&lt;/span&gt;分别为&lt;span class=&#34;math inline&#34;&gt;\(n\)&lt;/span&gt;的不同素因数个数和歌素因数的指数和，那么当&lt;span class=&#34;math inline&#34;&gt;\(s _1(n)=s _2(n)\)&lt;/span&gt;时，&lt;span class=&#34;math inline&#34;&gt;\(g(T)=-s _1(n)(-1)^{s _1(n)}\)&lt;/span&gt;，当&lt;span class=&#34;math inline&#34;&gt;\(s _1(n)+1=s _2(n)\)&lt;/span&gt;时，&lt;span class=&#34;math inline&#34;&gt;\(g(T)=(-1)^{s _1(n)}\)&lt;/span&gt;，当&lt;span class=&#34;math inline&#34;&gt;\(s _1(n)+2\le s _2(n)\)&lt;/span&gt;时，&lt;span class=&#34;math inline&#34;&gt;\(g(T)=0\)&lt;/span&gt;.&lt;/p&gt;
-&lt;p&gt;于是就可以很容易地处理&lt;span class=&#34;math inline&#34;&gt;\(g(n)\)&lt;/span&gt;的前缀和，进而&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\sqrt{n})\)&lt;/span&gt;地处理每次询问.&lt;/p&gt;- https://seraphim.rocks/posts/sbwhj-1/ - </description>
+&lt;p&gt;于是就可以很容易地处理&lt;span class=&#34;math inline&#34;&gt;\(g(n)\)&lt;/span&gt;的前缀和，进而&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(\sqrt{n})\)&lt;/span&gt;地处理每次询问.&lt;/p&gt;- https://sensiki.xyz/posts/sbwhj-1/ - </description>
         </item>
     
     
     
         <item>
         <title>O(1)快速乘</title>
-        <link>https://seraphim.rocks/posts/fastmul/</link>
+        <link>https://sensiki.xyz/posts/fastmul/</link>
         <pubDate>Fri, 30 Nov 2018 22:19:28 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/fastmul/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/fastmul/ -&lt;p&gt;AFO有段时间了，感觉自己什么都不会了，随便研究点东西证明我还活着……&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/fastmul/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/fastmul/ -&lt;p&gt;AFO有段时间了，感觉自己什么都不会了，随便研究点东西证明我还活着……&lt;/p&gt;
 &lt;p&gt;众所周知在long long乘long long模long long的时候，直接乘会溢出，所以要用一些技巧来处理. 一般的快速乘是&lt;span class=&#34;math inline&#34;&gt;\(O(\log x)\)&lt;/span&gt;的，所以我们也可以叫它慢速乘. 事实上可以用一些技巧做到&lt;span class=&#34;math inline&#34;&gt;\(O(1)\)&lt;/span&gt;，实现真正的快速乘.&lt;/p&gt;
 &lt;p&gt;首先我们知道&lt;span class=&#34;math inline&#34;&gt;\(a\)&lt;/span&gt;模&lt;span class=&#34;math inline&#34;&gt;\(b\)&lt;/span&gt;可以表示为&lt;span class=&#34;math inline&#34;&gt;\(a-b\lfloor a/b\rfloor\)&lt;/span&gt;，于是如果我们要计算&lt;span class=&#34;math inline&#34;&gt;\(a\times b\)&lt;/span&gt;对&lt;span class=&#34;math inline&#34;&gt;\(m\)&lt;/span&gt;取模的结果，可以考虑计算&lt;span class=&#34;math inline&#34;&gt;\(ab-m\lfloor(a/m)*b\rfloor\)&lt;/span&gt;. 写出下面的代码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD; b&lt;span style=&#34;color:#f92672&#34;&gt;%=&lt;/span&gt;MOD;
@@ -98,18 +98,18 @@ ele tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;a&lt;span style=&
 	ele tmp&lt;span style=&#34;color:#f92672&#34;&gt;=&lt;/span&gt;a&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;b&lt;span style=&#34;color:#f92672&#34;&gt;-&lt;/span&gt;(ele)((&lt;span style=&#34;color:#66d9ef&#34;&gt;long&lt;/span&gt; &lt;span style=&#34;color:#66d9ef&#34;&gt;double&lt;/span&gt;)a&lt;span style=&#34;color:#f92672&#34;&gt;/&lt;/span&gt;MOD&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;b&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0.5&lt;/span&gt;)&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;MOD;
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; tmp&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;&lt;span style=&#34;color:#f92672&#34;&gt;?&lt;/span&gt;tmp&lt;span style=&#34;color:#f92672&#34;&gt;+&lt;/span&gt;MOD:tmp;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/fastmul/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/fastmul/ - </description>
         </item>
     
     
     
         <item>
         <title>黑科技</title>
-        <link>https://seraphim.rocks/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</link>
+        <link>https://sensiki.xyz/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</link>
         <pubDate>Sun, 30 Sep 2018 21:43:03 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/%E9%BB%91%E7%A7%91%E6%8A%80/ -&lt;p&gt;好久没写博客了，随便扔点东西上来除个草.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/%E9%BB%91%E7%A7%91%E6%8A%80/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/%E9%BB%91%E7%A7%91%E6%8A%80/ -&lt;p&gt;好久没写博客了，随便扔点东西上来除个草.&lt;/p&gt;
 &lt;p&gt;其实也说不上是黑科技，就是自己平时折腾linux，折腾vim之类的东西的时候发现的一些小技巧罢了.&lt;/p&gt;
 &lt;h3 id=&#34;esc键太远&#34;&gt;esc键太远&lt;/h3&gt;
 &lt;p&gt;平时用vim的时候经常要用到esc键，vim的设计理念本来是让手不用离开主键区，&lt;del&gt;但是esc似乎就在主键区之外&lt;/del&gt;. 事实上vim刚被开发出来那会的键盘和现在是不一样的，那个时候esc还在主键区里面. 解决这个东西的方法有几个，我用的方法是把esc和caps lock调换一下，只需要在&lt;code&gt;~/.xprofile&lt;/code&gt;里面加上这样一行代码（应该只对linux有效）：&lt;/p&gt;
@@ -239,18 +239,18 @@ endif
 let g:neocomplete#sources#omni#input_patterns.perl = &#39;\h\w*-&amp;gt;\h\w*\|\h\w*::&#39;
 &lt;/code&gt;&lt;/pre&gt;&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;如果只是要用于OI比赛的话，应该只需要前面的一部分.&lt;/p&gt;
-&lt;p&gt;希望很久以后我还能看得懂这份配置文件，懒得没修改一次就重新写一次解释了.&lt;/p&gt;- https://seraphim.rocks/posts/%E9%BB%91%E7%A7%91%E6%8A%80/ - </description>
+&lt;p&gt;希望很久以后我还能看得懂这份配置文件，懒得没修改一次就重新写一次解释了.&lt;/p&gt;- https://sensiki.xyz/posts/%E9%BB%91%E7%A7%91%E6%8A%80/ - </description>
         </item>
     
     
     
         <item>
         <title>NOI2018退役记</title>
-        <link>https://seraphim.rocks/posts/farewelloi/</link>
+        <link>https://sensiki.xyz/posts/farewelloi/</link>
         <pubDate>Sat, 01 Sep 2018 21:34:49 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/farewelloi/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/farewelloi/ -&lt;!-- raw HTML omitted --&gt;
+        <guid>https://sensiki.xyz/posts/farewelloi/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/farewelloi/ -&lt;!-- raw HTML omitted --&gt;
 &lt;p&gt;退役之后一直有点消沉，没有写退役记什么的，最近想了想还是多少放点东西上来.&lt;/p&gt;
 &lt;p&gt;考挂了的原因有很多，各种意外，和同层次的选手缺少交流等等，或者可以说我觉得自己有进队的实力，但是没有稳进队的实力.&lt;/p&gt;
 &lt;p&gt;不过现在再说这些东西意义也没什么意义，丢掉的分不会再回来，我总归还是退役了.&lt;/p&gt;
@@ -260,18 +260,18 @@ let g:neocomplete#sources#omni#input_patterns.perl = &#39;\h\w*-&amp;gt;\h\w*\|\
 &lt;/blockquote&gt;
 &lt;blockquote&gt;
 &lt;p&gt;这不是开始，也远未结束.&lt;/p&gt;
-&lt;/blockquote&gt;- https://seraphim.rocks/posts/farewelloi/ - </description>
+&lt;/blockquote&gt;- https://sensiki.xyz/posts/farewelloi/ - </description>
         </item>
     
     
     
         <item>
         <title>uoj50题解</title>
-        <link>https://seraphim.rocks/posts/uoj50/</link>
+        <link>https://sensiki.xyz/posts/uoj50/</link>
         <pubDate>Fri, 17 Aug 2018 19:28:08 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/uoj50/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/uoj50/ -&lt;p&gt;分治fft是非常明显的做法，不过这样是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n\log^2n)\)&lt;/span&gt;的. 把生成函数弄出来之后会发现它是个微分方程，可以有一些神奇的方法来解，具体可以看UR3的题解.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/uoj50/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/uoj50/ -&lt;p&gt;分治fft是非常明显的做法，不过这样是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n\log^2n)\)&lt;/span&gt;的. 把生成函数弄出来之后会发现它是个微分方程，可以有一些神奇的方法来解，具体可以看UR3的题解.&lt;/p&gt;
 &lt;p&gt;我比较菜所以还是决定写分治+卡常，发现了一个卡常技巧. 对&lt;span class=&#34;math inline&#34;&gt;\([l,r)\)&lt;/span&gt;区间分治的时候，设&lt;span class=&#34;math inline&#34;&gt;\(m=\left\lfloor\frac{l+r}{2}\right\rfloor\)&lt;/span&gt;，如果&lt;span class=&#34;math inline&#34;&gt;\(l\neq0\)&lt;/span&gt;，就要把&lt;span class=&#34;math inline&#34;&gt;\(C(z)\)&lt;/span&gt;，&lt;span class=&#34;math inline&#34;&gt;\(F(z)\)&lt;/span&gt;在&lt;span class=&#34;math inline&#34;&gt;\([l,m)\)&lt;/span&gt;的部分，&lt;span class=&#34;math inline&#34;&gt;\(F(z)\)&lt;/span&gt;在&lt;span class=&#34;math inline&#34;&gt;\([0,r-l)\)&lt;/span&gt;的部分卷起来，这里fft的长度看似要开到&lt;span class=&#34;math inline&#34;&gt;\(4(r-l)\)&lt;/span&gt;，但事实上只需要开到&lt;span class=&#34;math inline&#34;&gt;\(2(r-l)\)&lt;/span&gt;，因为超出&lt;span class=&#34;math inline&#34;&gt;\(2(r-l)\)&lt;/span&gt;的部分小于&lt;span class=&#34;math inline&#34;&gt;\(2(r-l)+(m-l)\)&lt;/span&gt;，这样就算循环到前面去，也会小于&lt;span class=&#34;math inline&#34;&gt;\(m-l\)&lt;/span&gt;，而对&lt;span class=&#34;math inline&#34;&gt;\([m,r)\)&lt;/span&gt;的贡献是从&lt;span class=&#34;math inline&#34;&gt;\(m-l\)&lt;/span&gt;开始的，所以不影响答案. 而&lt;span class=&#34;math inline&#34;&gt;\(l=0\)&lt;/span&gt;的时候fft长度显然也可以只开到&lt;span class=&#34;math inline&#34;&gt;\(2(r-l)\)&lt;/span&gt;. 这样一来可以显著减小常数. &lt;del&gt;跑得比网上搜到的倍增还快！&lt;/del&gt;&lt;/p&gt;
 &lt;p&gt;另外以后在我学会倍增解微分方程之前，看到微分方程不会解可以考虑分治.&lt;/p&gt;
 &lt;p&gt;代码：&lt;/p&gt;
@@ -372,18 +372,18 @@ ele n,f[maxn],g[maxn],c[maxn],inv[maxn],fac[maxn],ifac[maxn];
 		printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%lld&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,(ll)f[i]&lt;span style=&#34;color:#f92672&#34;&gt;*&lt;/span&gt;fac[i]&lt;span style=&#34;color:#f92672&#34;&gt;%&lt;/span&gt;MOD);
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/uoj50/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/uoj50/ - </description>
         </item>
     
     
     
         <item>
         <title>loj2541题解</title>
-        <link>https://seraphim.rocks/posts/loj2541/</link>
+        <link>https://sensiki.xyz/posts/loj2541/</link>
         <pubDate>Mon, 16 Jul 2018 15:47:07 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/loj2541/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/loj2541/ -&lt;p&gt;这种求某个东西在最后一个的概率之类的其实可以考虑容斥，设钦定一个集合&lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;在它后面的概率为&lt;span class=&#34;math inline&#34;&gt;\(f(S)\)&lt;/span&gt;，那么最后的答案为&lt;span class=&#34;math inline&#34;&gt;\(\sum (-1)^{|S|}f(S)\)&lt;/span&gt;.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/loj2541/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/loj2541/ -&lt;p&gt;这种求某个东西在最后一个的概率之类的其实可以考虑容斥，设钦定一个集合&lt;span class=&#34;math inline&#34;&gt;\(S\)&lt;/span&gt;在它后面的概率为&lt;span class=&#34;math inline&#34;&gt;\(f(S)\)&lt;/span&gt;，那么最后的答案为&lt;span class=&#34;math inline&#34;&gt;\(\sum (-1)^{|S|}f(S)\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;现在考虑怎么算&lt;span class=&#34;math inline&#34;&gt;\(f(S)\)&lt;/span&gt;，一种感性的方法是，你可以认为其他人就没有关系了，那么&lt;span class=&#34;math inline&#34;&gt;\(f(S)\)&lt;/span&gt;即为第一个人第一个死的概率，即&lt;span class=&#34;math inline&#34;&gt;\(\frac{w _1}{w _1+\text{sum}(S)}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;要严谨地证明的话，可以改变一下游戏规则：死去的人不把他踢出去，这样不会改变每个人的死亡顺序，记&lt;span class=&#34;math inline&#34;&gt;\(W=\sum _{i=1}^n w _i\)&lt;/span&gt;，那么&lt;span class=&#34;math inline&#34;&gt;\(f(S)=\sum _{i=0}^{+\infty}\left(\frac{W-w _1-\text{sum}(S)}{W}\right)^i\frac{w _1}{W}=\frac{w _1}{w _1+\text{sum}(S)}\)&lt;/span&gt;.&lt;/p&gt;
 &lt;p&gt;于是答案就是&lt;span class=&#34;math inline&#34;&gt;\(\sum \frac{(-1)^{|S|}}{w _1+\text{sum}(S)}\)&lt;/span&gt;，注意到&lt;span class=&#34;math inline&#34;&gt;\(w _i\)&lt;/span&gt;加起来很小，我们可以统计每个&lt;span class=&#34;math inline&#34;&gt;\(\text{sum}(S)\)&lt;/span&gt;的贡献，这个只需要计算&lt;span class=&#34;math inline&#34;&gt;\(\prod _{i=2}^n(1-z^{w _i})\)&lt;/span&gt;就可以了.&lt;/p&gt;
@@ -464,18 +464,18 @@ ele &lt;span style=&#34;color:#a6e22e&#34;&gt;solve&lt;/span&gt;(ele &lt;span st
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;else&lt;/span&gt; puts(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;1&amp;#34;&lt;/span&gt;);
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/loj2541/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/loj2541/ - </description>
         </item>
     
     
     
         <item>
         <title>uoj387题解</title>
-        <link>https://seraphim.rocks/posts/uoj387/</link>
+        <link>https://sensiki.xyz/posts/uoj387/</link>
         <pubDate>Sun, 15 Jul 2018 13:31:44 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/uoj387/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/uoj387/ -&lt;p&gt;学到了一个新的技巧，树形的依赖关系，把顺序翻转，就可以在依赖父亲和依赖子树之间相互转化.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/uoj387/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/uoj387/ -&lt;p&gt;学到了一个新的技巧，树形的依赖关系，把顺序翻转，就可以在依赖父亲和依赖子树之间相互转化.&lt;/p&gt;
 &lt;p&gt;每次选取最深的能选取的叶子，证明的话，画个图用一下调整法应该能证.&lt;/p&gt;
 &lt;p&gt;代码：&lt;/p&gt;
 &lt;div class=&#34;highlight&#34;&gt;&lt;pre style=&#34;color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4&#34;&gt;&lt;code class=&#34;language-cpp&#34; data-lang=&#34;cpp&#34;&gt;&lt;span style=&#34;color:#75715e&#34;&gt;#include&lt;/span&gt; &lt;span style=&#34;color:#75715e&#34;&gt;&amp;lt;cstdio&amp;gt;&lt;/span&gt;&lt;span style=&#34;color:#75715e&#34;&gt;
@@ -533,18 +533,18 @@ queue&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;ele&lt;span 
 	}
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/uoj387/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/uoj387/ - </description>
         </item>
     
     
     
         <item>
         <title>bzoj2324题解</title>
-        <link>https://seraphim.rocks/posts/bzoj2324/</link>
+        <link>https://sensiki.xyz/posts/bzoj2324/</link>
         <pubDate>Sat, 07 Jul 2018 20:49:50 +0800</pubDate>
         
-        <guid>https://seraphim.rocks/posts/bzoj2324/</guid>
-        <description>蒟蒻的博客 https://seraphim.rocks/posts/bzoj2324/ -&lt;p&gt;前置技能：DAG的最小路径覆盖和最小链覆盖.&lt;/p&gt;
+        <guid>https://sensiki.xyz/posts/bzoj2324/</guid>
+        <description>蒟蒻的博客 https://sensiki.xyz/posts/bzoj2324/ -&lt;p&gt;前置技能：DAG的最小路径覆盖和最小链覆盖.&lt;/p&gt;
 &lt;p&gt;算了还是写一下吧免得自己忘了.&lt;/p&gt;
 &lt;p&gt;最小路径覆盖的做法就是把每个点&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;拆成两个点&lt;span class=&#34;math inline&#34;&gt;\(i _0,i _1\)&lt;/span&gt;，边&lt;span class=&#34;math inline&#34;&gt;\((i,j)\)&lt;/span&gt;变成&lt;span class=&#34;math inline&#34;&gt;\((i _0,j _1)\)&lt;/span&gt;，然后做最大匹配，这样每条匹配边相当于原图中一条边，匹配保证了每个点最多有一条入边一条出边，答案就是原图点数-匹配数，因为你可以看成每个点先独立为一条路径，每加入一条边相当于合并两条路径.&lt;/p&gt;
 &lt;p&gt;最小链覆盖的话边可以相交，所以需要先用floyd传递闭包，其实就是对于所有点对&lt;span class=&#34;math inline&#34;&gt;\((i,j)\)&lt;/span&gt;求出是否有一条链从&lt;span class=&#34;math inline&#34;&gt;\(i\)&lt;/span&gt;到&lt;span class=&#34;math inline&#34;&gt;\(j\)&lt;/span&gt;，有的话直接连一条边过去，这样两条链相交的话其中一条就可以直接跳过交点.&lt;/p&gt;
@@ -643,7 +643,7 @@ pair&lt;span style=&#34;color:#f92672&#34;&gt;&amp;lt;&lt;/span&gt;ele,ele&lt;sp
 	printf(&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;%d&lt;/span&gt;&lt;span style=&#34;color:#ae81ff&#34;&gt;\n&lt;/span&gt;&lt;span style=&#34;color:#e6db74&#34;&gt;&amp;#34;&lt;/span&gt;,mincost(&lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;,&lt;span style=&#34;color:#ae81ff&#34;&gt;1&lt;/span&gt;));
 	&lt;span style=&#34;color:#66d9ef&#34;&gt;return&lt;/span&gt; &lt;span style=&#34;color:#ae81ff&#34;&gt;0&lt;/span&gt;;
 }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://seraphim.rocks/posts/bzoj2324/ - </description>
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;- https://sensiki.xyz/posts/bzoj2324/ - </description>
         </item>
     
     

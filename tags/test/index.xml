@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>test on 蒟蒻的博客</title>
-    <link>https://seraphim.rocks/tags/test/</link>
+    <link>https://sensiki.xyz/tags/test/</link>
     <description>Recent content in test on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Sun, 10 Jun 2018 19:08:17 +0800</lastBuildDate>
     
-	<atom:link href="https://seraphim.rocks/tags/test/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sensiki.xyz/tags/test/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>test</title>
-      <link>https://seraphim.rocks/posts/test/</link>
+      <link>https://sensiki.xyz/posts/test/</link>
       <pubDate>Sun, 10 Jun 2018 19:08:17 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/test/</guid>
+      <guid>https://sensiki.xyz/posts/test/</guid>
       <description>&lt;p&gt;其它测试&lt;/p&gt;
 &lt;p&gt;&lt;span class=&#34;math inline&#34;&gt;\(E=mc^2\)&lt;/span&gt;&lt;/p&gt;</description>
     </item>

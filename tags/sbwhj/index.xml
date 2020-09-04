@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>sbwhj on 蒟蒻的博客</title>
-    <link>https://seraphim.rocks/tags/sbwhj/</link>
+    <link>https://sensiki.xyz/tags/sbwhj/</link>
     <description>Recent content in sbwhj on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 14 Dec 2018 21:40:41 +0800</lastBuildDate>
     
-	<atom:link href="https://seraphim.rocks/tags/sbwhj/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sensiki.xyz/tags/sbwhj/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>whj什么都不会系列-1</title>
-      <link>https://seraphim.rocks/posts/sbwhj-1/</link>
+      <link>https://sensiki.xyz/posts/sbwhj-1/</link>
       <pubDate>Fri, 14 Dec 2018 21:40:41 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/sbwhj-1/</guid>
+      <guid>https://sensiki.xyz/posts/sbwhj-1/</guid>
       <description>&lt;p&gt;退役了只有一直没怎么做题，感觉水平退步了不少，以前一些比较显然的思路现在可能都想不到了. 这样下去肯定是不行的，我尽量时不时做点&lt;del&gt;水&lt;/del&gt;题写点题解恢复一点智商吧.&lt;/p&gt;
 &lt;h3 id=&#34;题意&#34;&gt;题意&lt;/h3&gt;
 &lt;p&gt;给定&lt;span class=&#34;math inline&#34;&gt;\(n,m\)&lt;/span&gt;，求有多少对&lt;span class=&#34;math inline&#34;&gt;\((i,j)\)&lt;/span&gt;满足&lt;span class=&#34;math inline&#34;&gt;\(1\le i\le n,1\le j\le m\)&lt;/span&gt;且&lt;span class=&#34;math inline&#34;&gt;\(\gcd(i,j)\)&lt;/span&gt;为素数.&lt;/p&gt;

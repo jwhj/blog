@@ -2,21 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>微分方程 on 蒟蒻的博客</title>
-    <link>https://seraphim.rocks/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
+    <link>https://sensiki.xyz/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/</link>
     <description>Recent content in 微分方程 on 蒟蒻的博客</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en-us</language>
     <lastBuildDate>Fri, 17 Aug 2018 19:28:08 +0800</lastBuildDate>
     
-	<atom:link href="https://seraphim.rocks/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://sensiki.xyz/tags/%E5%BE%AE%E5%88%86%E6%96%B9%E7%A8%8B/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>uoj50题解</title>
-      <link>https://seraphim.rocks/posts/uoj50/</link>
+      <link>https://sensiki.xyz/posts/uoj50/</link>
       <pubDate>Fri, 17 Aug 2018 19:28:08 +0800</pubDate>
       
-      <guid>https://seraphim.rocks/posts/uoj50/</guid>
+      <guid>https://sensiki.xyz/posts/uoj50/</guid>
       <description>&lt;p&gt;分治fft是非常明显的做法，不过这样是&lt;span class=&#34;math inline&#34;&gt;\(\mathcal O(n\log^2n)\)&lt;/span&gt;的. 把生成函数弄出来之后会发现它是个微分方程，可以有一些神奇的方法来解，具体可以看UR3的题解.&lt;/p&gt;</description>
     </item>
     
